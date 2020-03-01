@@ -1,0 +1,7 @@
+server:
+  port: 6060
+  servlet:
+    context-path: /javayh
+spring:
+  application:
+    name: javayh-demo
