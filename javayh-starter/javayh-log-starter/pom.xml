@@ -11,5 +11,12 @@
     <description>日志处理</description>
     <artifactId>javayh-log-starter</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-common-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 </project>
