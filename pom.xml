@@ -156,4 +156,10 @@
             <email>yanghaij327@qq.com</email>
         </developer>
     </developers>
+    <licenses>
+        <license>
+            <name>javayh-platfom</name>
+            <url>ttp://www.apache.org/licenses/</url>
+        </license>
+    </licenses>
 </project>
