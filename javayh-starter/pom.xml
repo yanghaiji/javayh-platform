@@ -17,6 +17,7 @@
         <module>javayh-log-starter</module>
         <module>javayh-redis-starter</module>
         <module>javayh-swagger-starter</module>
+        <module>javayh-nacos-starter</module>
     </modules>
 
 

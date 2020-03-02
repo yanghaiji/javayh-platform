@@ -1,0 +1,47 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: javayh-gateway
+  profiles:
+    active: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        cluster-name: javayh-nacos
+      config:
+        group: javayh
+        server-addr: 127.0.0.1:8848
+        prefix: javayh-gateway
+        file-extension: yml
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          # 服务名小写
+          lower-case-service-id: true
+      routes:
+        - id: api-javayh-demo
+          # lb代表从注册中心获取服务，且已负载均衡方式转发
+          uri: lb://javayh-demo
+          predicates:
+            - Path=/demo/**
+          # 加上StripPrefix=1，否则转发到后端服务时会带上demo前缀
+          filters:
+            - StripPrefix=1
+
+
+logging:
+  level:
+    org.springframework.cloud.openfeign: debug
+    org.springframework.cloud.sleuth: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

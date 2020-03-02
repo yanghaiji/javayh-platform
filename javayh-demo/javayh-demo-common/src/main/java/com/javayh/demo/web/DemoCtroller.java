@@ -34,4 +34,20 @@ public class DemoCtroller {
         return ResultData.success("Hello Word!");
     }
 
+
+    /***
+     * <p>
+     *       测试gateway
+     * </p>
+     * @version 1.0.0
+     * @author Dylan-haiji
+     * @since 2020/3/2
+     * @param
+     * @return com.javayh.common.result.ResultData
+     */
+    @GetMapping(value = "gateway")
+    public ResultData gateway(){
+        return ResultData.success("Hello Gateway!");
+    }
+
 }
