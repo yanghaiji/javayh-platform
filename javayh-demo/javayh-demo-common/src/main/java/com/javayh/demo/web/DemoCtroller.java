@@ -67,6 +67,7 @@ public class DemoCtroller {
      */
     @GetMapping(value = "getCleint")
     public ResultData getCleint(){
-        return ResultData.success(demoService.getFeign());
+        String feign = demoService.getFeign();
+        return ResultData.success(feign);
     }
 }
