@@ -3,7 +3,6 @@ package com.javayh.log.conf;
 import com.javayh.log.interceptor.LogInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @version 1.0.0
  * @since 2020-03-02 16:10
  */
-@Configuration
 @ConditionalOnClass(WebMvcConfigurer.class)
 public class LogAutoConfig implements WebMvcConfigurer {
 
