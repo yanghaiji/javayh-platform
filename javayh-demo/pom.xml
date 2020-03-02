@@ -27,11 +27,6 @@
             <artifactId>javayh-nacos-starter</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.javayh</groupId>
-            <artifactId>javayh-demo-api</artifactId>
-            <version>1.0.0</version>
-        </dependency>
     </dependencies>
 
 </project>

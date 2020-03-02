@@ -2,6 +2,7 @@ package com.javayh.demo.web;
 
 import com.javayh.common.result.ResultData;
 import com.javayh.demo.service.DemoService;
+import com.javayh.log.annotation.SysLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,6 +66,7 @@ public class DemoCtroller {
      * @param
      * @return com.javayh.common.result.ResultData
      */
+    @SysLog(value = "javayh-demo-common",detail = "测试Feign异步调用")
     @GetMapping(value = "getCleint")
     public ResultData getCleint(){
         String feign = demoService.getFeign();

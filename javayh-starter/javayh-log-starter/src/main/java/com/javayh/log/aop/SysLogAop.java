@@ -9,10 +9,14 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletRequest;
@@ -33,6 +37,8 @@ import java.util.concurrent.CompletableFuture;
  * @since 2020-03-01 23:49
  */
 @Slf4j
+@Aspect
+@Order(-1)
 public class SysLogAop {
     private static final String YMDHMS = "yyyy-MM-dd HH:mm:ss";
 
@@ -42,12 +48,8 @@ public class SysLogAop {
     @Autowired
     HttpServletRequest request;
 
-    @Pointcut(value = "@annotation(com.javayh.log.annotation.SysLog")
-    public void logAspect(){
-
-    }
-    @Around(value = "logAspect()")
-    public Object  getLog(ProceedingJoinPoint joinPoint) throws Throwable{
+    @Around("@annotation(sysLog)")
+    public Object  getLog(ProceedingJoinPoint joinPoint,SysLog sysLog) throws Throwable{
         Object proceed =null;
         long time = System.currentTimeMillis();
         try {
