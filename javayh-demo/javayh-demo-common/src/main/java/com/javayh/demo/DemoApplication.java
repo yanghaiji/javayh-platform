@@ -1,8 +1,7 @@
 package com.javayh.demo;
 
+import com.javayh.common.annotation.JavayhBootApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * <p>
@@ -13,8 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @version 1.0.0
  * @since 2020-03-01 20:44
  */
-@EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = "com.javayh.*")
+@JavayhBootApplication
 public class DemoApplication {
 
     public static void main(String[] args) {

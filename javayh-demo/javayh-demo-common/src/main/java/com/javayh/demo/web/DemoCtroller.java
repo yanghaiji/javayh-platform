@@ -1,6 +1,8 @@
 package com.javayh.demo.web;
 
 import com.javayh.common.result.ResultData;
+import com.javayh.demo.service.DemoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/demo/")
 public class DemoCtroller {
+
+    @Autowired
+    private DemoService demoService;
 
     /**
      * <p>
@@ -50,4 +55,18 @@ public class DemoCtroller {
         return ResultData.success("Hello Gateway!");
     }
 
+    /**
+     * <p>
+     *       Feign 调用测试
+     * </p>
+     * @version 1.0.0
+     * @author Dylan-haiji
+     * @since 2020/3/2
+     * @param
+     * @return com.javayh.common.result.ResultData
+     */
+    @GetMapping(value = "getCleint")
+    public ResultData getCleint(){
+        return ResultData.success(demoService.getFeign());
+    }
 }

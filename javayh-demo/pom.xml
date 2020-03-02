@@ -13,12 +13,24 @@
     <packaging>pom</packaging>
     <modules>
         <module>javayh-demo-common</module>
+        <module>javayh-demo-feign</module>
+        <module>javayh-demo-api</module>
     </modules>
 
     <dependencies>
         <dependency>
             <groupId>com.javayh</groupId>
             <artifactId>javayh-common-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-nacos-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-demo-api</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

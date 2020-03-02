@@ -1,0 +1,19 @@
+server:
+  port: 6061
+  servlet:
+    context-path: /javayh
+spring:
+  application:
+    name: javayh-demo-feign
+  profiles:
+    active: demo
+  cloud:
+   nacos:
+     discovery:
+       server-addr: 127.0.0.1:8848
+       cluster-name: javayh-nacos
+     config:
+       group: javayh
+       server-addr: 127.0.0.1:8848
+       prefix: javayh-demo-feign
+       file-extension: yml

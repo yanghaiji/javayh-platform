@@ -86,7 +86,12 @@
                 <artifactId>javayh-log-starter</artifactId>
                 <version>${core.version}</version>
             </dependency>
-
+            <!--nocos-->
+            <dependency>
+                <groupId>com.javayh</groupId>
+                <artifactId>javayh-nacos-starter</artifactId>
+                <version>${core.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

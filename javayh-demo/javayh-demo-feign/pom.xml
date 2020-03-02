@@ -9,14 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>javayh-demo-common</artifactId>
+    <artifactId>javayh-demo-feign</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.javayh</groupId>
-            <artifactId>javayh-log-starter</artifactId>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
 
 </project>
