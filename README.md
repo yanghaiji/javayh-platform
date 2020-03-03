@@ -8,7 +8,7 @@
 </p>
 
 #### 如果您觉得有帮助，请点右上角 "Star" 支持一下谢谢
-
+本项目处于开发阶段，想加入开发的小伙伴添加`微信:372787553 备注进群或者开发`
 ## 技术框架
 
 | 框架                   | 说明        | 版本               |
@@ -41,5 +41,5 @@ javayh-platform                 父工程
     ├─javayh-redis-starter      reids依赖支持
     └─javayh-swagger-starter    Api文档支持
 ```
-
-本项目处于开发阶段，想加入开发的小伙伴添加`微信:372787553 备注进群或者开发`
+## 使用说明
+项目使用说明 <a>https://github.com/Dylan-haiji/javayh-platform/wiki</a>
