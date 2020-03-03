@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({BaseException.class})
     public ResultData customExceptionHandler(BaseException e) {
         sysLog();
-        log.info("自定义异常 ---> {}",e);
+        log.error("自定义异常 ---> {}",e);
         return ResultData.fail(e.getMessage());
     }
 
@@ -51,7 +51,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({Exception.class})
     public ResultData customExceptionHandler(Exception e) {
         sysLog();
-        log.info("未知的运行异常 ---> ",e);
+        log.error("未知的运行异常 ---> ",e);
         return ResultData.fail();
     }
 
@@ -67,7 +67,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value= MethodArgumentNotValidException.class)
     public ResultData methodNotValidHandler(MethodArgumentNotValidException exception) {
         sysLog();
-        log.info("参数异常 ---> ",exception);
+        log.error("参数异常 ---> ",exception);
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         return  ResultData.fail(fieldErrors.get(0).getDefaultMessage());
     }
@@ -85,8 +85,8 @@ public class GlobalExceptionHandler {
     private void sysLog(){
         HttpServletRequest request = RequestUtils.getRequest();
         String requestUri = request.getRequestURI();
-        log.info("异常  method ---> {}",request.getMethod());
-        log.info("异常 requestURI ---> {}",requestUri);
+        log.error("异常  method ---> {}",request.getMethod());
+        log.error("异常 requestURI ---> {}",requestUri);
     }
 
 }
