@@ -3,6 +3,7 @@ package com.javayh.log.aop;
 import com.alibaba.fastjson.JSONObject;
 import com.javayh.common.util.IPUtils;
 import com.javayh.common.util.RandomUtil;
+import com.javayh.common.util.RequestUtils;
 import com.javayh.log.annotation.SysLog;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
@@ -10,13 +11,10 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.task.TaskExecutor;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletRequest;
@@ -45,9 +43,6 @@ public class SysLogAop {
     @Autowired
     private TaskExecutor taskExecutor;
 
-    @Autowired
-    HttpServletRequest request;
-
     @Around("@annotation(sysLog)")
     public Object  getLog(ProceedingJoinPoint joinPoint,SysLog sysLog) throws Throwable{
         Object proceed =null;
@@ -67,6 +62,7 @@ public class SysLogAop {
     }
 
     private void addLogAspect(ProceedingJoinPoint joinPoint,Object proceed,long time){
+        HttpServletRequest request = RequestUtils.getRequest();
         //判断返回值是否为空
         if(!ObjectUtils.allNotNull()){
         }

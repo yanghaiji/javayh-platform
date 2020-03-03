@@ -1,16 +1,12 @@
 package com.javayh.common.exception;
 
 import com.javayh.common.result.ResultData;
+import com.javayh.common.util.RequestUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -87,7 +83,7 @@ public class GlobalExceptionHandler {
      * @return void
      */
     private void sysLog(){
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletRequest request = RequestUtils.getRequest();
         String requestUri = request.getRequestURI();
         log.info("异常  method ---> {}",request.getMethod());
         log.info("异常 requestURI ---> {}",requestUri);
