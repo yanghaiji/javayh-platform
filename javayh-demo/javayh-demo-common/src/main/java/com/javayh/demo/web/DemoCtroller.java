@@ -3,6 +3,8 @@ package com.javayh.demo.web;
 import com.javayh.common.result.ResultData;
 import com.javayh.demo.service.DemoService;
 import com.javayh.log.annotation.SysLog;
+import com.javayh.redis.prefix.KeyUtils;
+import com.javayh.redis.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,9 @@ public class DemoCtroller {
 
     @Autowired
     private DemoService demoService;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * <p>
@@ -71,5 +76,25 @@ public class DemoCtroller {
     public ResultData getCleint(){
         String feign = demoService.getFeign();
         return ResultData.success(feign);
+    }
+
+
+    /**
+     * <p>
+     *       测试Redis
+     * </p>
+     * @version 1.0.0
+     * @author Dylan-haiji
+     * @since 2020/3/4
+     * @param
+     * @return com.javayh.common.result.ResultData
+     */
+//    @SysLog(value = "javayh-demo-common",detail = "测试Redis")
+    @GetMapping(value = "redis")
+    public ResultData redis(){
+        String ceshi = KeyUtils.key("ceshi");
+        boolean hello_word = redisUtil.setl(ceshi,  "hello word", 100);
+        String s = (String) redisUtil.get(ceshi);
+        return ResultData.success(s);
     }
 }
