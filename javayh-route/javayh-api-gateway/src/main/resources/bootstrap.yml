@@ -37,7 +37,11 @@ spring:
               args:
                 name: default
                 fallbackUri: 'forward:/defaultfallback'
-
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1000  # 令牌桶的容积
+                redis-rate-limiter.burstCapacity: 1000  # 流速 每秒
+                key-resolver: "#{@ipKeyResolver}" #SPEL表达式去的对应的bean
 
 logging:
   level:
