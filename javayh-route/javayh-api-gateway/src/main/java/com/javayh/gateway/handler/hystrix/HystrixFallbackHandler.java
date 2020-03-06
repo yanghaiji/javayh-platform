@@ -1,4 +1,4 @@
-package com.javayh.gateway.handler;
+package com.javayh.gateway.handler.hystrix;
 
 import com.javayh.common.result.ResultData;
 import lombok.extern.slf4j.Slf4j;

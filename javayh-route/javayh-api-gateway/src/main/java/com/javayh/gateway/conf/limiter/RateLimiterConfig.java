@@ -3,6 +3,7 @@ package com.javayh.gateway.conf.limiter;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import reactor.core.publisher.Mono;
 
 /**
@@ -28,6 +29,7 @@ public class RateLimiterConfig {
      * @param
      * @return org.springframework.cloud.gateway.filter.ratelimit.KeyResolver
      */
+    @Primary
     @Bean
     public KeyResolver ipKeyResolver() {
         return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName());

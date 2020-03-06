@@ -11,5 +11,21 @@
 
     <artifactId>javayh-demo-api</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-log-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-redis-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-swagger-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 </project>

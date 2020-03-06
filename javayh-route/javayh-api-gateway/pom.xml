@@ -42,7 +42,12 @@
         <dependency>
             <groupId>com.javayh</groupId>
             <artifactId>javayh-nacos-starter</artifactId>
-            <version>1.0.0</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-redis-starter</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
