@@ -28,16 +28,61 @@ spring:
           # lb代表从注册中心获取服务，且已负载均衡方式转发
           uri: lb://javayh-demo
           predicates:
-            - Path=/demo/**
+            - Path=/javayh-demo/**
           # 加上StripPrefix=1，否则转发到后端服务时会带上demo前缀
           filters:
+            - SwaggerHeaderFilter
             - StripPrefix=1
             # 服务降级  触发调用 HystrixFallbackHandler GatewayFallbackConfig
             - name: Hystrix
               args:
                 name: default
                 fallbackUri: 'forward:/defaultfallback'
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1000  # 令牌桶的容积
+                redis-rate-limiter.burstCapacity: 1000  # 流速 每秒
+                key-resolver: "#{@ipKeyResolver}" #SPEL表达式去的对应的bean
 
+        - id: javayh-api
+          # lb代表从注册中心获取服务，且已负载均衡方式转发
+          uri: lb://javayh-api
+          predicates:
+            - Path=/javayh-api/**
+          # 加上StripPrefix=1，否则转发到后端服务时会带上demo前缀
+          filters:
+            - SwaggerHeaderFilter
+            - StripPrefix=1
+            # 服务降级  触发调用 HystrixFallbackHandler GatewayFallbackConfig
+            - name: Hystrix
+              args:
+                name: default
+                fallbackUri: 'forward:/defaultfallback'
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1000  # 令牌桶的容积
+                redis-rate-limiter.burstCapacity: 1000  # 流速 每秒
+                key-resolver: "#{@ipKeyResolver}" #SPEL表达式去的对应的bean
+
+        - id: javayh-feign
+          # lb代表从注册中心获取服务，且已负载均衡方式转发
+          uri: lb://javayh-feign
+          predicates:
+            - Path=/javayh-feign/**
+          # 加上StripPrefix=1，否则转发到后端服务时会带上demo前缀
+          filters:
+            - SwaggerHeaderFilter
+            - StripPrefix=1
+            # 服务降级  触发调用 HystrixFallbackHandler GatewayFallbackConfig
+            - name: Hystrix
+              args:
+                name: default
+                fallbackUri: 'forward:/defaultfallback'
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1000  # 令牌桶的容积
+                redis-rate-limiter.burstCapacity: 1000  # 流速 每秒
+                key-resolver: "#{@ipKeyResolver}" #SPEL表达式去的对应的bean
 
 logging:
   level:

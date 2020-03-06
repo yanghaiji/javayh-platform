@@ -2,12 +2,10 @@ package com.javayh.redis.conf;
 
 import com.javayh.redis.serializer.RedisObjectSerializer;
 import com.javayh.redis.util.RedisUtil;
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -19,9 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.Resource;
-import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -32,7 +28,6 @@ import org.springframework.util.ReflectionUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,32 +65,10 @@ public class RedisAutoConfig {
     @Primary
     @Bean("redisTemplate")
     // 没有此属性就不会装配bean 如果是单个redis 将此注解注释掉
-    @ConditionalOnProperty(name = "spring.redis.cluster.nodes", matchIfMissing = false)
-    public RedisTemplate<String, Object> getRedisTemplate(
-            @Value("${spring.redis.database}") int database,
-            @Value("${spring.redis.lettuce.pool.max-active}") int maxActive,
-            @Value("${spring.redis.lettuce.pool.max-idle}") int maxIdle,
-            @Value("${spring.redis.lettuce.pool.min-idle}") int minIdle,
-            @Value("${spring.redis.timeout}") long timeout,
-            @Value("${spring.redis.host}") String hostName,
-            @Value("${spring.redis.port}") int port ) {
+//    @ConditionalOnProperty(name = "spring.redis.cluster.nodes", matchIfMissing = false)
+    public RedisTemplate<String, Object> getRedisTemplate() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
-        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
-        configuration.setHostName(hostName);
-        configuration.setPort(port);
-        configuration.setDatabase(database);
-        GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
-        genericObjectPoolConfig.setMaxIdle(maxIdle);
-        genericObjectPoolConfig.setMinIdle(minIdle);
-        genericObjectPoolConfig.setMaxTotal(maxActive);
-        LettucePoolingClientConfiguration.LettucePoolingClientConfigurationBuilder builder = LettucePoolingClientConfiguration.builder();
-        builder.poolConfig(genericObjectPoolConfig);
-        builder.commandTimeout(Duration.ofSeconds(timeout));
-        LettuceConnectionFactory connectionFactory  = new LettuceConnectionFactory(configuration, builder.build());
-        connectionFactory.afterPropertiesSet();
-        redisTemplate.setConnectionFactory(connectionFactory);
-//        redisTemplate.setConnectionFactory(lettuceConnectionFactory);
-        redisTemplate.setConnectionFactory(new LettuceConnectionFactory());
+        redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         RedisSerializer stringSerializer = new StringRedisSerializer();
         RedisSerializer redisObjectSerializer = new RedisObjectSerializer();
         redisTemplate.setKeySerializer(stringSerializer);
@@ -113,31 +86,10 @@ public class RedisAutoConfig {
     @Primary
     @Bean("redisTemplate")
     @ConditionalOnProperty(name = "spring.redis.host", matchIfMissing = true)
-    public RedisTemplate<String, Object> getSingleRedisTemplate(
-                        @Value("${spring.redis.database}") int database,
-                        @Value("${spring.redis.lettuce.pool.max-active}") int maxActive,
-                        @Value("${spring.redis.lettuce.pool.max-idle}") int maxIdle,
-                        @Value("${spring.redis.lettuce.pool.min-idle}") int minIdle,
-                        @Value("${spring.redis.timeout}") long timeout,
-                        @Value("${spring.redis.host}") String hostName,
-                        @Value("${spring.redis.port}") int port ) {
+    public RedisTemplate<String, Object> getSingleRedisTemplate() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
         RedisSerializer redisObjectSerializer = new RedisObjectSerializer();
-        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
-        configuration.setHostName(hostName);
-        configuration.setPort(port);
-        configuration.setDatabase(database);
-        GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
-        genericObjectPoolConfig.setMaxIdle(maxIdle);
-        genericObjectPoolConfig.setMinIdle(minIdle);
-        genericObjectPoolConfig.setMaxTotal(maxActive);
-        LettucePoolingClientConfiguration.LettucePoolingClientConfigurationBuilder builder = LettucePoolingClientConfiguration.builder();
-        builder.poolConfig(genericObjectPoolConfig);
-        builder.commandTimeout(Duration.ofSeconds(timeout));
-        LettuceConnectionFactory connectionFactory  = new LettuceConnectionFactory(configuration, builder.build());
-        connectionFactory.afterPropertiesSet();
-        redisTemplate.setConnectionFactory(connectionFactory);
-//        redisTemplate.setConnectionFactory(lettuceConnectionFactory);
+        redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(redisObjectSerializer);
         redisTemplate.setHashValueSerializer(redisObjectSerializer);

@@ -96,6 +96,12 @@
                 <artifactId>javayh-nacos-starter</artifactId>
                 <version>${core.version}</version>
             </dependency>
+            <!--swagger-->
+            <dependency>
+                <groupId>com.javayh</groupId>
+                <artifactId>javayh-swagger-starter</artifactId>
+                <version>${core.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

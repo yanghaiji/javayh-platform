@@ -1,10 +1,10 @@
 server:
-  port: 6061
+  port: 6062
 spring:
   application:
-    name: javayh-feign
+    name: javayh-api
   profiles:
-    active: feign
+    active: api
   cloud:
    nacos:
      discovery:
@@ -13,5 +13,5 @@ spring:
      config:
        group: javayh
        server-addr: 127.0.0.1:8848
-       prefix: javayh-demo-feign
+       prefix: javayh-api
        file-extension: yml

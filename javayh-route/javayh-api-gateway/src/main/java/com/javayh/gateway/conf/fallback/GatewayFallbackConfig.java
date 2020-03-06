@@ -1,6 +1,6 @@
 package com.javayh.gateway.conf.fallback;
 
-import com.javayh.gateway.handler.HystrixFallbackHandler;
+import com.javayh.gateway.handler.hystrix.HystrixFallbackHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
