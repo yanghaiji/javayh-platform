@@ -109,7 +109,7 @@
                 <artifactId>javayh-swagger-starter</artifactId>
                 <version>${core.version}</version>
             </dependency>
-            <!--swagger-->
+            <!--mail-->
             <dependency>
                 <groupId>com.javayh</groupId>
                 <artifactId>javayh-mail-starter</artifactId>
