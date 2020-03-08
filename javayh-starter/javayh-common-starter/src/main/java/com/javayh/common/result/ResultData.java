@@ -3,8 +3,6 @@ package com.javayh.common.result;
 import com.javayh.common.constant.ConstantUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
-
 /**
  * <p>
  * 返回值封装
@@ -36,9 +34,14 @@ public class ResultData<T extends Object>{
         this.msg = msg;
     }
 
+    public static <T> ResultData success(){
+        return new ResultData(ConstantUtils.SUCCESS_CODE,ConstantUtils.SUCCESS_MSG,null);
+    }
+
     public static <T> ResultData success(T data){
         return new ResultData(ConstantUtils.SUCCESS_CODE,ConstantUtils.SUCCESS_MSG,data);
     }
+
 
     public static <T>  ResultData<T>  success(String msg ,T data){
         if(StringUtils.isEmpty(msg)){
