@@ -21,7 +21,7 @@ spring:
     # 自己的qq邮箱账号
     username: 372787553@qq.com
     #  password 换成腾讯给的QQ授权码
-    password: ihxabklhmtxzbhaa
+    password:
     default-encoding: UTF-8
     properties:
       mail:
