@@ -3,30 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>javayh-platform</artifactId>
+        <artifactId>javayh-demo</artifactId>
         <groupId>com.javayh</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>javayh-demo</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>javayh-demo-common</module>
-        <module>javayh-demo-feign</module>
-        <module>javayh-demo-api</module>
-        <module>javayh-demo-mail</module>
-        <module>javayh-demo-config</module>
-    </modules>
+    <artifactId>javayh-demo-config</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.javayh</groupId>
-            <artifactId>javayh-common-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.javayh</groupId>
-            <artifactId>javayh-nacos-starter</artifactId>
+            <artifactId>javayh-redis-starter</artifactId>
             <optional>true</optional>
         </dependency>
     </dependencies>
