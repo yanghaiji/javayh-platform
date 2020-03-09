@@ -31,6 +31,7 @@ javayh-platform                 父工程
 ├─javayh-demo                   测试区
 │  ├─javayh-demo-api
 │  ├─javayh-demo-common
+│  ├─javayh-demo-mail
 │  └─javayh-demo-feign
 ├─javayh-route                  路由分发
 │  └─javayh-api-gateway         gateway
@@ -39,6 +40,8 @@ javayh-platform                 父工程
     ├─javayh-db-starter         关系型数据库
     ├─javayh-nacos-starter      nacos依赖支持
     ├─javayh-redis-starter      reids依赖支持
+    ├─javayh-kafka-starter      kafka依赖支持
+    ├─javayh-mail-starter       mail依赖支持
     └─javayh-swagger-starter    Api文档支持
 ```
 ## 使用说明
