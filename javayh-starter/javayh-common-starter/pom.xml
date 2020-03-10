@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <description>公共基础</description>
     <artifactId>javayh-common-starter</artifactId>
-
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

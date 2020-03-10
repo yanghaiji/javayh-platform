@@ -1,6 +1,7 @@
 package com.javayh.common.annotation;
 
 import com.javayh.common.selector.ExceptionSelector;
+import com.javayh.common.selector.SpringSelector;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -32,7 +33,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({ExceptionSelector.class})
+@Import({ExceptionSelector.class, SpringSelector.class})
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @EnableDiscoveryClient

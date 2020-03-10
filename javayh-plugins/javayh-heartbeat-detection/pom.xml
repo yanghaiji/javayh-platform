@@ -3,23 +3,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>javayh-demo</artifactId>
+        <artifactId>javayh-plugins</artifactId>
         <groupId>com.javayh</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>javayh-demo-feign</artifactId>
+    <artifactId>javayh-heartbeat-detection</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>javayh-heartbeat-server</module>
+        <module>javayh-heartbeat-client</module>
+    </modules>
 
     <dependencies>
         <dependency>
-            <groupId>com.javayh</groupId>
-            <artifactId>javayh-swagger-starter</artifactId>
-            <optional>true</optional>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.version}</version>
         </dependency>
         <dependency>
             <groupId>com.javayh</groupId>
-            <artifactId>javayh-heartbeat-client</artifactId>
+            <artifactId>javayh-common-starter</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
+
 </project>
