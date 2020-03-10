@@ -15,3 +15,10 @@ spring:
        server-addr: 127.0.0.1:8848
        prefix: javayh-demo-feign
        file-extension: yml
+
+channel:
+  id: 101
+netty:
+  server:
+    host: 127.0.0.1
+    port: 8001

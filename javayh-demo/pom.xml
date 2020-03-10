@@ -16,6 +16,7 @@
         <module>javayh-demo-feign</module>
         <module>javayh-demo-api</module>
         <module>javayh-demo-mail</module>
+        <module>javayh-demo-config</module>
     </modules>
 
     <dependencies>

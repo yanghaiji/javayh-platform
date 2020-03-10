@@ -1,10 +1,8 @@
 package com.javayh.common.feign;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.javayh.common.exception.hystrix.HytrixException;
 import com.javayh.common.exception.service.ServiceException;
 import feign.Response;
@@ -40,20 +38,20 @@ public class FeignExceptionConfig {
             Exception exception = null;
             ObjectMapper mapper = new ObjectMapper();
             ObjectMapper objectMapper = new ObjectMapper();
-            //序列化的时候序列对象的所有属性 空属性处理
+            /*序列化的时候序列对象的所有属性 空属性处理*/
             mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-            //设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
+            /*设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性*/
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            //禁止使用int代表enum的order来反序列化enum
+            /*禁止使用int代表enum的order来反序列化enum*/
             mapper.configure(DeserializationFeature.FAIL_ON_NUMBERS_FOR_ENUMS, true);
             try {
                 String json = Util.toString(response.body().asReader());
-                // 非业务异常包装成自定义异常类ServiceException
+                /*非业务异常包装成自定义异常类ServiceException*/
                 if (StringUtils.isNotEmpty(json)) {
                     if(json.contains("code")){
                         FeignFaildResult result = mapper.readValue(json, FeignFaildResult.class);
                         result.setStatus(response.status());
-                        // 业务异常包装成自定义异常类HytrixException
+                        /*业务异常包装成自定义异常类HytrixException*/
                         if (result.getStatus() != HttpStatus.OK.value()) {
                             exception = new HytrixException(result.getResp_msg());
                         }else{

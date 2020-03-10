@@ -43,7 +43,7 @@ public class RSAEncrypt {
         //获得map中的私钥对象 转为key对象
         Key key = (Key) keyMap.get(PRIVATE_KEY);
         //byte[] privateKey = key.getEncoded();
-        //编码返回字符串
+        /*编码返回字符串*/
         return encryptBASE64(key.getEncoded());
     }
 
@@ -72,15 +72,15 @@ public class RSAEncrypt {
      * @return java.util.Map<java.lang.String,java.lang.Object>
      */
     public static Map<String, Object> initKey() throws Exception {
-        //获得对象 KeyPairGenerator 参数 RSA 256个字节
+        /*获得对象 KeyPairGenerator 参数 RSA 256个字节*/
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
         keyPairGen.initialize(1024);
-        //通过对象 KeyPairGenerator 获取对象KeyPair
+        /*通过对象 KeyPairGenerator 获取对象KeyPair*/
         KeyPair keyPair = keyPairGen.generateKeyPair();
-        //通过对象 KeyPair 获取RSA公私钥对象RSAPublicKey RSAPrivateKey
+        /*通过对象 KeyPair 获取RSA公私钥对象RSAPublicKey RSAPrivateKey*/
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
-        //公私钥对象存入map中
+        /*公私钥对象存入map中*/
         Map<String, Object> keyMap = new HashMap<String, Object>(2);
         keyMap.put(PUBLIC_KEY, publicKey);
         keyMap.put(PRIVATE_KEY, privateKey);

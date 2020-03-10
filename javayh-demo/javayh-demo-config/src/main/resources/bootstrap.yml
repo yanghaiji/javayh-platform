@@ -1,0 +1,19 @@
+server:
+  port: 6060
+spring:
+  application:
+    name: javayh-demo-config
+  profiles:
+    active: demo-config
+  cloud:
+   nacos:
+     discovery:
+       server-addr: 127.0.0.1:8848
+       cluster-name: javayh-nacos
+     config:
+       group: haiji_dev
+       server-addr: 127.0.0.1:8848
+       prefix: javayh-demo
+       file-extension: yml
+       namespace: d7503bcd-e44c-475a-88d4-d28cbfb444fc
+       shared-dataids: redis.yml

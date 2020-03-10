@@ -11,5 +11,8 @@
 
     <artifactId>javayh-plugins</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>javayh-heartbeat-detection</module>
+    </modules>
 
 </project>

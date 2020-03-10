@@ -580,7 +580,7 @@ public class RedisUtil {
      * @return long
      */
     private static long getTime(){
-        return (long) ((Math.random()*50)+1);
+        return (long) ((Math.random()*200)+1);
     }
 
     /**

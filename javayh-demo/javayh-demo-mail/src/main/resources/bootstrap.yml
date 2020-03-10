@@ -1,5 +1,6 @@
 server:
   port: 6063
+  maxHttpHeaderSize: 2048
 spring:
   application:
     name: javayh-mail
@@ -41,3 +42,10 @@ spring:
     cache: false # 调试时关闭缓存
     servlet:
       content-type: text/html
+
+channel:
+  id: 100
+netty:
+  server:
+    host: 127.0.0.1
+    port: 8001
