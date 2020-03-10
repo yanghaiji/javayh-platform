@@ -43,9 +43,8 @@ spring:
     servlet:
       content-type: text/html
 
-channel:
-  id: 100
-netty:
+heartbeat:
   server:
     host: 127.0.0.1
     port: 8001
+    channel-id: 100

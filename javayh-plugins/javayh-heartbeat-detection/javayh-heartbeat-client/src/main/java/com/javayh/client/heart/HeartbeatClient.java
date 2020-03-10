@@ -1,5 +1,6 @@
 package com.javayh.client.heart;
 
+import com.javayh.client.properties.HeartbeatProperties;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -8,7 +9,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 
@@ -25,12 +26,10 @@ public class HeartbeatClient {
 
     private EventLoopGroup group = new NioEventLoopGroup();
 
-    @Value("${netty.server.port}")
-    private int nettyPort;
-    @Value("${netty.server.host}")
-    private String host;
-
     private SocketChannel socketChannel;
+
+    @Autowired(required = false)
+    private HeartbeatProperties properties;
 
     @PostConstruct
     public void start() throws InterruptedException {
@@ -44,7 +43,7 @@ public class HeartbeatClient {
          * 启动客户端
          * 我们应该调用connect()方法而不是bind()方法。
          */
-        ChannelFuture future = bootstrap.connect(host, nettyPort).sync();
+        ChannelFuture future = bootstrap.connect(properties.getHost(), properties.getPort()).sync();
         if (future.isSuccess()) {
             LOGGER.info("启动 Netty 成功");
         }

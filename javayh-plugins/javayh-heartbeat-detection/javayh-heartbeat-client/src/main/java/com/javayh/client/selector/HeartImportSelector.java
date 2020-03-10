@@ -18,6 +18,7 @@ public class HeartImportSelector implements ImportSelector {
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
         return new String[]{
                 "com.javayh.client.config.HeartBeatConfig",
+                "com.javayh.client.properties.HeartbeatProperties",
                 "com.javayh.client.heart.HeartbeatClient"
         };
     }

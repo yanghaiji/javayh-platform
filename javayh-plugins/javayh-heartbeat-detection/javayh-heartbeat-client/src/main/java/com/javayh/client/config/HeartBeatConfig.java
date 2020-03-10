@@ -1,7 +1,7 @@
 package com.javayh.client.config;
 
+import com.javayh.client.properties.HeartbeatProperties;
 import com.javayh.common.result.MessageBody;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -14,11 +14,13 @@ import org.springframework.context.annotation.Bean;
  */
 public class HeartBeatConfig {
 
-    @Value("${channel.id}")
-    private long id;
-
     @Bean(value = "heartBeat")
-    public MessageBody heartBeat(){
-        return new MessageBody(id,"ping") ;
+    public MessageBody heartBeat(HeartbeatProperties heartbeatProperties){
+        return new MessageBody(heartbeatProperties.getChannelId(),"ping") ;
     }
+
+//    @Bean(value = "heartbeatProperties")
+//    public HeartbeatProperties heartbeatProperties(){
+//        return new HeartbeatProperties() ;
+//    }
 }
