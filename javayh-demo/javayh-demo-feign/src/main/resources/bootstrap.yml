@@ -16,9 +16,8 @@ spring:
        prefix: javayh-demo-feign
        file-extension: yml
 
-channel:
-  id: 101
-netty:
+heartbeat:
   server:
     host: 127.0.0.1
     port: 8001
+    channel-id: 101
