@@ -15,7 +15,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 2020-03-09 14:07
  */
-public class NumberUtil {
+public class NumberUtil<T> {
     private static final String DOUBLE_PATTERN_AFTER_POINT_3 = "#.###";
 
     private static final DecimalFormat decimalFormat = new DecimalFormat(DOUBLE_PATTERN_AFTER_POINT_3);
@@ -126,6 +126,31 @@ public class NumberUtil {
         }
         return 0.0;
     }
+
+    /**
+     * <p>
+     *       取两个数的最大最小值
+     * </p>
+     * @version 1.0.0
+     * @author Dylan-haiji
+     * @since 2020/3/10
+     * @param a
+     * @param b
+     * @param factor    负载因子
+     * @return java.lang.Integer
+     */
+    public static Integer max(Integer a ,Integer b,int factor){
+        Integer max = 0;
+        if(null != a && null != b && factor == 1){
+            max = Math.max(a, b);
+            return max;
+        }else if (null != a && null != b && factor == 0){
+            max = Math.min(a, b);
+            return max;
+        }
+        return max;
+    }
+
 
 
 }
