@@ -36,7 +36,7 @@ public class HeartBeatServer {
     private EventLoopGroup boss = new NioEventLoopGroup();
     private EventLoopGroup work = new NioEventLoopGroup();
 
-    @Value("${netty.server.port}")
+    @Value("${heartbeat.server.port}")
     private int nettyPort;
 
     /**

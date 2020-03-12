@@ -22,6 +22,6 @@ spring:
 #       namespace: d7503bcd-e44c-475a-88d4-d28cbfb444fc
 #       shared-dataids: redis.yml
 
-netty:
+heartbeat:
   server:
     port: 8001
