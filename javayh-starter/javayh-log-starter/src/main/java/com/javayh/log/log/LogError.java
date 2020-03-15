@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
- * 堆信息详细输出
+ *      堆信息详细输出
  * </p>
  *
  * @author Dylan-haiji
@@ -22,12 +22,11 @@ public class LogError extends LogTemplate {
      * @author Dylan-haiji
      * @since 2020/3/15
      * @param prefix
-     * @param e
      * @return void
      */
     @Override
-    public void logError(String prefix, Exception e) {
-        log(prefix ,e );
+    protected void logError(String prefix,StackTraceElement[] stackTrace) {
+        log(prefix ,stackTrace );
     }
 
     /**
@@ -37,44 +36,13 @@ public class LogError extends LogTemplate {
      * @version 1.0.0
      * @author Dylan-haiji
      * @since 2020/3/15
-     * @param e
      * @return void
      */
     @Override
-    public void logError(Exception e) {
-        log(e);
+    protected void logError(StackTraceElement[] stackTrace) {
+        log(stackTrace);
     }
 
-    /***
-     * <p>
-     *       错误日志记录
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/3/15
-     * @param prefix
-     * @param e
-     * @return void
-     */
-    @Override
-    public void logError(String prefix, Throwable e) {
-        log(prefix ,e );
-    }
-
-    /**
-     * <p>
-     *       错误日志记录
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/3/15
-     * @param e
-     * @return void
-     */
-    @Override
-    public void logError(Throwable e) {
-       log(e);
-    }
 
     /**
      * <p>
@@ -84,13 +52,11 @@ public class LogError extends LogTemplate {
      * @author Dylan-haiji
      * @since 2020/3/15
      * @param prefix
-     * @param e
      * @return void
      */
-    private void log(String prefix,Throwable e){
-        StackTraceElement[] stackTrace = e.getStackTrace();
+    private void log(String prefix,StackTraceElement[] stackTrace){
         for (StackTraceElement stackTraceElement : stackTrace) {
-            log.error(PREFIX + JOINER + "{}"," 错误详细信息 : "+ stackTraceElement.toString());
+            log.error(PREFIX + JOINER + prefix.trim() + JOINER + "{}"," 错误详细信息 : "+ stackTraceElement.toString());
         }
     }
 
@@ -101,11 +67,9 @@ public class LogError extends LogTemplate {
      * @version 1.0.0
      * @author Dylan-haiji
      * @since 2020/3/15
-     * @param e
      * @return void
      */
-    private void log(Throwable e){
-        StackTraceElement[] stackTrace = e.getStackTrace();
+    private void log(StackTraceElement[] stackTrace){
         for (StackTraceElement stackTraceElement : stackTrace) {
             log.error(PREFIX + JOINER + "{}"," 错误详细信息 : "+ stackTraceElement.toString());
         }

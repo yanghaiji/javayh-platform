@@ -32,7 +32,7 @@ public class Demo2Controller {
         try {
             Integer.valueOf("22m");
         } catch (NumberFormatException e) {
-            logError.logError(e);
+            logError.logPrint("swagger",e.getStackTrace());
         }
         return ResultData.success("Hello Swagger!");
     }
