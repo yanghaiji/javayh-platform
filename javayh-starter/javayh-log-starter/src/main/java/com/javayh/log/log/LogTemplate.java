@@ -106,7 +106,7 @@ public abstract class LogTemplate {
      * @return boolean
      */
     protected boolean verify(String prefix){
-        boolean blank = StringUtils.isBlank(prefix);
+        boolean blank = StringUtils.isEmpty(prefix);
         return blank;
     }
 
