@@ -44,21 +44,20 @@ public class SysLogAop {
     private TaskExecutor taskExecutor;
 
     @Around("@annotation(sysLog)")
-    public Object  getLog(ProceedingJoinPoint joinPoint,SysLog sysLog) throws Throwable{
+    public Object  getLog(ProceedingJoinPoint joinPoint,SysLog sysLog) {
         Object proceed =null;
         long time = System.currentTimeMillis();
         try {
             proceed = joinPoint.proceed();
             time = System.currentTimeMillis() - time;
             log.info("方法执行消耗时间 = {}",time);
-            return proceed;
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            throw throwable;
+
         }finally {
             //方法执行后
             addLogAspect(joinPoint,proceed,time);
         }
+        return proceed;
     }
 
     private void addLogAspect(ProceedingJoinPoint joinPoint,Object proceed,long time){

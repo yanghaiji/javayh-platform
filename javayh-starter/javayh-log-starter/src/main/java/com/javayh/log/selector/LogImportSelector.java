@@ -18,7 +18,8 @@ public class LogImportSelector implements ImportSelector {
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
         return new String[]{
                 "com.javayh.log.aop.SysLogAop",
-                "com.javayh.log.conf.LogAutoConfig"
+                "com.javayh.log.conf.LogAutoConfig",
+                "com.javayh.log.log.LogError"
         };
     }
 }
