@@ -35,7 +35,7 @@ public class NumberUtil<T> {
         if(num != 0 && offset != 0 && factor > 0 && offset >= factor){
             Integer model = num % offset;
             Integer rem = num / offset;
-            List<Integer> lists = new ArrayList<>(offset);
+            List<Integer> lists = new ArrayList<>( offset>= 10 ? 16 : offset+1);
             Integer rand = (int)Math.random() +factor ;
             for (int j = 0; j < offset ; j++) {
                 lists.add(rem);

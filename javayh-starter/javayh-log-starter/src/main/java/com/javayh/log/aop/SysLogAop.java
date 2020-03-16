@@ -5,6 +5,7 @@ import com.javayh.common.util.IPUtils;
 import com.javayh.common.util.RandomUtil;
 import com.javayh.common.util.RequestUtils;
 import com.javayh.log.annotation.SysLog;
+import com.javayh.log.log.LogError;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -42,9 +43,11 @@ public class SysLogAop {
 
     @Autowired
     private TaskExecutor taskExecutor;
+    @Autowired(required = false)
+    private LogError logError;
 
     @Around("@annotation(sysLog)")
-    public Object  getLog(ProceedingJoinPoint joinPoint,SysLog sysLog) throws Throwable{
+    public Object  getLog(ProceedingJoinPoint joinPoint,SysLog sysLog) throws Throwable {
         Object proceed =null;
         long time = System.currentTimeMillis();
         try {
@@ -53,7 +56,7 @@ public class SysLogAop {
             log.info("方法执行消耗时间 = {}",time);
             return proceed;
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            logError.logPrint("SysLogAop", throwable.getStackTrace());
             throw throwable;
         }finally {
             //方法执行后
