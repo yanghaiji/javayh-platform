@@ -30,6 +30,7 @@
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <junit.version>4.11</junit.version>
         <netty.version>4.1.21.Final</netty.version>
+        <easypoi.version>3.2.0</easypoi.version>
         <spring-cloud-dependencies.version>Greenwich.SR3</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2.1.1.RELEASE</spring-cloud-alibaba-dependencies.version>
     </properties>

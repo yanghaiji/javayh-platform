@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 /**
  * <p>
  * gateway启动类
+ * 全局api文档 http://localhost:7000/doc.html#
  * </p>
  *
  * @author Dylan-haiji

@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: javayh-mail
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
   profiles:
     active: mail
   cloud:
