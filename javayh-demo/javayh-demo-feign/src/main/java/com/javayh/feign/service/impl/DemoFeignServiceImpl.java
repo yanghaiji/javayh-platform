@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Service
 public class DemoFeignServiceImpl {
 
-    @GetMapping(value = "/feign/getFeign")
+//    @GetMapping(value = "/feign/getFeign")
     public String getFeign() {
         return "Feign Success";
     }

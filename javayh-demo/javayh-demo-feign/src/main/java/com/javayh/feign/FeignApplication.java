@@ -13,7 +13,7 @@ import org.springframework.boot.SpringApplication;
  * @version 1.0.0
  * @since 2020-03-02 13:34
  */
-@EnableAutoHeartBeat
+//@EnableAutoHeartBeat
 @JavayhBootApplication
 public class FeignApplication {
 
