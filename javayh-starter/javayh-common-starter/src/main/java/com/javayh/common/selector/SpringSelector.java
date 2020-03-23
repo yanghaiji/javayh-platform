@@ -16,7 +16,8 @@ public class SpringSelector implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata annotationMetadata) {
         return new String[]{
-                "com.javayh.common.util.SpringUtils"
+                "com.javayh.common.util.SpringUtils",
+                "com.javayh.common.config.MyCommandLineRunner"
         };
     }
 }
