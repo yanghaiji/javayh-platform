@@ -1,6 +1,10 @@
 package com.javayh.log.log;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * <p>
@@ -13,7 +17,8 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class LogError extends LogTemplate {
-
+    @Autowired(required = false)
+    private TaskExecutor taskExecutor;
     /**
      * <p>
      *       错误日志记录
@@ -55,9 +60,12 @@ public class LogError extends LogTemplate {
      * @return void
      */
     private void log(String prefix,StackTraceElement[] stackTrace){
-        for (StackTraceElement stackTraceElement : stackTrace) {
-            log.error(PREFIX + JOINER + prefix.trim() + JOINER + "{}"," 错误详细信息 : "+ stackTraceElement.toString());
-        }
+        CompletableFuture.runAsync(() -> {
+            for (StackTraceElement stackTraceElement : stackTrace) {
+                log.error(PREFIX + JOINER + prefix.trim() + JOINER + "{}"," 错误详细信息 : "+ stackTraceElement.toString());
+            }
+        },taskExecutor);
+
     }
 
     /**
@@ -70,9 +78,11 @@ public class LogError extends LogTemplate {
      * @return void
      */
     private void log(StackTraceElement[] stackTrace){
-        for (StackTraceElement stackTraceElement : stackTrace) {
-            log.error(PREFIX + JOINER + "{}"," 错误详细信息 : "+ stackTraceElement.toString());
-        }
+        CompletableFuture.runAsync(() -> {
+            for (StackTraceElement stackTraceElement : stackTrace) {
+                log.error(PREFIX  + "{}", JOINER +"错误详细信息 : "+ stackTraceElement);
+            }
+        },taskExecutor);
     }
 
 

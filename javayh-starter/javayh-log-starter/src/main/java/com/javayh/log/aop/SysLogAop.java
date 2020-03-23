@@ -113,7 +113,7 @@ public class SysLogAop {
                         //持久化 TODO
                         log.trace("开始落库结束：{}", operationLog);
                     } catch (Exception e) {
-                        log.error("落库失败：{}", e.getMessage());
+                        logError.logPrint("落库失败：{}", e.getStackTrace());
                     }
 
                 }, taskExecutor);

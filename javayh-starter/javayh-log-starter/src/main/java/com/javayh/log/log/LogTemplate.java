@@ -15,7 +15,7 @@ public abstract class LogTemplate {
     /**前缀*/
     protected static final String PREFIX = "Java有货";
     /**链接符*/
-    protected static final String JOINER = "----->";
+    protected static final String JOINER = "-----";
 
     /**
      * <p>
