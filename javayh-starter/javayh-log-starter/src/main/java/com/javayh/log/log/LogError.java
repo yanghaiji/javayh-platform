@@ -19,6 +19,7 @@ import java.util.concurrent.CompletableFuture;
 public class LogError extends LogTemplate {
     @Autowired(required = false)
     private TaskExecutor taskExecutor;
+    private static final String MSG = " 错误详细信息 : ";
     /**
      * <p>
      *       错误日志记录
@@ -62,7 +63,7 @@ public class LogError extends LogTemplate {
     private void log(String prefix,StackTraceElement[] stackTrace){
         CompletableFuture.runAsync(() -> {
             for (StackTraceElement stackTraceElement : stackTrace) {
-                log.error(PREFIX + JOINER + prefix.trim() + JOINER + "{}"," 错误详细信息 : "+ stackTraceElement.toString());
+                log.error(PREFIX + JOINER + prefix.trim() + JOINER + "{}",MSG+ stackTraceElement.toString());
             }
         },taskExecutor);
 
@@ -80,7 +81,7 @@ public class LogError extends LogTemplate {
     private void log(StackTraceElement[] stackTrace){
         CompletableFuture.runAsync(() -> {
             for (StackTraceElement stackTraceElement : stackTrace) {
-                log.error(PREFIX  + "{}", JOINER +"错误详细信息 : "+ stackTraceElement);
+                log.error(PREFIX  + "{}", JOINER +MSG+ stackTraceElement);
             }
         },taskExecutor);
     }
