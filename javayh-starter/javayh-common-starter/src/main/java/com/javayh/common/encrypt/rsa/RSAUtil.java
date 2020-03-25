@@ -1,5 +1,6 @@
 package com.javayh.common.encrypt.rsa;
 
+import com.javayh.common.constant.EncryptConstantUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 
@@ -35,11 +36,6 @@ import java.security.spec.X509EncodedKeySpec;
 public class RSAUtil {
 
     /**
-     * MD5withRSA///RSA/ECB/PKCS1Padding
-     * 指定加密算法为DESede
-     */
-    private static String ALGORITHM = "RSA/ECB/PKCS1Padding";
-    /**
      * 指定key的大小(64的整数倍,最小512位)
      */
     private static int KEYSIZE = 1024;
@@ -59,7 +55,7 @@ public class RSAUtil {
 
     static {
         try {
-            keyFactory = KeyFactory.getInstance("RSA");
+            keyFactory = KeyFactory.getInstance(EncryptConstantUtils.KEY_ALGORITHM);
         } catch (NoSuchAlgorithmException ex) {
             System.out.println(ex.getMessage());
         }
@@ -95,7 +91,7 @@ public class RSAUtil {
         /** RSA算法要求有一个可信任的随机数源 */
         SecureRandom sr = new SecureRandom();
         /** 为RSA算法创建一个KeyPairGenerator对象 */
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance(EncryptConstantUtils.KEY_ALGORITHM);
         /** 利用上面的随机数据源初始化这个KeyPairGenerator对象 */
         kpg.initialize(keySize, sr);
         /** 生成密匙对 */
@@ -247,7 +243,7 @@ public class RSAUtil {
      */
 
     public static byte[] encrypt(Key key, byte[] data) throws Exception {
-        Cipher ci = Cipher.getInstance(ALGORITHM);
+        Cipher ci = Cipher.getInstance(EncryptConstantUtils.ALGORITHM);
         ci.init(Cipher.ENCRYPT_MODE, key);
         int inputLen = data.length;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -301,7 +297,7 @@ public class RSAUtil {
      * @throws Exception
      */
     public static byte[] decrypt(Key key, byte[] data) throws Exception {
-        Cipher ci = Cipher.getInstance(ALGORITHM);
+        Cipher ci = Cipher.getInstance(EncryptConstantUtils.ALGORITHM);
         ci.init(Cipher.DECRYPT_MODE, key);
         int inputLen = data.length;
         ByteArrayOutputStream out = new ByteArrayOutputStream();

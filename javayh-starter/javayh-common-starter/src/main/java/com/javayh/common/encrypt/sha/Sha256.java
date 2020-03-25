@@ -1,8 +1,7 @@
 package com.javayh.common.encrypt.sha;
 
-import com.javayh.common.encrypt.aes.AESUtil;
-import com.javayh.common.encrypt.key.DataKeyGenerator;
-import com.javayh.common.util.ConstantUtil;
+import com.javayh.common.constant.ConstantUtils;
+import com.javayh.common.constant.EncryptConstantUtils;
 import com.javayh.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,12 +32,12 @@ public class Sha256 {
      * @return java.lang.String
      */
     public static String getSHA256(String str) {
-        str = StringUtils.setSuffix(str, ConstantUtil.SUFFIX_SHA);
+        str = StringUtils.setSuffix(str, EncryptConstantUtils.SUFFIX_SHA);
         MessageDigest messageDigest;
         String encodestr = "";
         try {
-            messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(str.getBytes("UTF-8"));
+            messageDigest = MessageDigest.getInstance(EncryptConstantUtils.SHA);
+            messageDigest.update(str.getBytes(ConstantUtils.UTF));
             encodestr = byte2Hex(messageDigest.digest());
         } catch (NoSuchAlgorithmException e) {
            log.error("NoSuchAlgorithmException {}",e.getMessage());
@@ -64,7 +63,7 @@ public class Sha256 {
         for (int i = 0; i < bytes.length; i++) {
             temp = Integer.toHexString(bytes[i] & 0xFF);
             if (temp.length() == 1) {
-                stringBuffer.append(ConstantUtil.FILL_STR);
+                stringBuffer.append(EncryptConstantUtils.FILL_STR);
             }
             stringBuffer.append(temp);
         }

@@ -17,4 +17,5 @@ public interface ConstantUtils {
     String FAIL_MSG ="未知的运行异常";
     String BUSINESS_DATA = "参数错误";
 
+    String UTF= "UTF-8";
 }

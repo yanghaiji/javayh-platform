@@ -1,6 +1,7 @@
 package com.javayh.common.encrypt.md5;
 
-import com.javayh.common.util.ConstantUtil;
+import com.javayh.common.constant.ConstantUtils;
+import com.javayh.common.constant.EncryptConstantUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.security.MessageDigest;
@@ -31,7 +32,7 @@ public class MD5Util {
         try {
             byte[] btInput = s.getBytes();
             // 获得MD5摘要算法的 MessageDigest 对象
-            MessageDigest mdInst = MessageDigest.getInstance(ConstantUtil.MD5);
+            MessageDigest mdInst = MessageDigest.getInstance(EncryptConstantUtils.MD5);
             // 使用指定的字节更新摘要
             mdInst.update(btInput);
             // 获得密文
@@ -42,8 +43,8 @@ public class MD5Util {
             int k = 0;
             for (int i = 0; i < j; i++) {
                 byte byte0 = md[i];
-                str[k++] = ConstantUtil.HEXADECIMAL[byte0 >>> 4 & 0xf];
-                str[k++] = ConstantUtil.HEXADECIMAL[byte0 & 0xf];
+                str[k++] = EncryptConstantUtils.HEXADECIMAL[byte0 >>> 4 & 0xf];
+                str[k++] = EncryptConstantUtils.HEXADECIMAL[byte0 & 0xf];
             }
             return new String(str);
         } catch (Exception e) {

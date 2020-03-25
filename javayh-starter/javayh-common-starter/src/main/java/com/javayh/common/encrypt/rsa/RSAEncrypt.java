@@ -1,6 +1,7 @@
 package com.javayh.common.encrypt.rsa;
 
 
+import com.javayh.common.constant.EncryptConstantUtils;
 import org.apache.commons.codec.binary.Base64;
 
 import java.security.Key;
@@ -21,10 +22,6 @@ import java.util.Map;
  */
 public class RSAEncrypt {
 
-    public static final String KEY_ALGORITHM = "RSA";
-    private static final String PUBLIC_KEY = "RSAPublicKey";
-    private static final String PRIVATE_KEY = "RSAPrivateKey";
-
     public class Keys {
 
     }
@@ -32,7 +29,7 @@ public class RSAEncrypt {
     //获得公钥
     public static String getPublicKey(Map<String, Object> keyMap) throws Exception {
         //获得map中的公钥对象 转为key对象
-        Key key = (Key) keyMap.get(PUBLIC_KEY);
+        Key key = (Key) keyMap.get(EncryptConstantUtils.PUBLIC_KEY);
         //byte[] publicKey = key.getEncoded();
         //编码返回字符串
         return encryptBASE64(key.getEncoded());
@@ -41,7 +38,7 @@ public class RSAEncrypt {
     //获得私钥
     public static String getPrivateKey(Map<String, Object> keyMap) throws Exception {
         //获得map中的私钥对象 转为key对象
-        Key key = (Key) keyMap.get(PRIVATE_KEY);
+        Key key = (Key) keyMap.get(EncryptConstantUtils.PRIVATE_KEY);
         //byte[] privateKey = key.getEncoded();
         /*编码返回字符串*/
         return encryptBASE64(key.getEncoded());
@@ -73,7 +70,7 @@ public class RSAEncrypt {
      */
     public static Map<String, Object> initKey() throws Exception {
         /*获得对象 KeyPairGenerator 参数 RSA 256个字节*/
-        KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
+        KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(EncryptConstantUtils.KEY_ALGORITHM);
         keyPairGen.initialize(1024);
         /*通过对象 KeyPairGenerator 获取对象KeyPair*/
         KeyPair keyPair = keyPairGen.generateKeyPair();
@@ -82,8 +79,8 @@ public class RSAEncrypt {
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         /*公私钥对象存入map中*/
         Map<String, Object> keyMap = new HashMap<String, Object>(2);
-        keyMap.put(PUBLIC_KEY, publicKey);
-        keyMap.put(PRIVATE_KEY, privateKey);
+        keyMap.put(EncryptConstantUtils.PUBLIC_KEY, publicKey);
+        keyMap.put(EncryptConstantUtils.PRIVATE_KEY, privateKey);
         return keyMap;
     }
 

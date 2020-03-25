@@ -1,6 +1,6 @@
 package com.javayh.common.encrypt.aes;
 
-import com.javayh.common.util.ConstantUtil;
+import com.javayh.common.constant.EncryptConstantUtils;
 import com.javayh.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.bouncycastle.util.encoders.Base64;
@@ -42,7 +42,7 @@ public class AESUtil {
      * @return java.lang.String
      */
     public static String encryptDataKey(String encData,String iv){
-        iv = StringUtils.setSuffix(iv, ConstantUtil.SUFFIX_AES);
+        iv = StringUtils.setSuffix(iv, EncryptConstantUtils.SUFFIX_AES);
         byte result[] = new byte[0];
         try {
             result = encCipher(iv).doFinal(encData.getBytes());
@@ -66,7 +66,7 @@ public class AESUtil {
      * @return java.lang.String
      */
     public static  String decryptDataKey(String decryptDataK,String iv){
-        iv = StringUtils.setSuffix(iv,ConstantUtil.SUFFIX_AES);
+        iv = StringUtils.setSuffix(iv,EncryptConstantUtils.SUFFIX_AES);
         byte result[] = new byte[0];
         try {
             result = decCipher(iv).doFinal(Base64.decode(decryptDataK.getBytes()));
@@ -81,9 +81,9 @@ public class AESUtil {
 
     private static Cipher encCipher(String iv){
         byte[] enCodeFormat = Arrays.copyOf(iv.getBytes(), 16);
-        key = new SecretKeySpec(enCodeFormat, "AES");
+        key = new SecretKeySpec(enCodeFormat, EncryptConstantUtils.ALGORITHM_AES);
         try {
-            encCipher = Cipher.getInstance(ConstantUtil.INSTANCE);
+            encCipher = Cipher.getInstance(EncryptConstantUtils.INSTANCE);
             encCipher.init(Cipher.ENCRYPT_MODE, key);
             return  encCipher;
         }  catch (NoSuchAlgorithmException e) {
@@ -98,9 +98,9 @@ public class AESUtil {
 
     private static Cipher decCipher(String iv){
         byte[] enCodeFormat = Arrays.copyOf(iv.getBytes(), 16);
-        key = new SecretKeySpec(enCodeFormat, "AES");
+        key = new SecretKeySpec(enCodeFormat, EncryptConstantUtils.ALGORITHM_AES);
         try {
-            decCipher = Cipher.getInstance(ConstantUtil.INSTANCE);
+            decCipher = Cipher.getInstance(EncryptConstantUtils.INSTANCE);
             decCipher.init(Cipher.DECRYPT_MODE, key);
             return  decCipher;
         }  catch (NoSuchAlgorithmException e) {

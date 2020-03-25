@@ -1,5 +1,8 @@
 package com.javayh.common.encrypt.rsa;
 
+import com.javayh.common.constant.ConstantUtils;
+import com.javayh.common.constant.EncryptConstantUtils;
+
 /**
  * <p>
  *       数据加密工具，来自 bolin
@@ -9,11 +12,6 @@ package com.javayh.common.encrypt.rsa;
  * @since 2020/3/5
  */
 public class HexUtil {
-
-    private static final char[] DIGITS_LOWER = { '0', '1', '2', '3', '4', '5',
-            '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' ,'g'};
-    private static final char[] DIGITS_UPPER = { '0', '1', '2', '3', '4', '5',
-            '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' ,'G'};
 
     /**
      * 16进制转byte数组
@@ -54,7 +52,7 @@ public class HexUtil {
      * @return 转化结果
      */
     public static String bytes2Hex(final byte[] data, final boolean toLowerCase) {
-        return bytes2Hex(data, toLowerCase ? DIGITS_LOWER : DIGITS_UPPER);
+        return bytes2Hex(data, toLowerCase ? EncryptConstantUtils.DIGITS_LOWER : EncryptConstantUtils.DIGITS_UPPER);
     }
 
 
@@ -117,7 +115,7 @@ public class HexUtil {
      * @return java.lang.String
      */
     public static String bytes2String(byte[] b) throws Exception {
-        String r = new String (b,"UTF-8");
+        String r = new String (b,ConstantUtils.UTF);
         return r;
     }
 
