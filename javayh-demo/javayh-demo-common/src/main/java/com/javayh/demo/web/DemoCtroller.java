@@ -1,7 +1,7 @@
 package com.javayh.demo.web;
 
-import com.javayh.common.encrypt.RSAEncrypt;
-import com.javayh.common.encrypt.RSAUtil;
+import com.javayh.common.encrypt.rsa.RSAEncrypt;
+import com.javayh.common.encrypt.rsa.RSAUtil;
 import com.javayh.common.result.ResultData;
 import com.javayh.demo.service.DemoService;
 import com.javayh.log.annotation.SysLog;
@@ -17,7 +17,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Map;
 
-import static com.javayh.common.encrypt.RSAEncrypt.initKey;
+import static com.javayh.common.encrypt.rsa.RSAEncrypt.initKey;
 
 /**
  * <p>

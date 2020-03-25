@@ -1,4 +1,4 @@
-package com.javayh.common.encrypt;
+package com.javayh.common.encrypt.rsa;
 
 /**
  * <p>
