@@ -35,9 +35,9 @@ javayh-platform                         父工程
 │  ├─javayh-demo-mail                   mail模板
 │  └─javayh-demo-feign                  feign
 ├─javayh-plugins                        插件
-│  └─javayh-heartbeat-detection         服务心跳检测
-│     ├─javayh-heartbeat-server         心跳检测服务端
-│     └─javayh-heartbeat-client         心跳检测客户端
+│  ├─javayh-heartbeat-detection         服务心跳检测
+│  │  ├─javayh-heartbeat-server         心跳检测服务端
+│  └─ └─javayh-heartbeat-client         心跳检测客户端
 ├─javayh-route                          路由分发
 │  └─javayh-api-gateway                 gateway
 └─javayh-starter                        核心模块
