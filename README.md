@@ -27,22 +27,27 @@
 ## 项目结构说明
 
 ```
-javayh-platform                 父工程
-├─javayh-demo                   测试区
-│  ├─javayh-demo-api
-│  ├─javayh-demo-common
-│  ├─javayh-demo-mail
-│  └─javayh-demo-feign
-├─javayh-route                  路由分发
-│  └─javayh-api-gateway         gateway
-└─javayh-starter                核心模块
-    ├─javayh-common-starter     内部支撑
-    ├─javayh-db-starter         关系型数据库
-    ├─javayh-nacos-starter      nacos依赖支持
-    ├─javayh-redis-starter      reids依赖支持
-    ├─javayh-kafka-starter      kafka依赖支持
-    ├─javayh-mail-starter       mail依赖支持
-    └─javayh-swagger-starter    Api文档支持
+javayh-platform                         父工程
+├─javayh-demo                           测试区
+│  ├─javayh-demo-api                    swagger
+│  ├─javayh-demo-common         
+│  ├─javayh-demo-config                 nacos 多环境配置
+│  ├─javayh-demo-mail                   mail模板
+│  └─javayh-demo-feign                  feign
+├─javayh-plugins                        插件
+│  └─javayh-heartbeat-detection         服务心跳检测
+│     ├─javayh-heartbeat-server         心跳检测服务端
+│     └─javayh-heartbeat-client         心跳检测客户端
+├─javayh-route                          路由分发
+│  └─javayh-api-gateway                 gateway
+└─javayh-starter                        核心模块
+│   ├─javayh-common-starter             内部支撑
+│   ├─javayh-db-starter                 关系型数据库
+│   ├─javayh-nacos-starter              nacos依赖支持
+│   ├─javayh-redis-starter              reids依赖支持
+│   ├─javayh-kafka-starter              kafka依赖支持
+│   ├─javayh-mail-starter               mail依赖支持
+└─  └─javayh-swagger-starter            Api文档支持
 ```
 ## 使用说明
 项目使用说明 <a>https://github.com/Dylan-haiji/javayh-platform/wiki</a>
