@@ -1,6 +1,5 @@
-package com.javayh.common.config.i18n;
+package com.javayh.common.i18n.config;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**

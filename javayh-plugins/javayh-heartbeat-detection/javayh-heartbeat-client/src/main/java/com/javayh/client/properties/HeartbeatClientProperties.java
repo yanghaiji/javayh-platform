@@ -15,7 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
         prefix = "heartbeat.server",
         ignoreUnknownFields = true
 )
-public class HeartbeatProperties {
+public class HeartbeatClientProperties {
     /**唯一标识*/
     private long channelId;
     /**host地址*/
@@ -24,7 +24,7 @@ public class HeartbeatProperties {
     private int port;
 
 
-    public HeartbeatProperties() {
+    public HeartbeatClientProperties() {
     }
 
     public long getChannelId() {

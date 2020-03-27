@@ -31,9 +31,10 @@ public class Demo2Controller {
     public ResultData getSwagger(){
         try {
             Integer.valueOf("22m");
+            return ResultData.success();
         } catch (NumberFormatException e) {
             logError.logPrint("swagger",e.getStackTrace());
+            return ResultData.fail();
         }
-        return ResultData.success("Hello Swagger!");
     }
 }

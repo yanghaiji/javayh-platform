@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({ExceptionSelector.class, SpringSelector.class})
+@Import({SpringSelector.class})
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @EnableDiscoveryClient

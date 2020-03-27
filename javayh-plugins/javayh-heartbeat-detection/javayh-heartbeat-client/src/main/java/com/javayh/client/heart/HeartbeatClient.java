@@ -1,6 +1,6 @@
 package com.javayh.client.heart;
 
-import com.javayh.client.properties.HeartbeatProperties;
+import com.javayh.client.properties.HeartbeatClientProperties;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
  * @author Dylan-haiji
  * @since 2020/3/10
  */
-@EnableConfigurationProperties(value = HeartbeatProperties.class)
+//@EnableConfigurationProperties(value = HeartbeatClientProperties.class)
 public class HeartbeatClient {
     private final static Logger LOGGER = LoggerFactory.getLogger(HeartbeatClient.class);
 
@@ -31,7 +31,7 @@ public class HeartbeatClient {
     private SocketChannel socketChannel;
 
     @Autowired(required = false)
-    private HeartbeatProperties properties;
+    private HeartbeatClientProperties properties;
 
     @PostConstruct
     public void start() throws InterruptedException {

@@ -2,6 +2,7 @@ package com.javayh.common.result;
 
 import com.javayh.common.constant.ConstantUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
@@ -19,17 +20,17 @@ public class ResultData<T extends Object>{
      * 0 :成功
      * 1：失败
      * */
-    private Integer code;
+    private String code;
     private String msg;
     private T data;
 
-    private ResultData(Integer code, String msg, T data) {
+    private ResultData(String code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    private ResultData(Integer code, String msg) {
+    private ResultData(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
@@ -47,7 +48,7 @@ public class ResultData<T extends Object>{
         if(StringUtils.isEmpty(msg)){
             msg = ConstantUtils.SUCCESS_MSG;
         }
-        return new ResultData(ConstantUtils.SUCCESS_CODE,msg,data);
+        return new ResultData(ConstantUtils.FAIL_CODE,msg,data);
     }
 
 
@@ -59,15 +60,15 @@ public class ResultData<T extends Object>{
         if(StringUtils.isEmpty(msg)){
             msg = ConstantUtils.FAIL_MSG;
         }
-        return new ResultData(ConstantUtils.SUCCESS_CODE,msg);
+        return new ResultData(ConstantUtils.FAIL_CODE,msg);
     }
 
 
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

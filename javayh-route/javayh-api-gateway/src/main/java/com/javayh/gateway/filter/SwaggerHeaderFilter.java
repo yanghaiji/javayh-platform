@@ -1,6 +1,5 @@
 package com.javayh.gateway.filter;
 
-import com.javayh.gateway.conf.swagger.SwaggerProvider;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;

@@ -10,12 +10,11 @@ package com.javayh.common.constant;
  * @since 2020-03-01 21:22
  */
 public interface ConstantUtils {
-
-    Integer SUCCESS_CODE = 0;
-    Integer FAIL_CODE = 1;
-    String SUCCESS_MSG ="操作成功";
-    String FAIL_MSG ="未知的运行异常";
-    String BUSINESS_DATA = "参数错误";
-
+    /**统一消息提示*/
+    String SUCCESS_CODE = "0";
+    String FAIL_CODE = "1";
+    String SUCCESS_MSG ="success_msg";
+    String FAIL_MSG ="failure_msg";
+    String BUSINESS_DATA = "business_data";
     String UTF= "UTF-8";
 }

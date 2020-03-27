@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+
 /**
  * <p>
  *       服务降级处理
@@ -26,12 +27,11 @@ public class HystrixFallbackHandler implements HandlerFunction<ServerResponse> {
 
     @Override
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {
-    	
         serverRequest.attribute(ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR)
             .ifPresent(originalUrls -> log.error("网关执行请求:{}失败,hystrix服务降级处理", originalUrls));
         return ServerResponse
             .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .contentType(MediaType.APPLICATION_JSON_UTF8)
-            .body(BodyInserters.fromObject(ResultData.fail("HystrixFallbackHandler")));
+            .body(BodyInserters.fromObject(ResultData.fail("Hystrix Fallback Handler")));
     }
 }

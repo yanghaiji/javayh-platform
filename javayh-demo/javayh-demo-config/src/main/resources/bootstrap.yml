@@ -20,4 +20,4 @@ spring:
        namespace: d7503bcd-e44c-475a-88d4-d28cbfb444fc
        shared-dataids: redis.yml
   messages:
-    basename: i18n.login,i18n.common
+    basename: i18n.login.login,i18n.common.common
