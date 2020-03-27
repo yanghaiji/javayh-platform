@@ -10,6 +10,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import javax.annotation.PostConstruct;
 
@@ -21,6 +22,7 @@ import javax.annotation.PostConstruct;
  * @author Dylan-haiji
  * @since 2020/3/10
  */
+@EnableConfigurationProperties(value = HeartbeatProperties.class)
 public class HeartbeatClient {
     private final static Logger LOGGER = LoggerFactory.getLogger(HeartbeatClient.class);
 

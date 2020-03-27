@@ -1,5 +1,6 @@
 package com.javayh.heartbeat.server;
 
+import com.javayh.heartbeat.config.HeartBeatProperties;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -7,7 +8,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +28,7 @@ import java.net.InetSocketAddress;
  */
 @Slf4j
 @Component
+@EnableConfigurationProperties(value = HeartBeatProperties.class)
 public class HeartBeatServer {
     /**
      * NioEventLoopGroup是一个处理I / O操作的多线程事件循环。 Netty为不同类型的传输提供各种EventLoopGroup实现。
@@ -35,9 +39,8 @@ public class HeartBeatServer {
      */
     private EventLoopGroup boss = new NioEventLoopGroup();
     private EventLoopGroup work = new NioEventLoopGroup();
-
-    @Value("${heartbeat.server.port}")
-    private int nettyPort;
+    @Autowired(required = false)
+    private HeartBeatProperties heartBeatProperties;
 
     /**
      * 启动 Netty
@@ -50,7 +53,7 @@ public class HeartBeatServer {
         ServerBootstrap bootstrap = new ServerBootstrap()
                 .group(boss, work)
                 .channel(NioServerSocketChannel.class)
-                .localAddress(new InetSocketAddress(nettyPort))
+                .localAddress(new InetSocketAddress(heartBeatProperties.getPort()))
                 //保持长连接
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childHandler(new HeartbeatInitializer());

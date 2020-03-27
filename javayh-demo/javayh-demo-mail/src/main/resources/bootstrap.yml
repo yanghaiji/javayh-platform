@@ -44,7 +44,8 @@ spring:
     cache: false # 调试时关闭缓存
     servlet:
       content-type: text/html
-
+  messages:
+    basename: i18n.login,i18n.common
 heartbeat:
   server:
     host: 127.0.0.1

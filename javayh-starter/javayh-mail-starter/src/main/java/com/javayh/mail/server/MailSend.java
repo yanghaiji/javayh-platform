@@ -1,9 +1,10 @@
 package com.javayh.mail.server;
 
+import com.javayh.mail.conf.EmailProperties;
 import com.javayh.mail.entity.MailDO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -25,9 +26,11 @@ import javax.mail.internet.MimeMessage;
  * @since 2020-03-08 14:45
  */
 @Slf4j
+@EnableConfigurationProperties(value = EmailProperties.class)
 public class MailSend {
-    @Value("${spring.mail.username}")
-    private String username;
+
+    @Autowired(required = false)
+    private EmailProperties emailProperties;
 
     @Autowired(required = false)
     private JavaMailSender mailSender;
@@ -50,7 +53,7 @@ public class MailSend {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage,true);
             // 发送人的邮箱
-            messageHelper.setFrom(username);
+            messageHelper.setFrom(emailProperties.getUsername());
             //发给谁  对方邮箱
             messageHelper.setTo(mailDO.getEmail());
             //标题
@@ -84,7 +87,7 @@ public class MailSend {
         //建立邮件消息
         SimpleMailMessage message = new SimpleMailMessage();
         // 发送人的邮箱
-        message.setFrom(username);
+        message.setFrom(emailProperties.getUsername());
         //标题
         message.setSubject(mail.getTitle());
         //发给谁  对方邮箱

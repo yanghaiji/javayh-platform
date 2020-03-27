@@ -17,3 +17,5 @@ spring:
        server-addr: 127.0.0.1:8848
        prefix: javayh-api
        file-extension: yml
+  messages:
+    basename: i18n.login,i18n.common
