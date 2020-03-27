@@ -2,6 +2,7 @@ package com.javayh.feign;
 
 import com.javayh.client.annotation.EnableAutoHeartBeat;
 import com.javayh.common.annotation.JavayhBootApplication;
+import com.javayh.common.i18n.annotation.EnableAutoInternationalization;
 import org.springframework.boot.SpringApplication;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.boot.SpringApplication;
  * @since 2020-03-02 13:34
  */
 //@EnableAutoHeartBeat
+@EnableAutoInternationalization
 @JavayhBootApplication
 public class FeignApplication {
 
