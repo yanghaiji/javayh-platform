@@ -2,6 +2,7 @@ package com.javayh.api;
 
 import com.javayh.common.annotation.JavayhBootApplication;
 import com.javayh.common.i18n.annotation.EnableAutoInternationalization;
+import com.javayh.swagger.annotation.EnableAutoSwagger;
 import org.springframework.boot.SpringApplication;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.boot.SpringApplication;
  * @version 1.0.0
  * @since 2020-03-01 20:44
  */
+@EnableAutoSwagger
 @EnableAutoInternationalization
 @JavayhBootApplication
 public class ApiApplication {

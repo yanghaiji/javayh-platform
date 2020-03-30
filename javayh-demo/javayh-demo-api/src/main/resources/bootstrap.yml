@@ -18,4 +18,4 @@ spring:
        prefix: javayh-api
        file-extension: yml
   messages:
-    basename: i18n.login,i18n.common
+    basename: i18n.login.login,i18n.common.common
