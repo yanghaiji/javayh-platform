@@ -1,7 +1,7 @@
 package com.javayh.client.handle;
 
 import com.javayh.common.result.MessageBody;
-import com.javayh.common.util.SpringUtils;
+import com.javayh.common.util.spring.SpringUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;

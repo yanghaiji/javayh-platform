@@ -1,7 +1,7 @@
 package com.javayh.common.exception;
 
 import com.javayh.common.result.ResultData;
-import com.javayh.common.util.RequestUtils;
+import com.javayh.common.util.servlet.RequestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;

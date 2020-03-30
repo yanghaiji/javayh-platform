@@ -1,4 +1,4 @@
-package com.javayh.common.util;
+package com.javayh.common.util.servlet;
 
 import org.apache.commons.lang3.StringUtils;
 

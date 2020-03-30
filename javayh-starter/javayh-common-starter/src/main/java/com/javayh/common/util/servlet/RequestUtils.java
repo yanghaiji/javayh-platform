@@ -1,4 +1,4 @@
-package com.javayh.common.util;
+package com.javayh.common.util.servlet;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

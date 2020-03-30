@@ -1,4 +1,4 @@
-package com.javayh.common.util;
+package com.javayh.common.util.task;
 
 import com.javayh.common.mdc.MdcThreadPoolTaskExecutor;
 

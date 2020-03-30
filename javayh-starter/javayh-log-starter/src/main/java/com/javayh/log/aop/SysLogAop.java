@@ -3,7 +3,7 @@ package com.javayh.log.aop;
 import com.alibaba.fastjson.JSONObject;
 import com.javayh.common.util.IPUtils;
 import com.javayh.common.util.RandomUtil;
-import com.javayh.common.util.RequestUtils;
+import com.javayh.common.util.servlet.RequestUtils;
 import com.javayh.log.annotation.SysLog;
 import com.javayh.log.log.LogError;
 import lombok.extern.slf4j.Slf4j;

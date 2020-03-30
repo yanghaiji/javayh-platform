@@ -1,7 +1,7 @@
 package com.javayh.common.i18n;
 
 import com.javayh.common.result.ResultData;
-import com.javayh.common.util.RequestUtils;
+import com.javayh.common.util.servlet.RequestUtils;
 import com.javayh.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
