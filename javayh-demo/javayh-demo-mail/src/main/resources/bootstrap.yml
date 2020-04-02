@@ -3,47 +3,23 @@ server:
   maxHttpHeaderSize: 2048
 spring:
   application:
-    name: javayh-mail
+    name: ${artifactId}
   main:
     allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
   profiles:
-    active: mail
+    active: ${profile.name}
   cloud:
-   nacos:
-     discovery:
-       server-addr: 127.0.0.1:8848
-       cluster-name: javayh-nacos
-     config:
-       group: javayh
-       server-addr: 127.0.0.1:8848
-       prefix: javayh-demo-mail
-       file-extension: yml
-  mail:
-    protocol: smtp
-    host: smtp.qq.com
-    # 自己的qq邮箱账号
-    username: 372787553@qq.com
-    #  password 换成腾讯给的QQ授权码
-    password:
-    default-encoding: UTF-8
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
-  thymeleaf:
-    enabled: true
-    mode: LEGACYHTML5
-    encoding: UTF-8
-    prefix: classpath:/templates/ # 模板存放在资源目录的 templates/ 文件下
-    suffix: .html # 模板后缀
-    check-template-location: true
-    check-template: false
-    cache: false # 调试时关闭缓存
-    servlet:
-      content-type: text/html
+    nacos:
+      discovery:
+        server-addr: ${discovery.server-addr}
+        namespace: ${config.namespace}
+        ip: ${discovery.server-ip}
+      config:
+        server-addr:  ${config.server-addr}
+        namespace:  ${config.namespace}
+        file-extension: yaml
+        refreshable-dataids: messages.yaml
+        shared-dataids: redis.yaml,mail.yaml
   messages:
     basename: i18n.login.login,i18n.common.common,i18n.validation.validation
 heartbeat:

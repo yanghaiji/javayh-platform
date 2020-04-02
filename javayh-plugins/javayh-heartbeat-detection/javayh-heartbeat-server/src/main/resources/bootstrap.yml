@@ -4,25 +4,22 @@ server:
 
 spring:
   application:
-    name: javayh-heartbeat-server
-
+    name: ${artifactId}
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
   profiles:
-    active: heartbeat-server
-
+    active: ${profile.name}
   cloud:
-   nacos:
-     discovery:
-       server-addr: 127.0.0.1:8848
-       cluster-name: javayh-nacos
-     config:
-       group: haiji_dev
-       server-addr: 127.0.0.1:8848
-       prefix: javayh-heartbeat-server
-       file-extension: yml
-#       namespace: d7503bcd-e44c-475a-88d4-d28cbfb444fc
-#       shared-dataids: redis.yml
-  messages:
-    basename: i18n.login.login,i18n.common.common
+    nacos:
+      discovery:
+        server-addr: ${discovery.server-addr}
+        namespace: ${config.namespace}
+        ip: ${discovery.server-ip}
+      config:
+        server-addr:  ${config.server-addr}
+        namespace:  ${config.namespace}
+        file-extension: yaml
+        shared-dataids: redis.yaml,mail.yaml
 heartbeat:
   server:
     port: 8001

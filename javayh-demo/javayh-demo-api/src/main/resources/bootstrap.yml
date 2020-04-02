@@ -2,20 +2,21 @@ server:
   port: 6062
 spring:
   application:
-    name: javayh-api
+    name: ${artifactId}
   main:
     allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
   profiles:
-    active: api
+    active: ${profile.name}
   cloud:
    nacos:
      discovery:
-       server-addr: 127.0.0.1:8848
-       cluster-name: javayh-nacos
+       server-addr: ${discovery.server-addr}
+       namespace: ${config.namespace}
+       ip: ${discovery.server-ip}
      config:
-       group: javayh
-       server-addr: 127.0.0.1:8848
-       prefix: javayh-api
-       file-extension: yml
+       server-addr:  ${config.server-addr}
+       namespace:  ${config.namespace}
+       file-extension: yaml
+       shared-dataids: redis.yaml,mail.yaml
   messages:
     basename: i18n.login.login,i18n.common.common,i18n.validation.validation
