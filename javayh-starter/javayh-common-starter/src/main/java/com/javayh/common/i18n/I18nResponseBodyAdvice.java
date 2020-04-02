@@ -1,10 +1,9 @@
 package com.javayh.common.i18n;
 
 import com.javayh.common.result.ResultData;
+import com.javayh.common.util.log.Log;
 import com.javayh.common.util.servlet.RequestUtils;
 import com.javayh.common.util.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -28,8 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice(basePackages={"com.javayh"})
 public class I18nResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter method,
                                   MediaType type, Class<? extends HttpMessageConverter<?>> converter,
@@ -47,7 +44,7 @@ public class I18nResponseBodyAdvice implements ResponseBodyAdvice<Object> {
                 }
             }
         } catch (Exception e) {
-            logger.error("返回值国际化拦截异常",e);
+            Log.error("返回值国际化拦截异常",e.getStackTrace());
         }
         return obj;
     }
@@ -68,7 +65,7 @@ public class I18nResponseBodyAdvice implements ResponseBodyAdvice<Object> {
             RequestContext requestContext = new RequestContext(request);
             value = requestContext.getMessage(key);
         }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            Log.error(e.getMessage(),e.getStackTrace());
             value="";
         }
         return value;

@@ -1,6 +1,7 @@
 package com.javayh.common.i18n.config;
 
 import com.javayh.common.constant.ConstantUtils;
+import com.javayh.common.util.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.MessageSource;
@@ -64,6 +65,7 @@ public class InternationalConfig {
         try {
             result = messageResource.getMessage(code, null, locale);
         } catch (NoSuchMessageException e) {
+            Log.error("国际化错误",e.getStackTrace());
         }
         if(result==null){
             return code;

@@ -18,7 +18,7 @@ spring:
        prefix: javayh-demo-feign
        file-extension: yml
   messages:
-    basename: i18n.login.login,i18n.common.common
+    basename: i18n.login.login,i18n.common.common,i18n.validation.validation
 heartbeat:
   server:
     host: 127.0.0.1

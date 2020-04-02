@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javayh.common.exception.hystrix.HytrixException;
 import com.javayh.common.exception.service.ServiceException;
+import com.javayh.common.util.log.Log;
 import feign.Response;
 import feign.Util;
 import feign.codec.ErrorDecoder;
@@ -64,7 +65,7 @@ public class FeignExceptionConfig {
                     exception = feign.FeignException.errorStatus(key, response);
                 }
             } catch (IOException ex) {
-                log.error(ex.getMessage(), ex);
+                Log.error(ex.getMessage(), ex.getStackTrace());
             }
             return exception;
         }
