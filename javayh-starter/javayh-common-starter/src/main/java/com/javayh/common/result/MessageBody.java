@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- *      心态健康消息体
+ *      心跳健康消息体
  * </p>
  *
  * @author Dylan-haiji

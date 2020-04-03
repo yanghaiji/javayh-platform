@@ -2,7 +2,6 @@ package com.javayh.common.result;
 
 import com.javayh.common.constant.ConstantUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
@@ -35,12 +34,12 @@ public class ResultData<T extends Object>{
         this.msg = msg;
     }
 
-    public static <T> ResultData success(){
-        return new ResultData(ConstantUtils.SUCCESS_CODE,ConstantUtils.SUCCESS_MSG,null);
+    public static <T> ResultData<T> success(){
+        return new ResultData<T>(ConstantUtils.SUCCESS_CODE,ConstantUtils.SUCCESS_MSG,null);
     }
 
-    public static <T> ResultData success(T data){
-        return new ResultData(ConstantUtils.SUCCESS_CODE,ConstantUtils.SUCCESS_MSG,data);
+    public static  <T> ResultData<T> success(T data){
+        return new  ResultData<T>(ConstantUtils.SUCCESS_CODE,ConstantUtils.SUCCESS_MSG,data);
     }
 
 
@@ -48,19 +47,19 @@ public class ResultData<T extends Object>{
         if(StringUtils.isEmpty(msg)){
             msg = ConstantUtils.SUCCESS_MSG;
         }
-        return new ResultData(ConstantUtils.FAIL_CODE,msg,data);
+        return new ResultData<T>(ConstantUtils.FAIL_CODE,msg,data);
     }
 
 
     public static <T>  ResultData<T>  fail(){
-        return new ResultData(ConstantUtils.FAIL_CODE,ConstantUtils.FAIL_MSG);
+        return new ResultData<T>(ConstantUtils.FAIL_CODE,ConstantUtils.FAIL_MSG);
     }
 
     public static <T>  ResultData<T>  fail(String msg ){
         if(StringUtils.isEmpty(msg)){
             msg = ConstantUtils.FAIL_MSG;
         }
-        return new ResultData(ConstantUtils.FAIL_CODE,msg);
+        return new ResultData<>(ConstantUtils.FAIL_CODE,msg);
     }
 
 
