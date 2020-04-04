@@ -41,15 +41,18 @@
         <netty.version>4.1.21.Final</netty.version>
         <easypoi.version>3.2.0</easypoi.version>
         <google.zxing.version>3.3.0</google.zxing.version>
+        <pagehelpe.version>1.2.10</pagehelpe.version>
+        <mysql.connector.version>6.0.6</mysql.connector.version>
         <spring-cloud-dependencies.version>Greenwich.SR3</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2.1.1.RELEASE</spring-cloud-alibaba-dependencies.version>
     </properties>
 
     <modules>
-        <module>javayh-starter</module>
+        <module>javayh-dependencies</module>
         <module>javayh-route</module>
         <module>javayh-demo</module>
         <module>javayh-plugins</module>
+        <module>javayh-sso</module>
     </modules>
 
     <dependencies>
@@ -122,6 +125,12 @@
             <dependency>
                 <groupId>com.javayh</groupId>
                 <artifactId>javayh-db-starter</artifactId>
+                <version>${core.version}</version>
+            </dependency>
+            <!--数据库诗酒花-->
+            <dependency>
+                <groupId>com.javayh</groupId>
+                <artifactId>javayh-mybatis-starter</artifactId>
                 <version>${core.version}</version>
             </dependency>
             <!-- 非关系型数据库配置 -->

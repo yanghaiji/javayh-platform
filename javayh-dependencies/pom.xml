@@ -9,11 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>javayh-plugins</artifactId>
+    <artifactId>javayh-dependencies</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>javayh-heartbeat-detection</module>
-        <module>javayh-generator</module>
+        <module>javayh-common-starter</module>
+        <module>javayh-db-starter</module>
+        <module>javayh-log-starter</module>
+        <module>javayh-redis-starter</module>
+        <module>javayh-swagger-starter</module>
+        <module>javayh-nacos-starter</module>
+        <module>javayh-kafka-starter</module>
+        <module>javayh-mail-starter</module>
+        <module>javayh-mybatis-starter</module>
     </modules>
+
 
 </project>

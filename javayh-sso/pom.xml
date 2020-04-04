@@ -3,15 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>javayh-demo</artifactId>
+        <artifactId>javayh-platform</artifactId>
         <groupId>com.javayh</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>javayh-demo-api</artifactId>
+    <artifactId>javayh-sso</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>javayh-server</module>
+        <module>javayh-resource</module>
+    </modules>
 
     <dependencies>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-common-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.javayh</groupId>
             <artifactId>javayh-log-starter</artifactId>
@@ -19,18 +28,9 @@
         </dependency>
         <dependency>
             <groupId>com.javayh</groupId>
-            <artifactId>javayh-redis-starter</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.javayh</groupId>
-            <artifactId>javayh-swagger-starter</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.javayh</groupId>
-            <artifactId>javayh-mybatis-starter</artifactId>
+            <artifactId>javayh-nacos-starter</artifactId>
             <optional>true</optional>
         </dependency>
     </dependencies>
+
 </project>
