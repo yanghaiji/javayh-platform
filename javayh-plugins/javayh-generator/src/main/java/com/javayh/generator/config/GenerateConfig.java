@@ -39,8 +39,8 @@ public class GenerateConfig {
 
     //数据信息 必填
     public final  static String  jdbcDriverClassName="com.mysql.jdbc.Driver";
-    public final  static String  jdbcUrl="jdbc:mysql://47.105.196.42:3306/db1?serverTimezone=CTT&characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=true";//数据库地址
+    public final  static String  jdbcUrl="jdbc:mysql://localhost:3306/db1?serverTimezone=CTT&characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=true";//数据库地址
     public final  static String  jdbcName="db1";//数据库名
     public final  static String  jdbcUsername="root";//用户名
-    public final  static String  jdbcPassword="Yhj1219320";//密码
+    public final  static String  jdbcPassword="root";//密码
 }
