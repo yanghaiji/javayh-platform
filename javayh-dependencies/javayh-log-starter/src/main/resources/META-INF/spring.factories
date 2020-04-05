@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ com.javayh.log.aop.SysLogAop,\
+ com.javayh.log.conf.LogAutoConfig,\
+ com.javayh.log.log.LogError 

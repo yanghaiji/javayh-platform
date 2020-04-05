@@ -23,6 +23,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Deprecated
 @Inherited
 @Import({SwaggerSelector.class})
 public @interface EnableAutoSwagger {
