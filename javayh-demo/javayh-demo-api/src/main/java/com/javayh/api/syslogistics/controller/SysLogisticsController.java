@@ -8,7 +8,7 @@
 package com.javayh.api.syslogistics.controller;
 
 import com.javayh.common.result.ResultData;
-import com.javayh.common.page.PageQuery;
+import com.javayh.mybatis.page.PageQuery;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,7 +51,7 @@ public class SysLogisticsController {
 	 */
 	@ApiOperation(value = "根据id查询")
 	@GetMapping(value = "/findById")
-	public ResultData<SysLogistics> findById(Integer id){
+	public ResultData<SysLogistics> findById(String id){
 		return ResultData.success(sysLogisticsServiceImpl.findById(id));
 	}
 

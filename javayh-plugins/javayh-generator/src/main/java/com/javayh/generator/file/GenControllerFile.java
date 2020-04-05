@@ -73,7 +73,7 @@ public class GenControllerFile {
 		content.append("import org.springframework.web.bind.annotation.RequestBody;").append(lineSeparator);
 		content.append("import org.springframework.web.bind.annotation.RestController;").append(lineSeparator);
 		content.append("import org.springframework.beans.factory.annotation.Autowired;").append(lineSeparator);
-		content.append("import  com.javayh.common.page.PageQuery;").append(lineSeparator);
+		content.append("import  com.javayh.mybatis.page.PageQuery;").append(lineSeparator);
 		content.append("import ").append(beanFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(beanDtoFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(serviceFile.getClassQuaName()).append(";").append(lineSeparator);

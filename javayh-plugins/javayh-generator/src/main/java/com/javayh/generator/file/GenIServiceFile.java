@@ -66,7 +66,7 @@ public class GenIServiceFile {
 		content.append("import ").append(beanFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(beanDtoFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME).append(".common.page.PageQuery;").append(lineSeparator);
-        content.append("import  com.javayh.common.page.PageQuery;").append(lineSeparator);
+        content.append("import  com.javayh.mybatis.page.PageQuery;").append(lineSeparator);
 		content.append(lineSeparator);
 
 		//写入文件注释

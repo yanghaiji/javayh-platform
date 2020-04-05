@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -48,7 +49,7 @@ public class GlobalExceptionHandler {
      * @param e
      */
     @ExceptionHandler({Exception.class})
-    public ResultData customExceptionHandler(Exception e) {
+    public ResultData exceptionHandler(Exception e) {
         Log.error("未知的运行异常",e.getStackTrace());
         return ResultData.fail();
     }

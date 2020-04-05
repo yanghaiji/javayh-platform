@@ -1,8 +1,13 @@
-package com.javayh.datasource.filter;
+package com.javayh.mybatis.filter;
 
 
+import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
+import com.github.pagehelper.autoconfigure.PageHelperProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.statement.StatementHandler;
+import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
@@ -11,8 +16,14 @@ import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.sql.Connection;
 import java.util.Properties;
 
 /**
@@ -26,8 +37,15 @@ import java.util.Properties;
  */
 @Slf4j
 @Configuration
-@Intercepts({@Signature(type = Executor.class, method = "query", args = {MappedStatement.class,
-        Object.class, RowBounds.class, ResultHandler.class})})
+@Intercepts(
+        {
+                @Signature(type = Executor.class, method = "query",
+                        args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
+                @Signature(type = Executor.class, method = "query",
+                        args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class,
+                                CacheKey.class, BoundSql.class}),
+        }
+)
 public class InterceptorForQuery implements Interceptor
 {
 

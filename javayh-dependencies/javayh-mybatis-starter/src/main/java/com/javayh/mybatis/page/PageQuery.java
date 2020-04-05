@@ -1,4 +1,4 @@
-package com.javayh.common.page;
+package com.javayh.mybatis.page;
 
 import com.github.pagehelper.Page;
 

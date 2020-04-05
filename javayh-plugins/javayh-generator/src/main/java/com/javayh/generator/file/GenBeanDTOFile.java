@@ -62,7 +62,7 @@ public class GenBeanDTOFile {
 		content.append("package ").append(packageName).append(";").append(lineSeparator);
 		content.append(lineSeparator);
 		content.append("import lombok.*;").append(lineSeparator);
-		content.append("import com.javayh.common.page.PageEntity;").append(lineSeparator);
+		content.append("import com.javayh.mybatis.page.PageEntity;").append(lineSeparator);
 		content.append(lineSeparator);
 
 		//写入导入的包名

@@ -68,7 +68,7 @@ public class GenServiceImplFile {
 		content.append("import ").append(GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME).append(".common.page.PageQuery;").append(lineSeparator);
 		content.append("import com.github.pagehelper.PageHelper;").append(lineSeparator);
 		content.append("import java.util.List;").append(lineSeparator);
-        content.append("import com.javayh.common.page.PageQuery;").append(lineSeparator);
+        content.append("import com.javayh.mybatis.page.PageQuery;").append(lineSeparator);
 		content.append("import ").append(beanFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(beanDTOFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(mapperFile.getClassQuaName()).append(";").append(lineSeparator);

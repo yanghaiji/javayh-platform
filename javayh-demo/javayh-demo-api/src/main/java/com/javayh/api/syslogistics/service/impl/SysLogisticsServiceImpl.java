@@ -9,7 +9,7 @@ package com.javayh.api.syslogistics.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.javayh.common.page.PageQuery;
+import com.javayh.mybatis.page.PageQuery;
 import com.github.pagehelper.PageHelper;
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class SysLogisticsServiceImpl implements ISysLogisticsService {
 	 *  根据id查询
 	 */
 	@Override
-	public SysLogistics findById(Integer id){
+	public SysLogistics findById(String id){
 		return sysLogisticsMapper.findById(id);
 	}
 

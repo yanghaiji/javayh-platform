@@ -8,7 +8,7 @@
 package com.javayh.api.syslogistics.pojo.dto;
 
 import lombok.*;
-import com.javayh.common.page.PageEntity;
+import com.javayh.mybatis.page.PageEntity;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;

@@ -1,11 +1,9 @@
-package com.javayh.common.page;
+package com.javayh.mybatis.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.validation.constraints.Min;
 
 /**
  * <p>
@@ -22,10 +20,7 @@ import javax.validation.constraints.Min;
 @AllArgsConstructor
 public class PageEntity {
 
-    @Min(value = 1, message = "当前页码不合法")
     private int pageNo = 1;
-
-    @Min(value = 1, message = "每页展示数据不合法")
     private int pageSize;
 
 }
