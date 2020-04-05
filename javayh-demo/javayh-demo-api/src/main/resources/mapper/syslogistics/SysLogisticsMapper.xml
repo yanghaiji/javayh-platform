@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.javayh.api.syslogistics.dao.SysLogisticsMapper">
+
+	<!-- 数据库中表名为:sys_logistics的列名,as前是数据库的列明,as后是列的别名用于映射成实体类中的属性 -->
+	<sql id="sysLogisticsColumn">
+		sys_logistics.id as id,
+		sys_logistics.addressee_name as addresseeName,
+		sys_logistics.addressee as addressee,
+		sys_logistics.addressee_phone as addresseePhone,
+		sys_logistics.sender_name as senderName,
+		sys_logistics.sender_add as senderAdd,
+		sys_logistics.ems_status as emsStatus,
+		sys_logistics.retreat_status as retreatStatus,
+		sys_logistics.retreat_info as retreatInfo,
+		sys_logistics.create_date as createDate,
+		sys_logistics.update_date as updateDate,
+		sys_logistics.create_by as createBy
+	</sql>
+
+	<insert id="insert" keyColumn="id" keyProperty="id">
+		<selectKey keyColumn="id" keyProperty="id"  order="BEFORE" resultType="Integer">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into sys_logistics
+		( 
+			<if test="addresseeName != null  and addresseeName != '' ">
+				addressee_name
+			</if>
+			<if test="addressee != null  and addressee != '' ">
+				,addressee
+			</if>
+			<if test="addresseePhone != null  ">
+				,addressee_phone
+			</if>
+			<if test="senderName != null  and senderName != '' ">
+				,sender_name
+			</if>
+			<if test="senderAdd != null  and senderAdd != '' ">
+				,sender_add
+			</if>
+			<if test="emsStatus != null  ">
+				,ems_status
+			</if>
+			<if test="retreatStatus != null  ">
+				,retreat_status
+			</if>
+			<if test="retreatInfo != null  and retreatInfo != '' ">
+				,retreat_info
+			</if>
+			<if test="createDate != null  ">
+				,create_date
+			</if>
+			<if test="updateDate != null  ">
+				,update_date
+			</if>
+			<if test="createBy != null  and createBy != '' ">
+				,create_by
+			</if>
+		) 
+		values (
+			<if test="addresseeName != null  and addresseeName != '' ">
+				#{addresseeName}
+			</if>
+			<if test="addressee != null  and addressee != '' ">
+				,#{addressee}
+			</if>
+			<if test="addresseePhone != null  ">
+				,#{addresseePhone}
+			</if>
+			<if test="senderName != null  and senderName != '' ">
+				,#{senderName}
+			</if>
+			<if test="senderAdd != null  and senderAdd != '' ">
+				,#{senderAdd}
+			</if>
+			<if test="emsStatus != null  ">
+				,#{emsStatus}
+			</if>
+			<if test="retreatStatus != null  ">
+				,#{retreatStatus}
+			</if>
+			<if test="retreatInfo != null  and retreatInfo != '' ">
+				,#{retreatInfo}
+			</if>
+			<if test="createDate != null  ">
+				,#{createDate}
+			</if>
+			<if test="updateDate != null  ">
+				,#{updateDate}
+			</if>
+			<if test="createBy != null  and createBy != '' ">
+				,#{createBy}
+			</if>
+		) 
+	</insert>
+
+	<update id="update">
+		update sys_logistics
+		<trim prefix="set" suffixOverrides=",">
+			<if test="addresseeName != null  and addresseeName != '' ">
+				addressee_name=#{addresseeName},
+			</if>
+			<if test="addressee != null  and addressee != '' ">
+				addressee=#{addressee},
+			</if>
+			<if test="addresseePhone != null  ">
+				addressee_phone=#{addresseePhone},
+			</if>
+			<if test="senderName != null  and senderName != '' ">
+				sender_name=#{senderName},
+			</if>
+			<if test="senderAdd != null  and senderAdd != '' ">
+				sender_add=#{senderAdd},
+			</if>
+			<if test="emsStatus != null  ">
+				ems_status=#{emsStatus},
+			</if>
+			<if test="retreatStatus != null  ">
+				retreat_status=#{retreatStatus},
+			</if>
+			<if test="retreatInfo != null  and retreatInfo != '' ">
+				retreat_info=#{retreatInfo},
+			</if>
+			<if test="createDate != null  ">
+				create_date=#{createDate},
+			</if>
+			<if test="updateDate != null  ">
+				update_date=#{updateDate},
+			</if>
+			<if test="createBy != null  and createBy != '' ">
+				create_by=#{createBy},
+			</if>
+		</trim>
+		WHERE id=#{id}
+	</update>
+
+	<delete id="deleteById">
+		DELETE FROM  sys_logistics
+		WHERE id=#{id}
+	</delete>
+
+	<select id="findById" resultType="com.javayh.sys.pojo.SysLogistics">
+		SELECT <include refid="sysLogisticsColumn"/>
+		FROM sys_logistics
+		WHERE id=#{id}
+	</select>
+
+	<select id="findByPage" resultType="com.javayh.sys.pojo.SysLogistics">
+		SELECT <include refid="sysLogisticsColumn"/>
+		FROM sys_logistics
+		WHERE  1=1 
+			<if test="addresseeName != null  and addresseeName != '' ">
+				 and addressee_name=#{addresseeName}
+			</if>
+			<if test="addressee != null  and addressee != '' ">
+				 and addressee=#{addressee}
+			</if>
+			<if test="addresseePhone != null  ">
+				 and addressee_phone=#{addresseePhone}
+			</if>
+			<if test="senderName != null  and senderName != '' ">
+				 and sender_name=#{senderName}
+			</if>
+			<if test="senderAdd != null  and senderAdd != '' ">
+				 and sender_add=#{senderAdd}
+			</if>
+			<if test="emsStatus != null  ">
+				 and ems_status=#{emsStatus}
+			</if>
+			<if test="retreatStatus != null  ">
+				 and retreat_status=#{retreatStatus}
+			</if>
+			<if test="retreatInfo != null  and retreatInfo != '' ">
+				 and retreat_info=#{retreatInfo}
+			</if>
+			<if test="createDate != null  ">
+				 and create_date=#{createDate}
+			</if>
+			<if test="updateDate != null  ">
+				 and update_date=#{updateDate}
+			</if>
+			<if test="createBy != null  and createBy != '' ">
+				 and create_by=#{createBy}
+			</if>
+	</select>
+</mapper>
+

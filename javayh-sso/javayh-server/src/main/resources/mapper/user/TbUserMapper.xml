@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javayh.oauth2.server.mapper.TbUserMapper">
+  <resultMap id="BaseResultMap" type="com.javayh.oauth2.server.domain.TbUser">
+
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, username, password, phone, email, created, updated
+  </sql>
+
+    <select id="findByUserName" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        FROM tb_user
+        WHERE username = #{username}
+    </select>
+</mapper>
