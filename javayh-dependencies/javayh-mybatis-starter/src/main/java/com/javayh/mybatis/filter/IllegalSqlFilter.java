@@ -1,7 +1,8 @@
-package com.javayh.datasource.filter;
+package com.javayh.mybatis.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.javayh.mybatis.uitl.Constant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.binding.MapperMethod;
 
@@ -111,4 +112,40 @@ public class IllegalSqlFilter {
         log.info("通过字符串检测");
         return matcher.find();
     }
+
+
+    /**
+     * <p>
+     *       对常见的sql注入攻击进行拦截，并对注入的参数进行修改
+     * </p>
+     * @version 1.0.0
+     * @author Dylan-haiji
+     * @since 2020/3/31
+     * @param obj
+     * @return java.lang.Object
+     */
+    public static Boolean sqlFilter(Object obj)
+    {
+        String input = obj.toString();
+        if (input == null || input.trim().length() == 0)
+        {
+            return false;
+        }
+        input = input.toUpperCase();
+        if (input.contains(Constant.DELETE) || input.contains(Constant.ASCII)
+                || input.contains(Constant.UPDATE) || input.contains(Constant.SELECT)
+                || input.contains(Constant.S) || input.contains(Constant.SUBSTR)
+                || input.contains(Constant.COUNT) || input.contains(Constant.OR)
+                || input.contains(Constant.AND) || input.contains(Constant.DROP)
+                || input.contains(Constant.EXECUTE) || input.contains(Constant.EXEC)
+                || input.contains(Constant.TRUNCATE) || input.contains(Constant.INTO)
+                || input.contains(Constant.DECLARE) || input.contains(Constant.MASTER))
+        {
+            log.error("该参数存在SQL注入风险：sInput=" + input);
+            return false;
+        }
+        log.info("通过sql检测");
+        return true;
+    }
+
 }

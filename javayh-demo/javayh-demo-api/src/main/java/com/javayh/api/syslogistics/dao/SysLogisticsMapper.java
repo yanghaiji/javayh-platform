@@ -31,7 +31,7 @@ public interface SysLogisticsMapper{
 	/**
 	 *  根据id查找
 	 */
-	SysLogistics findById(@Param("id") Integer id);
+	SysLogistics findById(@Param("id") String id);
 
 	/**
 	 *  新增

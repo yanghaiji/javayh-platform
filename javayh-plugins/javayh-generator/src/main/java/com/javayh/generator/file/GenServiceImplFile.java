@@ -64,11 +64,9 @@ public class GenServiceImplFile {
 		//写入导入的包名
 		content.append("import org.springframework.beans.factory.annotation.Autowired;").append(lineSeparator);
 		content.append("import org.springframework.stereotype.Service;").append(lineSeparator);
-//		content.append("import com.github.pagehelper.PageInfo;").append(lineSeparator);
-		content.append("import ").append(GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME).append(".common.page.PageQuery;").append(lineSeparator);
 		content.append("import com.github.pagehelper.PageHelper;").append(lineSeparator);
 		content.append("import java.util.List;").append(lineSeparator);
-        content.append("import com.javayh.common.page.PageQuery;").append(lineSeparator);
+        content.append("import com.javayh.mybatis.page.PageQuery;").append(lineSeparator);
 		content.append("import ").append(beanFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(beanDTOFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(mapperFile.getClassQuaName()).append(";").append(lineSeparator);

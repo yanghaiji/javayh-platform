@@ -62,7 +62,6 @@ public class GenControllerFile {
 
 		//写入导入的包名
 		content.append("import ").append(GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME).append(".common.result.ResultData;").append(lineSeparator);
-		content.append("import ").append(GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME).append(".common.page.PageQuery;").append(lineSeparator);
 		content.append("import io.swagger.annotations.Api;").append(lineSeparator);
 		content.append("import io.swagger.annotations.ApiOperation;").append(lineSeparator);
 		content.append("import org.springframework.web.bind.annotation.DeleteMapping;").append(lineSeparator);
@@ -73,7 +72,7 @@ public class GenControllerFile {
 		content.append("import org.springframework.web.bind.annotation.RequestBody;").append(lineSeparator);
 		content.append("import org.springframework.web.bind.annotation.RestController;").append(lineSeparator);
 		content.append("import org.springframework.beans.factory.annotation.Autowired;").append(lineSeparator);
-		content.append("import  com.javayh.common.page.PageQuery;").append(lineSeparator);
+		content.append("import  com.javayh.mybatis.page.PageQuery;").append(lineSeparator);
 		content.append("import ").append(beanFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(beanDtoFile.getClassQuaName()).append(";").append(lineSeparator);
 		content.append("import ").append(serviceFile.getClassQuaName()).append(";").append(lineSeparator);

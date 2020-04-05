@@ -22,10 +22,10 @@ spring:
     basename: i18n.login.login,i18n.common.common,i18n.validation.validation
   datasource:
     druid:
-      url: jdbc:mysql://47.105.196.42:3306/db1?serverTimezone=CTT&characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=true
+      url: jdbc:mysql://localhost:3306/db1?serverTimezone=CTT&characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=true
       username: root
-      password: Yhj1219320
-      driver-class-name: com.mysql.jdbc.Driver
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
       initial-size: 1
       min-idle: 1
       max-active: 20

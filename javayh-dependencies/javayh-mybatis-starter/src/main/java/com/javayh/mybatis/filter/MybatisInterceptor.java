@@ -1,7 +1,12 @@
-package com.javayh.datasource.filter;
+package com.javayh.mybatis.filter;
 
+import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
+import com.github.pagehelper.autoconfigure.PageHelperProperties;
+import com.javayh.mybatis.exception.MybatisInjectionException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
@@ -13,8 +18,17 @@ import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
+import java.sql.Connection;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -28,39 +42,45 @@ import java.util.Properties;
  */
 @Slf4j
 @Configuration
-@Intercepts({
-        @Signature(type = Executor.class, method = "update",
-                args = {MappedStatement.class, Object.class}),
-        @Signature(type = Executor.class, method = "query",
-                args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})})
+@Intercepts(
+        {
+                @Signature(type = Executor.class, method = "query",
+                        args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
+                @Signature(type = Executor.class, method = "query",
+                        args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class,
+                                CacheKey.class, BoundSql.class}),
+        }
+)
 public class MybatisInterceptor implements Interceptor {
     static final int MAPPED_STATEMENT_INDEX = 0;
     static final int PARAMETER_INDEX = 1;
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        try  {
             final Object[] queryArgs = invocation.getArgs();
             final MappedStatement mappedStatement = (MappedStatement) queryArgs[MAPPED_STATEMENT_INDEX];
             final Object parameter = queryArgs[PARAMETER_INDEX];
-            final BoundSql boundSql = mappedStatement.getBoundSql(IllegalSqlFilter.sqlStrFilter(parameter));
-            SqlLog.getSql(mappedStatement.getConfiguration(),boundSql,mappedStatement.getId());
-            String sql = boundSql.getSql();
-            // 重新new一个查询语句对像
-            BoundSql newBoundSql = new BoundSql(mappedStatement.getConfiguration(), sql, boundSql.getParameterMappings(), boundSql.getParameterObject());
-            // 把新的查询放到statement里
-            MappedStatement newMs = copyFromMappedStatement(mappedStatement, new BoundSqlSqlSource(newBoundSql));
-            for (ParameterMapping mapping : boundSql.getParameterMappings()) {
-                String prop = mapping.getProperty();
-                if (boundSql.hasAdditionalParameter(prop)) {
-                    newBoundSql.setAdditionalParameter(prop, boundSql.getAdditionalParameter(prop));
-                }
+            SqlLog.getSql(mappedStatement.getConfiguration(),mappedStatement.getBoundSql(parameter),mappedStatement.getId());
+            Boolean illegalStr = IllegalSqlFilter.isIllegalStr(parameter.toString());
+            Boolean filter = IllegalSqlFilter.sqlFilter(parameter);
+            if(!filter || illegalStr){
+                log.error("Sql 存在注入风险!");
+                return new MybatisInjectionException("Sql Exception");
             }
-            queryArgs[MAPPED_STATEMENT_INDEX] = newMs;
-            return invocation.proceed();
-        }
-        catch (Exception e){
-            log.error("sql Interceptor ----{}",e.getMessage());
-        }
+            //进行sql修改
+//            final BoundSql boundSql = mappedStatement.getBoundSql(IllegalSqlFilter.sqlStrFilter(parameter));
+//            String sql = boundSql.getSql();
+//            // 重新new一个查询语句对像
+//            BoundSql newBoundSql = new BoundSql(mappedStatement.getConfiguration(), sql, boundSql.getParameterMappings(), boundSql.getParameterObject());
+//            // 把新的查询放到statement里
+//            MappedStatement newMs = copyFromMappedStatement(mappedStatement, new BoundSqlSqlSource(newBoundSql));
+//            for (ParameterMapping mapping : boundSql.getParameterMappings()) {
+//                String prop = mapping.getProperty();
+//                if (boundSql.hasAdditionalParameter(prop)) {
+//                    newBoundSql.setAdditionalParameter(prop, boundSql.getAdditionalParameter(prop));
+//                }
+//            }
+//            queryArgs[MAPPED_STATEMENT_INDEX] = newMs;
+//            return invocation.proceed();
         // 执行完上面的任务后，不改变原有的sql执行过程
         return invocation.proceed();
     }

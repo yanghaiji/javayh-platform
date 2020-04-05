@@ -16,7 +16,7 @@ public class GeneratorMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GenMain gMain = new GenMain("sys_logistics", "syslogistics",false);
+		GenMain gMain = new GenMain("sys_logistics", "sys",false);
 		try {
 			gMain.generate();
 		} catch (Exception e) {

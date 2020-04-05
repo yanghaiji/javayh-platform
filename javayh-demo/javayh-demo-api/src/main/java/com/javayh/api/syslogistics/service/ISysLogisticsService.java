@@ -9,7 +9,7 @@ package com.javayh.api.syslogistics.service;
 
 import com.javayh.api.syslogistics.pojo.SysLogistics;
 import com.javayh.api.syslogistics.pojo.dto.SysLogisticsDTO;
-import com.javayh.common.page.PageQuery;
+import com.javayh.mybatis.page.PageQuery;
 
 /**
  * <p>  *  iService
@@ -26,7 +26,7 @@ public interface ISysLogisticsService {
 	/**
 	 *  根据id查询
 	 */
-	SysLogistics findById(Integer id);
+	SysLogistics findById(String id);
 
 
 	/**
