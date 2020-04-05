@@ -43,6 +43,8 @@
         <google.zxing.version>3.3.0</google.zxing.version>
         <pagehelpe.version>1.2.10</pagehelpe.version>
         <mysql.connector.version>6.0.6</mysql.connector.version>
+        <spring-javaformat.version>0.0.7</spring-javaformat.version>
+        <hutool.version>4.1.19</hutool.version>
         <spring-cloud-dependencies.version>Greenwich.SR3</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2.1.1.RELEASE</spring-cloud-alibaba-dependencies.version>
     </properties>
@@ -212,6 +214,11 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>io.spring.javaformat</groupId>
+                <artifactId>spring-javaformat-maven-plugin</artifactId>
+                <version>${spring-javaformat.version}</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

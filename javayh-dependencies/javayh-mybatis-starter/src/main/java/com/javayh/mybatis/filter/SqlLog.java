@@ -94,7 +94,7 @@ public class SqlLog {
     public static String showSql(Configuration configuration, BoundSql boundSql){
         // 获取参数
         Object parameterObject = boundSql.getParameterObject();
-        parameterObject = IllegalSqlFilter.sqlStrFilter(parameterObject);
+        parameterObject = IllegalSqlFilter.sqlFilter(parameterObject);
         List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
         // sql语句中多个空格都用一个空格代替
         String sql = boundSql.getSql().replaceAll("[\\s]+", " ");
