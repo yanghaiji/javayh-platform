@@ -21,6 +21,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Deprecated
 @Import(MailImportSelector.class)
 public @interface EnableMail {
 

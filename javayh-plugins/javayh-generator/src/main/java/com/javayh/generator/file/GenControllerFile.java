@@ -62,7 +62,6 @@ public class GenControllerFile {
 
 		//写入导入的包名
 		content.append("import ").append(GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME).append(".common.result.ResultData;").append(lineSeparator);
-		content.append("import ").append(GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME).append(".common.page.PageQuery;").append(lineSeparator);
 		content.append("import io.swagger.annotations.Api;").append(lineSeparator);
 		content.append("import io.swagger.annotations.ApiOperation;").append(lineSeparator);
 		content.append("import org.springframework.web.bind.annotation.DeleteMapping;").append(lineSeparator);
