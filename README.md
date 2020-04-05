@@ -35,18 +35,20 @@ javayh-platform                         父工程
 │  ├─javayh-demo-mail                   mail模板
 │  └─javayh-demo-feign                  feign
 ├─javayh-plugins                        插件
+│  ├─javayh-generator                   代码生成器
 │  ├─javayh-heartbeat-detection         服务心跳检测
 │  │  ├─javayh-heartbeat-server         心跳检测服务端
 │  └─ └─javayh-heartbeat-client         心跳检测客户端
 ├─javayh-route                          路由分发
 │  └─javayh-api-gateway                 gateway
-└─javayh-starter                        核心模块
+└─javayh-dependencies                   核心依赖
 │   ├─javayh-common-starter             内部支撑
 │   ├─javayh-db-starter                 关系型数据库
 │   ├─javayh-nacos-starter              nacos依赖支持
 │   ├─javayh-redis-starter              reids依赖支持
 │   ├─javayh-kafka-starter              kafka依赖支持
 │   ├─javayh-mail-starter               mail依赖支持
+│   ├─javayh-mybatis-starter            mybatis依赖支持
 └─  └─javayh-swagger-starter            Api文档支持
 ```
 ## 使用说明
