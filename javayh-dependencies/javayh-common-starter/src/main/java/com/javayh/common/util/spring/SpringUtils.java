@@ -7,7 +7,7 @@ import org.springframework.core.env.Environment;
 
 /**
  * <p>
- *      spring获取bean
+ * spring获取bean
  * </p>
  *
  * @author Dylan-haiji
@@ -16,33 +16,33 @@ import org.springframework.core.env.Environment;
  */
 public class SpringUtils implements ApplicationContextAware {
 
-    private static ApplicationContext applicationContext = null;
+	private static ApplicationContext applicationContext = null;
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        SpringUtils.applicationContext = applicationContext;
-    }
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext)
+			throws BeansException {
+		SpringUtils.applicationContext = applicationContext;
+	}
 
-    public static <T> T getBean(Class<T> clazz){
-        checkApplicationContext();
-        return applicationContext.getBean(clazz);
-    }
+	public static <T> T getBean(Class<T> clazz) {
+		checkApplicationContext();
+		return applicationContext.getBean(clazz);
+	}
 
-    public static <T> T getBean(String name,Class<T> clazz){
-        checkApplicationContext();
-        return applicationContext.getBean(name,clazz);
-    }
+	public static <T> T getBean(String name, Class<T> clazz) {
+		checkApplicationContext();
+		return applicationContext.getBean(name, clazz);
+	}
 
-    public static String getProperty(String key){
-        return applicationContext.getBean(Environment.class).getProperty(key);
-    }
+	public static String getProperty(String key) {
+		return applicationContext.getBean(Environment.class).getProperty(key);
+	}
 
-
-    private static void checkApplicationContext() {
-        if (applicationContext == null) {
-            throw new IllegalStateException(
-                    "applicaitonContext未注入,请在applicationContext.xml中定义SpringUtils");
-        }
-    }
+	private static void checkApplicationContext() {
+		if (applicationContext == null) {
+			throw new IllegalStateException(
+					"applicaitonContext未注入,请在applicationContext.xml中定义SpringUtils");
+		}
+	}
 
 }

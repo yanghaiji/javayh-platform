@@ -1,12 +1,12 @@
 package com.javayh.common.exception.dao;
 
-
 import com.javayh.common.exception.BaseException;
 
 /**
  * <p>
- *     数据库异常
+ * 数据库异常
  * </p>
+ *
  * @version 1.0.0
  * @author Dylan-haiji
  * @since 2020/3/1
@@ -22,4 +22,5 @@ public class DataAccessException extends BaseException {
 	public DataAccessException(Exception e) {
 		this(e.getMessage());
 	}
+
 }

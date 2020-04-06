@@ -1,6 +1,5 @@
 package com.javayh.generator.file;
 
-
 import com.javayh.common.entity.BaseEntity;
 import com.javayh.generator.bean.FieldBean;
 import com.javayh.generator.config.GenerateConfig;
@@ -15,101 +14,126 @@ import java.io.IOException;
  * 生成实体类
  */
 public class GenBeanDTOFile {
+
 	private GenMain gMain;
+
 	private String packageName;
+
 	private String className;
+
 	private String fileName;
-	private String classQuaName; //全称
 
-	public void generate(){
-		//包名
-		packageName =
-				GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME
-                        + "." + gMain.getModelName() + "." + GenerateConfig.POJO_BO_NAME
-                        + "." + GenerateConfig.POJO_DTO_NAME;
-		className = NameUtils.formatClassName(gMain.getTableName())  +"DTO";
-		fileName = className  + ".java";
-		classQuaName = packageName+"."+className;
+	private String classQuaName; // 全称
 
-		File file = new File(GenerateConfig.basepathPrefix+ packageName.replace(".", "/"),fileName);
+	public void generate() {
+		// 包名
+		packageName = GenerateConfig.BASE_PACKAGE_NAME + "." + GenerateConfig.PROJECT_NAME
+				+ "." + gMain.getModelName() + "." + GenerateConfig.POJO_BO_NAME + "."
+				+ GenerateConfig.POJO_DTO_NAME;
+		className = NameUtils.formatClassName(gMain.getTableName()) + "DTO";
+		fileName = className + ".java";
+		classQuaName = packageName + "." + className;
+
+		File file = new File(
+				GenerateConfig.basepathPrefix + packageName.replace(".", "/"), fileName);
 		if (!file.getParentFile().exists()) {
 			file.getParentFile().mkdirs();
 		}
-		System.out.println("生成bean文件的目录"+file.getAbsolutePath());
+		System.out.println("生成bean文件的目录" + file.getAbsolutePath());
 
-		if(!file.exists()){
+		if (!file.exists()) {
 			try {
 				file.createNewFile();
-			} catch (IOException e) {
+			}
+			catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 
-		//修改文件编码
+		// 修改文件编码
 		FileUtils.changeFileEncoding(file, "UTF-8");
 
-		//向文件写入内容
+		// 向文件写入内容
 		FileUtils.WriteStringToFile(file, genContent());
 	}
 
-	private String genContent(){
+	private String genContent() {
 		String lineSeparator = System.getProperty("line.separator");
 		StringBuffer content = new StringBuffer();
-		//写入文件注释
+		// 写入文件注释
 		content.append(NotesUtils.getFileNotes());
 
-		//写入文件包名
+		// 写入文件包名
 		content.append("package ").append(packageName).append(";").append(lineSeparator);
 		content.append(lineSeparator);
 		content.append("import lombok.*;").append(lineSeparator);
-		content.append("import com.javayh.mybatis.page.PageEntity;").append(lineSeparator);
+		content.append("import com.javayh.mybatis.page.PageEntity;")
+				.append(lineSeparator);
 		content.append(lineSeparator);
 
-		//写入导入的包名
-		content.append("import io.swagger.annotations.ApiModelProperty;").append(lineSeparator);//没使用swagger的注释掉
-		for(String str: gMain.getClassNameSet()){
+		// 写入导入的包名
+		content.append("import io.swagger.annotations.ApiModelProperty;")
+				.append(lineSeparator);// 没使用swagger的注释掉
+		for (String str : gMain.getClassNameSet()) {
 			content.append("import ").append(str).append(";").append(lineSeparator);
 		}
 
-		//写入文件注释
-		content.append(NotesUtils.getTypeNotes(gMain.getTableDesc()+"Bean"));
+		// 写入文件注释
+		content.append(NotesUtils.getTypeNotes(gMain.getTableDesc() + "Bean"));
 
-		//写入文件名
+		// 写入文件名
 		content.append("@SuppressWarnings(\"serial\")").append(lineSeparator);
 		content.append("@Data").append(lineSeparator);
 		content.append("@NoArgsConstructor").append(lineSeparator);
 		content.append("@AllArgsConstructor").append(lineSeparator);
 		content.append("@Builder").append(lineSeparator);
 		content.append("@ToString").append(lineSeparator);
-		content.append("public class ").append(className).append(" extends PageEntity ").append(" implements java.io.Serializable").append("{").append(lineSeparator);
+		content.append("public class ").append(className).append(" extends PageEntity ")
+				.append(" implements java.io.Serializable").append("{")
+				.append(lineSeparator);
 
-		//写入字段名
+		// 写入字段名
 		content.append(lineSeparator);
-		for(FieldBean field : gMain.getStructureList()){
+		for (FieldBean field : gMain.getStructureList()) {
 			content.append(NotesUtils.getMethodNotes(field.getFieldContent()));
-			if(field.getFieldContent() == null || field.getFieldContent().equals("")){
-				content.append("\t").append("@ApiModelProperty(hidden = true)").append(lineSeparator);
-			}else {
-				content.append("\t").append("@ApiModelProperty(value = \"").append(field.getFieldContent()).append("\")").append(lineSeparator);
+			if (field.getFieldContent() == null || field.getFieldContent().equals("")) {
+				content.append("\t").append("@ApiModelProperty(hidden = true)")
+						.append(lineSeparator);
 			}
-			content.append("\t").append("private ").append(field.getVhClass().getSimpleName()).append(" ").append(field.getFieldName()).append("; ").append(lineSeparator);
+			else {
+				content.append("\t").append("@ApiModelProperty(value = \"")
+						.append(field.getFieldContent()).append("\")")
+						.append(lineSeparator);
+			}
+			content.append("\t").append("private ")
+					.append(field.getVhClass().getSimpleName()).append(" ")
+					.append(field.getFieldName()).append("; ").append(lineSeparator);
 		}
 
-		//写入get与set
-//		content.append(lineSeparator);
-//		content.append("\t").append("/*==================== gen setter and getter begin=====================*/").append(lineSeparator);
-/*		for(FieldBean field : gMain.getStructureList()){
-			content.append("\t").append("public ").append(field.getVhClass().getSimpleName()).append(" get").append(field.getFieldNameUp()).append("() {").append(lineSeparator);
-			content.append("\t\t").append("return ").append(field.getFieldName()).append(";").append(lineSeparator);
-			content.append("\t").append("}").append(lineSeparator);
-
-			content.append("\t").append("public void set").append(field.getFieldNameUp()).append("(").append(field.getVhClass().getSimpleName()).append(" ").append(field.getFieldName()).append(") {").append(lineSeparator);
-			content.append("\t\t").append("this.").append(field.getFieldName()).append(" = ").append(field.getFieldName()).append(";").append(lineSeparator);
-			content.append("\t").append("}").append(lineSeparator);
-
-			content.append(lineSeparator);
-		}*/
-//		content.append("\t").append("/*==================== gen setter and getter end  =====================*/").append(lineSeparator);
+		// 写入get与set
+		// content.append(lineSeparator);
+		// content.append("\t").append("/*==================== gen setter and getter
+		// begin=====================*/").append(lineSeparator);
+		/*
+		 * for(FieldBean field : gMain.getStructureList()){
+		 * content.append("\t").append("public ").append(field.getVhClass().getSimpleName(
+		 * )).append(" get").append(field.getFieldNameUp()).append("() {").append(
+		 * lineSeparator);
+		 * content.append("\t\t").append("return ").append(field.getFieldName()).append(
+		 * ";").append(lineSeparator);
+		 * content.append("\t").append("}").append(lineSeparator);
+		 *
+		 * content.append("\t").append("public void set").append(field.getFieldNameUp()).
+		 * append("(").append(field.getVhClass().getSimpleName()).append(" ").append(field
+		 * .getFieldName()).append(") {").append(lineSeparator);
+		 * content.append("\t\t").append("this.").append(field.getFieldName()).
+		 * append(" = ").append(field.getFieldName()).append(";").append(lineSeparator);
+		 * content.append("\t").append("}").append(lineSeparator);
+		 *
+		 * content.append(lineSeparator); }
+		 */
+		// content.append("\t").append("/*==================== gen setter and getter end
+		// =====================*/").append(lineSeparator);
 		content.append(lineSeparator);
 		content.append("}");
 		return content.toString();
@@ -143,4 +167,5 @@ public class GenBeanDTOFile {
 	public void setClassName(String className) {
 		this.className = className;
 	}
+
 }

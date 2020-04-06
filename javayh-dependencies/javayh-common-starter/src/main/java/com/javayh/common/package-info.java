@@ -1,7 +1,6 @@
 /**
  * <p>
- * 内部支持
- *  http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+ * 内部支持 http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
  * </p>
  *
  * @author Dylan-haiji

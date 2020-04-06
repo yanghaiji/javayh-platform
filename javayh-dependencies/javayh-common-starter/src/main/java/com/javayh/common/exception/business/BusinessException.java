@@ -14,12 +14,12 @@ import com.javayh.common.exception.BaseException;
  */
 public class BusinessException extends BaseException {
 
-    public BusinessException() {
-        super(ConstantUtils.BUSINESS_DATA);
-    }
+	public BusinessException() {
+		super(ConstantUtils.BUSINESS_DATA);
+	}
 
-    public BusinessException(String msg) {
-        super(msg);
-    }
+	public BusinessException(String msg) {
+		super(msg);
+	}
 
 }

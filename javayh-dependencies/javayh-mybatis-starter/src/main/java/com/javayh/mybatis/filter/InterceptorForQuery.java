@@ -1,6 +1,5 @@
 package com.javayh.mybatis.filter;
 
-
 import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import com.github.pagehelper.autoconfigure.PageHelperProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -37,36 +36,29 @@ import java.util.Properties;
  */
 @Slf4j
 @Configuration
-@Intercepts(
-        {
-                @Signature(type = Executor.class, method = "query",
-                        args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
-                @Signature(type = Executor.class, method = "query",
-                        args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class,
-                                CacheKey.class, BoundSql.class}),
-        }
-)
-public class InterceptorForQuery implements Interceptor
-{
+@Intercepts({ @Signature(type = Executor.class, method = "query", args = {
+		MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }),
+		@Signature(type = Executor.class, method = "query", args = {
+				MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class,
+				CacheKey.class, BoundSql.class }), })
+public class InterceptorForQuery implements Interceptor {
 
-    @Override
-    public Object intercept(Invocation invocation)
-            throws Throwable
-    {
-        // 执行请求方法，并将所得结果保存到result中
-        Object result = invocation.proceed();
-        log.info("sql执行结束的返回值{}",result);
-        return result;
-    }
+	@Override
+	public Object intercept(Invocation invocation) throws Throwable {
+		// 执行请求方法，并将所得结果保存到result中
+		Object result = invocation.proceed();
+		log.info("sql执行结束的返回值{}", result);
+		return result;
+	}
 
-    @Override
-    public Object plugin(Object target)
-    {
-        return Plugin.wrap(target, this);
-    }
+	@Override
+	public Object plugin(Object target) {
+		return Plugin.wrap(target, this);
+	}
 
-    @Override
-    public void setProperties(Properties arg0) {
+	@Override
+	public void setProperties(Properties arg0) {
 
-    }
+	}
+
 }

@@ -13,34 +13,35 @@ import java.util.Collection;
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
-    /**
-     * <p>
-     *       加言处理
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/3/24
-     * @param str
-     * @return java.lang.String
-     */
-    public static String setSuffix(String str,String suffix){
-        StringBuffer stringBuffer = new StringBuffer();
-        return stringBuffer.append(str).append(suffix).toString();
-    }
+	/**
+	 * <p>
+	 * 加言处理
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/3/24
+	 * @param str
+	 * @return java.lang.String
+	 */
+	public static String setSuffix(String str, String suffix) {
+		StringBuffer stringBuffer = new StringBuffer();
+		return stringBuffer.append(str).append(suffix).toString();
+	}
 
-    public static boolean isEmpty(String str) {
-        return isNull(str) || "".equals(str.trim());
-    }
+	public static boolean isEmpty(String str) {
+		return isNull(str) || "".equals(str.trim());
+	}
 
-    public static boolean isNotEmpty(String cs) {
-        return !isEmpty(cs);
-    }
+	public static boolean isNotEmpty(String cs) {
+		return !isEmpty(cs);
+	}
 
-    public static boolean isEmpty(Collection<?> coll) {
-        return isNull(coll) || coll.isEmpty();
-    }
+	public static boolean isEmpty(Collection<?> coll) {
+		return isNull(coll) || coll.isEmpty();
+	}
 
-    public static boolean isNull(Object object) {
-        return object == null;
-    }
+	public static boolean isNull(Object object) {
+		return object == null;
+	}
+
 }

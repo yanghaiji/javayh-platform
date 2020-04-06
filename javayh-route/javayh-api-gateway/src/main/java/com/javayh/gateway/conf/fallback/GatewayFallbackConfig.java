@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
 
 /**
  * <p>
- *      服务回滚
+ * 服务回滚
  * </p>
  *
  * @author Dylan-haiji
@@ -21,25 +21,25 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
 @Configuration
 public class GatewayFallbackConfig {
 
-    @Autowired
-    private HystrixFallbackHandler hystrixFallbackHandler;
+	@Autowired
+	private HystrixFallbackHandler hystrixFallbackHandler;
 
-    /**
-     * <p>
-     *       实例化，用于服务降级配置
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/3/2
-     * @param
-     * @return org.springframework.web.reactive.function.server.RouterFunction
-     */
-    @Bean
-    public RouterFunction routerFunction() {
-        return RouterFunctions.route(
-                RequestPredicates.GET("/defaultfallback")
-                        .and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), hystrixFallbackHandler);
-    }
+	/**
+	 * <p>
+	 * 实例化，用于服务降级配置
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/3/2
+	 * @param
+	 * @return org.springframework.web.reactive.function.server.RouterFunction
+	 */
+	@Bean
+	public RouterFunction routerFunction() {
+		return RouterFunctions.route(
+				RequestPredicates.GET("/defaultfallback")
+						.and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
+				hystrixFallbackHandler);
+	}
 
 }
-

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TbRoleServiceImpl implements TbRoleService {
 
-    @Autowired
-    private TbRoleMapper tbRoleMapper;
+	@Autowired
+	private TbRoleMapper tbRoleMapper;
 
 }

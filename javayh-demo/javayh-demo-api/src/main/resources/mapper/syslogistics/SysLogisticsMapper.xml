@@ -140,13 +140,13 @@
 		WHERE id=#{id}
 	</delete>
 
-	<select id="findById" resultType="com.javayh.sys.pojo.SysLogistics">
+	<select id="findById" resultType="com.javayh.api.syslogistics.pojo.SysLogistics">
 		SELECT <include refid="sysLogisticsColumn"/>
 		FROM sys_logistics
 		WHERE id=#{id}
 	</select>
 
-	<select id="findByPage" resultType="com.javayh.sys.pojo.SysLogistics">
+	<select id="findByPage" resultType="com.javayh.api.syslogistics.pojo.SysLogistics">
 		SELECT <include refid="sysLogisticsColumn"/>
 		FROM sys_logistics
 		WHERE  1=1 

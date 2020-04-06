@@ -23,12 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/feign/")
 public class FeignCtr {
 
-    @Autowired
-    private DemoFeignServiceImpl demoFeignService;
+	@Autowired
+	private DemoFeignServiceImpl demoFeignService;
 
-    @ApiOperation(value = "测试 ", notes = "测试")
-    @GetMapping(value = "getfeign")
-    public ResultData get(){
-        return ResultData.success(demoFeignService.getFeign());
-    }
+	@ApiOperation(value = "测试 ", notes = "测试")
+	@GetMapping(value = "getfeign")
+	public ResultData get() {
+		return ResultData.success(demoFeignService.getFeign());
+	}
+
 }

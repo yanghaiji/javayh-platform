@@ -5,7 +5,7 @@ import org.springframework.core.type.AnnotationMetadata;
 
 /**
  * <p>
- *      实现字段装配
+ * 实现字段装配
  * </p>
  *
  * @author Dylan-haiji
@@ -14,12 +14,10 @@ import org.springframework.core.type.AnnotationMetadata;
  */
 public class LogImportSelector implements ImportSelector {
 
-    @Override
-    public String[] selectImports(AnnotationMetadata annotationMetadata) {
-        return new String[]{
-                "com.javayh.log.aop.SysLogAop",
-                "com.javayh.log.conf.LogAutoConfig",
-                "com.javayh.log.log.LogError"
-        };
-    }
+	@Override
+	public String[] selectImports(AnnotationMetadata annotationMetadata) {
+		return new String[] { "com.javayh.log.aop.SysLogAop",
+				"com.javayh.log.conf.LogAutoConfig", "com.javayh.log.log.LogError" };
+	}
+
 }

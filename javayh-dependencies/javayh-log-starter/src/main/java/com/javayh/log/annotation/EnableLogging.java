@@ -9,10 +9,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-
 /**
  * <p>
- *       启动日志框架支持
+ * 启动日志框架支持
  * </p>
  * @version 1.0.0
  * @author Dylan-haiji

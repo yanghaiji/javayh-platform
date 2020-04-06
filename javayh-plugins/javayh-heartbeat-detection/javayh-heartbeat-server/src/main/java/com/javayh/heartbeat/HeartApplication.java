@@ -14,7 +14,9 @@ import org.springframework.boot.SpringApplication;
  */
 @JavayhBootApplication
 public class HeartApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(HeartApplication.class,args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(HeartApplication.class, args);
+	}
+
 }

@@ -17,8 +17,7 @@ package com.javayh.redis.prefix;
 
 /**
  * <p>
- *      redis前缀处理器,提供基础模板,可根据业务进行扩展
- *      用于规范key的使用
+ * redis前缀处理器,提供基础模板,可根据业务进行扩展 用于规范key的使用
  * </p>
  *
  * @author Dylan-haiji
@@ -27,35 +26,34 @@ package com.javayh.redis.prefix;
  */
 public abstract class KeyUtils {
 
-    static final String UID = "javayh:";
+	static final String UID = "javayh:";
 
-    static String followers(String uid) {
-        return UID + uid + ":followers";
-    }
+	static String followers(String uid) {
+		return UID + uid + ":followers";
+	}
 
-    public static String key(String name) {
-        return UID + name ;
-    }
+	public static String key(String name) {
+		return UID + name;
+	}
 
-    static String auth(String uid) {
-        return UID + uid + ":auth";
-    }
+	static String auth(String uid) {
+		return UID + uid + ":auth";
+	}
 
-    public static String route(String name) {
-        return UID + name + ":route";
-    }
+	public static String route(String name) {
+		return UID + name + ":route";
+	}
 
-    public static String user(String name) {
-        return UID + name + ":user";
-    }
+	public static String user(String name) {
+		return UID + name + ":user";
+	}
 
-    public static String login(String name) {
-        return UID + name + ":login";
-    }
+	public static String login(String name) {
+		return UID + name + ":login";
+	}
 
-    public static String other(String name) {
-        return UID + name + ":other";
-    }
-
+	public static String other(String name) {
+		return UID + name + ":other";
+	}
 
 }

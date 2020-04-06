@@ -19,57 +19,58 @@ import com.javayh.api.syslogistics.dao.SysLogisticsMapper;
 import com.javayh.api.syslogistics.service.ISysLogisticsService;
 
 /**
- * <p>  *  ServiceImpl
- * </p>  * @author：Dylan
- * @version：V1.0
- * @since：2020-04-05
+ * <p>
+ * * ServiceImpl
+ * </p>
+ * * @author：Dylan @version：V1.0 @since：2020-04-05
  */
 @Service
 public class SysLogisticsServiceImpl implements ISysLogisticsService {
 
 	@Autowired
-	private SysLogisticsMapper sysLogisticsMapper; 
+	private SysLogisticsMapper sysLogisticsMapper;
 
 	/**
-	 *  根据条件查询-分页
+	 * 根据条件查询-分页
 	 */
 	@Override
-	public PageQuery<SysLogistics> findByPage (SysLogisticsDTO sysLogisticsDTO){
-		PageHelper.startPage(sysLogisticsDTO.getPageNo(),sysLogisticsDTO.getPageSize());
-		List<SysLogistics> sysLogisticsList = sysLogisticsMapper.findByPage(sysLogisticsDTO);
+	public PageQuery<SysLogistics> findByPage(SysLogisticsDTO sysLogisticsDTO) {
+		PageHelper.startPage(sysLogisticsDTO.getPageNo(), sysLogisticsDTO.getPageSize());
+		List<SysLogistics> sysLogisticsList = sysLogisticsMapper
+				.findByPage(sysLogisticsDTO);
 		PageQuery page = PageQuery.ofPage(sysLogisticsList);
 		return page;
 	}
 
 	/**
-	 *  根据id查询
+	 * 根据id查询
 	 */
 	@Override
-	public SysLogistics findById(String id){
+	public SysLogistics findById(String id) {
 		return sysLogisticsMapper.findById(id);
 	}
 
 	/**
-	 *  添加数据
+	 * 添加数据
 	 */
 	@Override
-	public int insert(SysLogistics sysLogistics){
+	public int insert(SysLogistics sysLogistics) {
 		return sysLogisticsMapper.insert(sysLogistics);
 	}
 
 	/**
-	 *  修改数据
+	 * 修改数据
 	 */
 	@Override
-	public int update(SysLogistics sysLogistics){
+	public int update(SysLogistics sysLogistics) {
 		return sysLogisticsMapper.update(sysLogistics);
 	}
 
 	/**
-	 *  根据id删除
+	 * 根据id删除
 	 */
 	@Override
-	public int deleteById(Integer id){
+	public int deleteById(Integer id) {
 		return sysLogisticsMapper.deleteById(id);
 	}
 

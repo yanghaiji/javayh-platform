@@ -5,8 +5,7 @@ import org.springframework.boot.SpringApplication;
 
 /**
  * <p>
- * gateway启动类
- * 全局api文档 http://localhost:7000/doc.html#
+ * gateway启动类 全局api文档 http://localhost:7000/doc.html#
  * </p>
  *
  * @author Dylan-haiji
@@ -15,7 +14,9 @@ import org.springframework.boot.SpringApplication;
  */
 @JavayhBootApplication
 public class GatewayApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(GatewayApplication.class,args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(GatewayApplication.class, args);
+	}
+
 }

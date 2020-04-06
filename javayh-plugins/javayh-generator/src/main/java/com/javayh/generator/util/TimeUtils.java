@@ -8,18 +8,18 @@ import java.util.Date;
  * 时间工具类
  */
 public class TimeUtils {
-	
+
 	/**
 	 * 格式化date
 	 * @param date
 	 * @param pattern
 	 * @return
 	 */
-	public static String formatDate(Date date,String pattern){
+	public static String formatDate(Date date, String pattern) {
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.format(date);
 	}
-	
+
 	/**
 	 * 获取年
 	 * @return
@@ -27,10 +27,9 @@ public class TimeUtils {
 	public static int getYear() {
 		return getYear(new Date());
 	}
-	
+
 	/**
 	 * 获取年
-	 * 
 	 * @param date
 	 * @return
 	 */
@@ -76,4 +75,5 @@ public class TimeUtils {
 		calendar.setTime(date);
 		return calendar.get(Calendar.DAY_OF_MONTH);
 	}
+
 }

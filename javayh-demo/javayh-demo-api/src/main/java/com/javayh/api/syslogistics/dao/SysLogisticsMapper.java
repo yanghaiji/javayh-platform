@@ -14,37 +14,37 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 /**
- * <p>  *  iMapper
- * </p>  * @author：Dylan
- * @version：V1.0
- * @since：2020-04-05
+ * <p>
+ * * iMapper
+ * </p>
+ * * @author：Dylan @version：V1.0 @since：2020-04-05
  */
 @Mapper
-public interface SysLogisticsMapper{
+public interface SysLogisticsMapper {
 
 	/**
-	 *  分页查询
+	 * 分页查询
 	 */
-	List<SysLogistics> findByPage( SysLogisticsDTO sysLogisticsDTO);
-
+	List<SysLogistics> findByPage(SysLogisticsDTO sysLogisticsDTO);
 
 	/**
-	 *  根据id查找
+	 * 根据id查找
 	 */
 	SysLogistics findById(@Param("id") String id);
 
 	/**
-	 *  新增
+	 * 新增
 	 */
 	int insert(SysLogistics sysLogistics);
 
 	/**
-	 *  修改
+	 * 修改
 	 */
 	int update(SysLogistics sysLogistics);
 
 	/**
-	 *  根据id删除
+	 * 根据id删除
 	 */
 	int deleteById(@Param("id") Integer id);
+
 }

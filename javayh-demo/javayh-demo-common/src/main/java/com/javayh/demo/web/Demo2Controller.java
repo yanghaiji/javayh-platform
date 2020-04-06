@@ -24,18 +24,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/demo/")
 public class Demo2Controller {
 
-    @Autowired(required = false)
-    private LogError logError;
+	@Autowired(required = false)
+	private LogError logError;
 
-    @ApiOperation(value = "swagger测试", notes = "测试")
-    @GetMapping(value = "swagger")
-    public ResultData getSwagger(){
-        try {
-            Integer.valueOf("22m");
-            return ResultData.success();
-        } catch (NumberFormatException e) {
-            logError.logPrint("swagger",e.getStackTrace());
-            return ResultData.fail();
-        }
-    }
+	@ApiOperation(value = "swagger测试", notes = "测试")
+	@GetMapping(value = "swagger")
+	public ResultData getSwagger() {
+		try {
+			Integer.valueOf("22m");
+			return ResultData.success();
+		}
+		catch (NumberFormatException e) {
+			logError.logPrint("swagger", e.getStackTrace());
+			return ResultData.fail();
+		}
+	}
+
 }

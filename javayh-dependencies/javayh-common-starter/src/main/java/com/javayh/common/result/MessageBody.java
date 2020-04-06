@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- *      心跳健康消息体
+ * 心跳健康消息体
  * </p>
  *
  * @author Dylan-haiji
@@ -21,7 +21,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class MessageBody implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    private Long msgId;
-    private String msg;
+	private static final long serialVersionUID = 1L;
+
+	private Long msgId;
+
+	private String msg;
+
 }

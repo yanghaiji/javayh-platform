@@ -11,21 +11,36 @@ package com.javayh.mybatis.uitl;
  */
 public interface Constant {
 
-    String DELETE = "DELETE";
-    String ASCII = "ASCII";
-    String UPDATE = "UPDATE";
-    String SELECT = "SELECT";
-    String S = "'";
-    String SUBSTR = "SUBSTR(";
-    String COUNT = "COUNT(";
-    String OR = " OR ";
-    String DROP = "DROP";
-    String EXECUTE = "EXECUTE";
-    String EXEC = "EXEC";
-    String TRUNCATE = "TRUNCATE";
-    String INTO = "INTO";
-    String DECLARE = "DECLARE";
-    String MASTER = "MASTER";
-    String AND = " AND ";
+	String DELETE = "DELETE";
+
+	String ASCII = "ASCII";
+
+	String UPDATE = "UPDATE";
+
+	String SELECT = "SELECT";
+
+	String S = "'";
+
+	String SUBSTR = "SUBSTR(";
+
+	String COUNT = "COUNT(";
+
+	String OR = " OR ";
+
+	String DROP = "DROP";
+
+	String EXECUTE = "EXECUTE";
+
+	String EXEC = "EXEC";
+
+	String TRUNCATE = "TRUNCATE";
+
+	String INTO = "INTO";
+
+	String DECLARE = "DECLARE";
+
+	String MASTER = "MASTER";
+
+	String AND = " AND ";
 
 }

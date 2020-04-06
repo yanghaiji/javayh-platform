@@ -24,10 +24,10 @@ import com.javayh.api.syslogistics.pojo.dto.SysLogisticsDTO;
 import com.javayh.api.syslogistics.service.ISysLogisticsService;
 
 /**
- * <p>  *  Controller
- * </p>  * @author：Dylan
- * @version：V1.0
- * @since：2020-04-05
+ * <p>
+ * * Controller
+ * </p>
+ * * @author：Dylan @version：V1.0 @since：2020-04-05
  */
 @RestController
 @Api(tags = "")
@@ -35,52 +35,53 @@ import com.javayh.api.syslogistics.service.ISysLogisticsService;
 public class SysLogisticsController {
 
 	@Autowired
-	private ISysLogisticsService sysLogisticsServiceImpl; 
+	private ISysLogisticsService sysLogisticsServiceImpl;
 
 	/**
-	 *  根据条件查找-分页
+	 * 根据条件查找-分页
 	 */
 	@ApiOperation(value = "根据条件查找-分页")
 	@PostMapping(value = "/findByPage")
-	public ResultData<PageQuery> findByPage (@RequestBody SysLogisticsDTO sysLogisticsDTO){
+	public ResultData<PageQuery> findByPage(
+			@RequestBody SysLogisticsDTO sysLogisticsDTO) {
 		return ResultData.success(sysLogisticsServiceImpl.findByPage(sysLogisticsDTO));
 	}
 
 	/**
-	 *  根据id查询
+	 * 根据id查询
 	 */
 	@ApiOperation(value = "根据id查询")
 	@GetMapping(value = "/findById")
-	public ResultData<SysLogistics> findById(String id){
+	public ResultData<SysLogistics> findById(String id) {
 		return ResultData.success(sysLogisticsServiceImpl.findById(id));
 	}
 
 	/**
-	 *  添加数据
+	 * 添加数据
 	 */
 	@ApiOperation(value = "添加数据")
 	@PostMapping(value = "/insert")
-	public ResultData<Integer> insert(@RequestBody SysLogistics sysLogistics){
+	public ResultData<Integer> insert(@RequestBody SysLogistics sysLogistics) {
 		sysLogisticsServiceImpl.insert(sysLogistics);
 		return ResultData.success();
 	}
 
 	/**
-	 *  修改数据
+	 * 修改数据
 	 */
 	@ApiOperation(value = "修改数据")
 	@PutMapping(value = "/update")
-	public ResultData<Integer> update(@RequestBody SysLogistics sysLogistics){
+	public ResultData<Integer> update(@RequestBody SysLogistics sysLogistics) {
 		sysLogisticsServiceImpl.update(sysLogistics);
 		return ResultData.success();
 	}
 
 	/**
-	 *  根据id删除
+	 * 根据id删除
 	 */
 	@ApiOperation(value = "根据id删除")
 	@DeleteMapping(value = "/deleteById")
-	public ResultData<Integer> deleteById(Integer id){
+	public ResultData<Integer> deleteById(Integer id) {
 		sysLogisticsServiceImpl.deleteById(id);
 		return ResultData.success();
 	}

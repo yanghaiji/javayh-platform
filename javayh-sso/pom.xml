@@ -18,10 +18,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.javayh</groupId>
             <artifactId>javayh-common-starter</artifactId>
         </dependency>
@@ -45,18 +41,16 @@
             <artifactId>javayh-nacos-starter</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- Spring Security -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-oauth-starter</artifactId>
+            <optional>true</optional>
         </dependency>
-        <!--工具类-->
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-swagger-starter</artifactId>
+            <optional>true</optional>
         </dependency>
-
     </dependencies>
 
 </project>

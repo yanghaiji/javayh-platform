@@ -14,53 +14,59 @@ import lombok.Data;
 @Data
 public class OperationLog {
 
-    /**
-     * 唯一id
-     */
-    private String id;
+	/**
+	 * 唯一id
+	 */
+	private String id;
 
-    /*
-     * 调用时间
-     */
-    private String createTime;
-    /**
-     * 日志等级
-     */
-    private Integer level;
+	/*
+	 * 调用时间
+	 */
+	private String createTime;
 
-    /**
-     * 方法名
-     */
-    private String method;
-    /**
-     * 参数
-     */
-    private String args;
-    /**
-     * 操作人id
-     */
-    private String userId;
-    /**
-     * 操作人
-     */
-    private String userName;
-    /**
-     * 日志描述
-     */
-    private String describe;
+	/**
+	 * 日志等级
+	 */
+	private Integer level;
 
-    /**
-     * 方法运行时间
-     */
-    private Long runTime;
+	/**
+	 * 方法名
+	 */
+	private String method;
 
-    /**
-     * 调用方ip
-     */
-    private String callerIp;
-    /**
-     * 本地ip
-     */
-    private String localHostIp;
+	/**
+	 * 参数
+	 */
+	private String args;
+
+	/**
+	 * 操作人id
+	 */
+	private String userId;
+
+	/**
+	 * 操作人
+	 */
+	private String userName;
+
+	/**
+	 * 日志描述
+	 */
+	private String describe;
+
+	/**
+	 * 方法运行时间
+	 */
+	private Long runTime;
+
+	/**
+	 * 调用方ip
+	 */
+	private String callerIp;
+
+	/**
+	 * 本地ip
+	 */
+	private String localHostIp;
 
 }

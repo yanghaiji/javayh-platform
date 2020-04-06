@@ -21,7 +21,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @MapperScan(basePackages = "com.javayh.oauth2.server.mapper")
 @JavayhBootApplication
 public class OAuth2ServerApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(OAuth2ServerApplication.class,args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(OAuth2ServerApplication.class, args);
+	}
+
 }

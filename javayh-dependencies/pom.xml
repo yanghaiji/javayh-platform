@@ -21,6 +21,7 @@
         <module>javayh-kafka-starter</module>
         <module>javayh-mail-starter</module>
         <module>javayh-mybatis-starter</module>
+        <module>javayh-oauth-starter</module>
     </modules>
 
 

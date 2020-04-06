@@ -22,14 +22,15 @@ import java.util.List;
 @AutoConfigureAfter(PageHelperAutoConfiguration.class)
 public class MybatisFilterAutoConfiguration {
 
-    @Autowired(required = false)
-    private List<SqlSessionFactory> sqlSessionFactoryList;
+	@Autowired(required = false)
+	private List<SqlSessionFactory> sqlSessionFactoryList;
 
-    @PostConstruct
-    public void addMyInterceptor() {
-        MybatisInterceptor e = new MybatisInterceptor();
-        for (SqlSessionFactory sqlSessionFactory : sqlSessionFactoryList) {
-            sqlSessionFactory.getConfiguration().addInterceptor(e);
-        }
-    }
+	@PostConstruct
+	public void addMyInterceptor() {
+		MybatisInterceptor e = new MybatisInterceptor();
+		for (SqlSessionFactory sqlSessionFactory : sqlSessionFactoryList) {
+			sqlSessionFactory.getConfiguration().addInterceptor(e);
+		}
+	}
+
 }

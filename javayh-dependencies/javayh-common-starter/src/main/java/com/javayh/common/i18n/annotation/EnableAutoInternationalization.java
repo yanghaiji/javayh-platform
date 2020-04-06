@@ -12,18 +12,18 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- *      自定义启动类注解，以免多次引用
+ * 自定义启动类注解，以免多次引用
  * </p>
  *
  * @author Dylan-haiji
  * @version 1.0.0
  * @since 2020-03-02 14:35
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({SpringI18nSelector.class})
+@Import({ SpringI18nSelector.class })
 public @interface EnableAutoInternationalization {
 
 }
