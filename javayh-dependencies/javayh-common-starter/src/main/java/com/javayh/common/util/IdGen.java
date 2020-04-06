@@ -13,32 +13,32 @@ import java.util.UUID;
  */
 public class IdGen {
 
-    /**
-     * <p>
-     *       uuid
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/3/6
-     * @param
-     * @return java.lang.String
-     */
-    public static String UUID(){
-        return UUID.randomUUID().toString();
-    }
+	/**
+	 * <p>
+	 * uuid
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/3/6
+	 * @param
+	 * @return java.lang.String
+	 */
+	public static String UUID() {
+		return UUID.randomUUID().toString();
+	}
 
-    /**
-     * <p>
-     *       去除 - 的uuid
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/3/6
-     * @param
-     * @return java.lang.Integer
-     */
-    public static String UUIDReplace(){
-        return UUID.randomUUID().toString().replaceAll("-","").trim();
-    }
+	/**
+	 * <p>
+	 * 去除 - 的uuid
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/3/6
+	 * @param
+	 * @return java.lang.Integer
+	 */
+	public static String UUIDReplace() {
+		return UUID.randomUUID().toString().replaceAll("-", "").trim();
+	}
 
 }

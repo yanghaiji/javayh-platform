@@ -21,51 +21,39 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- *      自定义启动类注解，以免多次引用
+ * 自定义启动类注解，以免多次引用
  * </p>
  *
  * @author Dylan-haiji
  * @version 1.0.0
  * @since 2020-03-02 14:35
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({SpringSelector.class})
+@Import({ SpringSelector.class })
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @EnableDiscoveryClient
 @EnableFeignClients
-@ComponentScan(
-        excludeFilters = {@ComponentScan.Filter(
-                type = FilterType.CUSTOM,
-                classes = {TypeExcludeFilter.class}
-        ), @ComponentScan.Filter(
-                type = FilterType.CUSTOM,
-                classes = {AutoConfigurationExcludeFilter.class}
-        )}
-)
+@ComponentScan(excludeFilters = {
+		@ComponentScan.Filter(type = FilterType.CUSTOM, classes = {
+				TypeExcludeFilter.class }),
+		@ComponentScan.Filter(type = FilterType.CUSTOM, classes = {
+				AutoConfigurationExcludeFilter.class }) })
 public @interface JavayhBootApplication {
-    @AliasFor(
-            annotation = EnableAutoConfiguration.class
-    )
-    Class<?>[] exclude() default {};
 
-    @AliasFor(
-            annotation = EnableAutoConfiguration.class
-    )
-    String[] excludeName() default {};
+	@AliasFor(annotation = EnableAutoConfiguration.class)
+	Class<?>[] exclude() default {};
 
-    @AliasFor(
-            annotation = ComponentScan.class,
-            attribute = "basePackages"
-    )
-    String[] scanBasePackages() default {};
+	@AliasFor(annotation = EnableAutoConfiguration.class)
+	String[] excludeName() default {};
 
-    @AliasFor(
-            annotation = ComponentScan.class,
-            attribute = "basePackageClasses"
-    )
-    Class<?>[] scanBasePackageClasses() default {};
+	@AliasFor(annotation = ComponentScan.class, attribute = "basePackages")
+	String[] scanBasePackages() default {};
+
+	@AliasFor(annotation = ComponentScan.class, attribute = "basePackageClasses")
+	Class<?>[] scanBasePackageClasses() default {};
+
 }

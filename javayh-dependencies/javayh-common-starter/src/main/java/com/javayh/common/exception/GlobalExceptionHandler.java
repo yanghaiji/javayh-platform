@@ -24,50 +24,50 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * <p>
-     *       全局Base异常处理
-     * </p>
-     * @version 1.0.0
-     * @author Dylan
-     * @since 2020/2/27
-     * @param e
-     */
-    @ExceptionHandler({BaseException.class})
-    public ResultData customExceptionHandler(BaseException e) {
-        Log.error("全局Base异常处理",e.getStackTrace());
-        return ResultData.fail(e.getMessage());
-    }
+	/**
+	 * <p>
+	 * 全局Base异常处理
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan
+	 * @since 2020/2/27
+	 * @param e
+	 */
+	@ExceptionHandler({ BaseException.class })
+	public ResultData customExceptionHandler(BaseException e) {
+		Log.error("全局Base异常处理", e.getStackTrace());
+		return ResultData.fail(e.getMessage());
+	}
 
-    /**
-     * <p>
-     *       其他类型的异常处理
-     * </p>
-     * @version 1.0.0
-     * @author Dylan
-     * @since 2020/2/27
-     * @param e
-     */
-    @ExceptionHandler({Exception.class})
-    public ResultData exceptionHandler(Exception e) {
-        Log.error("未知的运行异常",e.getStackTrace());
-        return ResultData.fail();
-    }
+	/**
+	 * <p>
+	 * 其他类型的异常处理
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan
+	 * @since 2020/2/27
+	 * @param e
+	 */
+	@ExceptionHandler({ Exception.class })
+	public ResultData exceptionHandler(Exception e) {
+		Log.error("未知的运行异常", e.getStackTrace());
+		return ResultData.fail();
+	}
 
-    /**
-     * <p>
-     *       参数异常处理
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/2/28
-     * @param exception
-     */
-    @ExceptionHandler(value= MethodArgumentNotValidException.class)
-    public ResultData methodNotValidHandler(MethodArgumentNotValidException exception) {
-        Log.error("参数异常处理",exception.getStackTrace());
-        List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        return  ResultData.fail(fieldErrors.get(0).getDefaultMessage());
-    }
+	/**
+	 * <p>
+	 * 参数异常处理
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/2/28
+	 * @param exception
+	 */
+	@ExceptionHandler(value = MethodArgumentNotValidException.class)
+	public ResultData methodNotValidHandler(MethodArgumentNotValidException exception) {
+		Log.error("参数异常处理", exception.getStackTrace());
+		List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
+		return ResultData.fail(fieldErrors.get(0).getDefaultMessage());
+	}
 
 }

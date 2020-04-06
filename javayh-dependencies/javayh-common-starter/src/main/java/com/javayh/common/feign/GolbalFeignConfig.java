@@ -6,8 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * <p>
- *     feign全局 日志输出
+ * feign全局 日志输出
  * </p>
+ *
  * @version 1.0.0
  * @author Dylan-haiji
  * @since 2020/3/2
@@ -15,8 +16,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GolbalFeignConfig {
 
-    @Bean
-    public Logger.Level levl(){
-        return Logger.Level.FULL;
-    }
+	@Bean
+	public Logger.Level levl() {
+		return Logger.Level.FULL;
+	}
+
 }

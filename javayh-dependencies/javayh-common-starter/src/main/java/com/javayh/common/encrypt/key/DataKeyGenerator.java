@@ -10,7 +10,7 @@ import java.security.SecureRandom;
 
 /**
  * <p>
- *      系统生成datakey
+ * 系统生成datakey
  * </p>
  *
  * @author Dylan-haiji
@@ -20,30 +20,32 @@ import java.security.SecureRandom;
 @Slf4j
 public class DataKeyGenerator {
 
-    /**
-     * <p>
-     *       安全随机种子
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/3/24
-     * @param keySize
-     * @param seed
-     * @return java.lang.String
-     */
-    public static String getInstanceKey(int keySize,long seed) {
-        String key = "";
-        try {
-            KeyGenerator generator = KeyGenerator.getInstance(EncryptConstantUtils.ALGORITHM_AES);
-            SecureRandom random=new  SecureRandom();
-            random.setSeed(seed);
-            generator.init(keySize, random);
-            SecretKey secretKey=generator.generateKey();
-            key= MD5Util.hash32(new String(secretKey.getEncoded()));
-        } catch (Exception e) {
-            log.error("DataKeyGenerator NoSuchAlgorithmException{}",e.getMessage());
-        }
-        return key;
-    }
+	/**
+	 * <p>
+	 * 安全随机种子
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/3/24
+	 * @param keySize
+	 * @param seed
+	 * @return java.lang.String
+	 */
+	public static String getInstanceKey(int keySize, long seed) {
+		String key = "";
+		try {
+			KeyGenerator generator = KeyGenerator
+					.getInstance(EncryptConstantUtils.ALGORITHM_AES);
+			SecureRandom random = new SecureRandom();
+			random.setSeed(seed);
+			generator.init(keySize, random);
+			SecretKey secretKey = generator.generateKey();
+			key = MD5Util.hash32(new String(secretKey.getEncoded()));
+		}
+		catch (Exception e) {
+			log.error("DataKeyGenerator NoSuchAlgorithmException{}", e.getMessage());
+		}
+		return key;
+	}
 
 }

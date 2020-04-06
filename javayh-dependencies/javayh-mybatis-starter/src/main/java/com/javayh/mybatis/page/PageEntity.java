@@ -20,7 +20,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PageEntity {
 
-    private int pageNo = 1;
-    private int pageSize;
+	private int pageNo = 1;
+
+	private int pageSize;
 
 }

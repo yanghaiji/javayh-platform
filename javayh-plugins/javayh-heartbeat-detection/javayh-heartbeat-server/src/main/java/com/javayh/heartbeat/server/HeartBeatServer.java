@@ -19,7 +19,7 @@ import java.net.InetSocketAddress;
 
 /**
  * <p>
- *      启动程序
+ * 启动程序
  * </p>
  *
  * @author Dylan-haiji
@@ -30,47 +30,48 @@ import java.net.InetSocketAddress;
 @Component
 @EnableConfigurationProperties(value = HeartBeatProperties.class)
 public class HeartBeatServer {
-    /**
-     * NioEventLoopGroup是一个处理I / O操作的多线程事件循环。 Netty为不同类型的传输提供各种EventLoopGroup实现。
-     * 我们在此示例中实现了服务器端应用程序，因此将使用两个NioEventLoopGroup。
-     * 第一个，通常称为“老板”，接受传入连接。第二个，通常称为“工人”，
-     * 一旦老板接受连接并将接受的连接注册到工作人员，就处理被接受连接的流量。
-     * 使用了多少个线程以及它们如何映射到创建的Channels取决于EventLoopGroup实现，甚至可以通过构造函数进行配置。
-     */
-    private EventLoopGroup boss = new NioEventLoopGroup();
-    private EventLoopGroup work = new NioEventLoopGroup();
-    @Autowired(required = false)
-    private HeartBeatProperties heartBeatProperties;
 
-    /**
-     * 启动 Netty
-     *
-     * @return
-     * @throws InterruptedException
-     */
-    @PostConstruct
-    public void start() throws InterruptedException {
-        ServerBootstrap bootstrap = new ServerBootstrap()
-                .group(boss, work)
-                .channel(NioServerSocketChannel.class)
-                .localAddress(new InetSocketAddress(heartBeatProperties.getPort()))
-                //保持长连接
-                .childOption(ChannelOption.SO_KEEPALIVE, true)
-                .childHandler(new HeartbeatInitializer());
-        //绑定并开始接受传入的连接。
-        ChannelFuture future = bootstrap.bind().sync();
-        if (future.isSuccess()) {
-            log.info("启动 Netty 成功");
-        }
-    }
+	/**
+	 * NioEventLoopGroup是一个处理I / O操作的多线程事件循环。 Netty为不同类型的传输提供各种EventLoopGroup实现。
+	 * 我们在此示例中实现了服务器端应用程序，因此将使用两个NioEventLoopGroup。 第一个，通常称为“老板”，接受传入连接。第二个，通常称为“工人”，
+	 * 一旦老板接受连接并将接受的连接注册到工作人员，就处理被接受连接的流量。
+	 * 使用了多少个线程以及它们如何映射到创建的Channels取决于EventLoopGroup实现，甚至可以通过构造函数进行配置。
+	 */
+	private EventLoopGroup boss = new NioEventLoopGroup();
 
-    /**
-     * 销毁
-     */
-    @PreDestroy
-    public void destroy() {
-        boss.shutdownGracefully().syncUninterruptibly();
-        work.shutdownGracefully().syncUninterruptibly();
-        log.info("关闭 Netty 成功");
-    }
+	private EventLoopGroup work = new NioEventLoopGroup();
+
+	@Autowired(required = false)
+	private HeartBeatProperties heartBeatProperties;
+
+	/**
+	 * 启动 Netty
+	 * @return
+	 * @throws InterruptedException
+	 */
+	@PostConstruct
+	public void start() throws InterruptedException {
+		ServerBootstrap bootstrap = new ServerBootstrap().group(boss, work)
+				.channel(NioServerSocketChannel.class)
+				.localAddress(new InetSocketAddress(heartBeatProperties.getPort()))
+				// 保持长连接
+				.childOption(ChannelOption.SO_KEEPALIVE, true)
+				.childHandler(new HeartbeatInitializer());
+		// 绑定并开始接受传入的连接。
+		ChannelFuture future = bootstrap.bind().sync();
+		if (future.isSuccess()) {
+			log.info("启动 Netty 成功");
+		}
+	}
+
+	/**
+	 * 销毁
+	 */
+	@PreDestroy
+	public void destroy() {
+		boss.shutdownGracefully().syncUninterruptibly();
+		work.shutdownGracefully().syncUninterruptibly();
+		log.info("关闭 Netty 成功");
+	}
+
 }

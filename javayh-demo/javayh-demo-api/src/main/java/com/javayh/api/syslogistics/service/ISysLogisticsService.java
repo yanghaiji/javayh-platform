@@ -12,35 +12,35 @@ import com.javayh.api.syslogistics.pojo.dto.SysLogisticsDTO;
 import com.javayh.mybatis.page.PageQuery;
 
 /**
- * <p>  *  iService
- * </p>  * @author：Dylan
- * @version：V1.0
- * @since：2020-04-05
+ * <p>
+ * * iService
+ * </p>
+ * * @author：Dylan @version：V1.0 @since：2020-04-05
  */
 public interface ISysLogisticsService {
-	/**
-	 *  根据条件查找-分页
-	 */
-	PageQuery<SysLogistics> findByPage (SysLogisticsDTO sysLogisticsDTO);
 
 	/**
-	 *  根据id查询
+	 * 根据条件查找-分页
+	 */
+	PageQuery<SysLogistics> findByPage(SysLogisticsDTO sysLogisticsDTO);
+
+	/**
+	 * 根据id查询
 	 */
 	SysLogistics findById(String id);
 
-
 	/**
-	 *  添加数据
+	 * 添加数据
 	 */
 	int insert(SysLogistics sysLogistics);
 
 	/**
-	 *  修改数据
+	 * 修改数据
 	 */
 	int update(SysLogistics sysLogistics);
 
 	/**
-	 *  根据id删除
+	 * 根据id删除
 	 */
 	int deleteById(Integer id);
 

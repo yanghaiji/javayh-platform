@@ -17,8 +17,7 @@ import java.util.Optional;
 
 /**
  * <p>
- *      因为Gateway里没有配置SwaggerConfig，而运行Swagger-ui又需要依赖一些接口，
- *      建立相应的swagger-resource端点。
+ * 因为Gateway里没有配置SwaggerConfig，而运行Swagger-ui又需要依赖一些接口， 建立相应的swagger-resource端点。
  * </p>
  *
  * @author Dylan-haiji
@@ -29,32 +28,34 @@ import java.util.Optional;
 @RequestMapping("/swagger-resources")
 public class SwaggerHandler {
 
-    @Autowired(required = false)
-    private SecurityConfiguration securityConfiguration;
-    @Autowired(required = false)
-    private UiConfiguration uiConfiguration;
-    private final SwaggerResourcesProvider swaggerResources;
+	@Autowired(required = false)
+	private SecurityConfiguration securityConfiguration;
 
-    @Autowired
-    public SwaggerHandler(SwaggerResourcesProvider swaggerResources) {
-        this.swaggerResources = swaggerResources;
-    }
+	@Autowired(required = false)
+	private UiConfiguration uiConfiguration;
 
+	private final SwaggerResourcesProvider swaggerResources;
 
-    @GetMapping("/configuration/security")
-    public Mono<ResponseEntity<SecurityConfiguration>> securityConfiguration() {
-        return Mono.just(new ResponseEntity<>(
-                Optional.ofNullable(securityConfiguration).orElse(SecurityConfigurationBuilder.builder().build()), HttpStatus.OK));
-    }
+	@Autowired
+	public SwaggerHandler(SwaggerResourcesProvider swaggerResources) {
+		this.swaggerResources = swaggerResources;
+	}
 
-    @GetMapping("/configuration/ui")
-    public Mono<ResponseEntity<UiConfiguration>> uiConfiguration() {
-        return Mono.just(new ResponseEntity<>(
-                Optional.ofNullable(uiConfiguration).orElse(UiConfigurationBuilder.builder().build()), HttpStatus.OK));
-    }
+	@GetMapping("/configuration/security")
+	public Mono<ResponseEntity<SecurityConfiguration>> securityConfiguration() {
+		return Mono.just(new ResponseEntity<>(Optional.ofNullable(securityConfiguration)
+				.orElse(SecurityConfigurationBuilder.builder().build()), HttpStatus.OK));
+	}
 
-    @GetMapping("")
-    public Mono<ResponseEntity> swaggerResources() {
-        return Mono.just((new ResponseEntity<>(swaggerResources.get(), HttpStatus.OK)));
-    }
+	@GetMapping("/configuration/ui")
+	public Mono<ResponseEntity<UiConfiguration>> uiConfiguration() {
+		return Mono.just(new ResponseEntity<>(Optional.ofNullable(uiConfiguration)
+				.orElse(UiConfigurationBuilder.builder().build()), HttpStatus.OK));
+	}
+
+	@GetMapping("")
+	public Mono<ResponseEntity> swaggerResources() {
+		return Mono.just((new ResponseEntity<>(swaggerResources.get(), HttpStatus.OK)));
+	}
+
 }

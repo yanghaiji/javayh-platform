@@ -8,19 +8,21 @@ import org.springframework.context.annotation.Bean;
  * <p>
  *
  * </p>
+ *
  * @version 1.0.0
  * @author Dylan-haiji
  * @since 2020/3/10
  */
 public class HeartBeatConfig {
 
-    @Bean(value = "heartBeat")
-    public MessageBody heartBeat(HeartbeatClientProperties heartbeatClientProperties){
-        return new MessageBody(heartbeatClientProperties.getChannelId(),"ping") ;
-    }
+	@Bean(value = "heartBeat")
+	public MessageBody heartBeat(HeartbeatClientProperties heartbeatClientProperties) {
+		return new MessageBody(heartbeatClientProperties.getChannelId(), "ping");
+	}
 
-//    @Bean(value = "heartbeatProperties")
-//    public HeartbeatProperties heartbeatProperties(){
-//        return new HeartbeatProperties() ;
-//    }
+	// @Bean(value = "heartbeatProperties")
+	// public HeartbeatProperties heartbeatProperties(){
+	// return new HeartbeatProperties() ;
+	// }
+
 }

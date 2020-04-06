@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * <p>
- *      邮件接收参数
+ * 邮件接收参数
  * </p>
  *
  * @author Dylan-haiji
@@ -15,14 +15,20 @@ import java.util.Map;
  */
 @Data
 public class MailDO {
-    /**标题*/
-    private String title;
-    /**内容*/
-    private String content;
-    /**接收人邮件地址*/
-    private String email;
-    /**模板名称*/
-    private String templateName;
-    /**附加，value 文件的绝对地址/动态模板数据*/
-    private Map<String, Object> attachment;
+
+	/** 标题 */
+	private String title;
+
+	/** 内容 */
+	private String content;
+
+	/** 接收人邮件地址 */
+	private String email;
+
+	/** 模板名称 */
+	private String templateName;
+
+	/** 附加，value 文件的绝对地址/动态模板数据 */
+	private Map<String, Object> attachment;
+
 }

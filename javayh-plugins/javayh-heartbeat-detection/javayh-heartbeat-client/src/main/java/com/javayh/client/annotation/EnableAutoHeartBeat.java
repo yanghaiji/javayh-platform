@@ -18,10 +18,11 @@ import java.lang.annotation.Target;
  * @version 1.0.0
  * @since 2020-03-10 15:36
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Deprecated
 @Import(HeartImportSelector.class)
 public @interface EnableAutoHeartBeat {
+
 }

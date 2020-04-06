@@ -16,42 +16,45 @@ import javax.annotation.PostConstruct;
 
 /**
  * <p>
- *       客户端
+ * 客户端
  * </p>
+ *
  * @version 1.0.0
  * @author Dylan-haiji
  * @since 2020/3/10
  */
-//@EnableConfigurationProperties(value = HeartbeatClientProperties.class)
+// @EnableConfigurationProperties(value = HeartbeatClientProperties.class)
 public class HeartbeatClient {
-    private final static Logger LOGGER = LoggerFactory.getLogger(HeartbeatClient.class);
 
-    private EventLoopGroup group = new NioEventLoopGroup();
+	private final static Logger LOGGER = LoggerFactory.getLogger(HeartbeatClient.class);
 
-    private SocketChannel socketChannel;
+	private EventLoopGroup group = new NioEventLoopGroup();
 
-    @Autowired(required = false)
-    private HeartbeatClientProperties properties;
+	private SocketChannel socketChannel;
 
-    @PostConstruct
-    public void start() throws InterruptedException {
-        Bootstrap bootstrap = new Bootstrap();
-        /**
-         * NioSocketChannel用于创建客户端通道，而不是NioServerSocketChannel。
-         * 请注意，我们不像在ServerBootstrap中那样使用childOption()，因为客户端SocketChannel没有父服务器。
-         */
-        bootstrap.group(group).channel(NioSocketChannel.class).handler(new CustomerHandleInitializer());
-        /**
-         * 启动客户端
-         * 我们应该调用connect()方法而不是bind()方法。
-         */
-        ChannelFuture future = bootstrap.connect(properties.getHost(), properties.getPort()).sync();
-        if (future.isSuccess()) {
-            LOGGER.info("启动 Netty 成功");
-        }
+	@Autowired(required = false)
+	private HeartbeatClientProperties properties;
 
-        socketChannel = (SocketChannel) future.channel();
+	@PostConstruct
+	public void start() throws InterruptedException {
+		Bootstrap bootstrap = new Bootstrap();
+		/**
+		 * NioSocketChannel用于创建客户端通道，而不是NioServerSocketChannel。
+		 * 请注意，我们不像在ServerBootstrap中那样使用childOption()，因为客户端SocketChannel没有父服务器。
+		 */
+		bootstrap.group(group).channel(NioSocketChannel.class)
+				.handler(new CustomerHandleInitializer());
+		/**
+		 * 启动客户端 我们应该调用connect()方法而不是bind()方法。
+		 */
+		ChannelFuture future = bootstrap
+				.connect(properties.getHost(), properties.getPort()).sync();
+		if (future.isSuccess()) {
+			LOGGER.info("启动 Netty 成功");
+		}
 
-    }
+		socketChannel = (SocketChannel) future.channel();
+
+	}
 
 }

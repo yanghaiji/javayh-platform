@@ -50,8 +50,19 @@ spring:
         enabled: true
         url-pattern: "/druid/*"
         reset-enable: false
-        login-username: pandora
-        login-password: bmw.pandor@2020
+        login-username: admin
+        login-password: admin123
 mybatis:
   ### xml存放路径
   mapper-locations: classpath*:mapper/*/*Mapper.xml
+
+
+#security:
+#  oauth2:
+#    client:
+#      client-id: client
+#      client-secret: secret
+#      access-token-uri: http://localhost:9090/oauth/token
+#      user-authorization-uri: http://localhost:9090/oauth/authorize
+#    resource:
+#      token-info-uri: http://localhost:9090/oauth/check_token

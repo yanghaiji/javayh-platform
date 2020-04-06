@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * <p>
- *      国际化
+ * 国际化
  * </p>
  *
  * @author Dylan-haiji
@@ -14,13 +14,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.messages")
 public class I18nProperties {
 
-    private String basename;
+	private String basename;
 
-    public String getBasename() {
-        return basename;
-    }
+	public String getBasename() {
+		return basename;
+	}
 
-    public void setBasename(String basename) {
-        this.basename = basename;
-    }
+	public void setBasename(String basename) {
+		this.basename = basename;
+	}
+
 }

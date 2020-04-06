@@ -25,27 +25,27 @@ import java.util.Map;
 @RequestMapping(value = "/mail/")
 public class MailController {
 
-    @Autowired(required = false)
-    private MailSend mailSenderUtil;
+	@Autowired(required = false)
+	private MailSend mailSenderUtil;
 
-    /**
-     * <p>
-     *
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/3/8
-     * @param mailDO
-     * @return com.javayh.common.result.ResultData
-     */
-    @PostMapping(value = "send")
-    public ResultData send(@RequestBody MailDO mailDO){
-        Map<String,Object> map = new HashMap<>();
-        map.put("username","Yang haiji");
-        mailDO.setAttachment(map);
-        mailDO.setTemplateName("HelloMail");
-        mailSenderUtil.sendTemplateMail(mailDO);
-       return ResultData.success();
-    }
+	/**
+	 * <p>
+	 *
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/3/8
+	 * @param mailDO
+	 * @return com.javayh.common.result.ResultData
+	 */
+	@PostMapping(value = "send")
+	public ResultData send(@RequestBody MailDO mailDO) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("username", "Yang haiji");
+		mailDO.setAttachment(map);
+		mailDO.setTemplateName("HelloMail");
+		mailSenderUtil.sendTemplateMail(mailDO);
+		return ResultData.success();
+	}
 
 }

@@ -5,7 +5,7 @@ import org.springframework.core.type.AnnotationMetadata;
 
 /**
  * <p>
- *      实现字段装配
+ * 实现字段装配
  * </p>
  *
  * @author Dylan-haiji
@@ -14,12 +14,11 @@ import org.springframework.core.type.AnnotationMetadata;
  */
 public class HeartImportSelector implements ImportSelector {
 
-    @Override
-    public String[] selectImports(AnnotationMetadata annotationMetadata) {
-        return new String[]{
-                "com.javayh.client.config.HeartBeatConfig",
-                "com.javayh.client.heart.HeartbeatClient",
-                "com.javayh.client.properties.HeartbeatClientProperties"
-        };
-    }
+	@Override
+	public String[] selectImports(AnnotationMetadata annotationMetadata) {
+		return new String[] { "com.javayh.client.config.HeartBeatConfig",
+				"com.javayh.client.heart.HeartbeatClient",
+				"com.javayh.client.properties.HeartbeatClientProperties" };
+	}
+
 }

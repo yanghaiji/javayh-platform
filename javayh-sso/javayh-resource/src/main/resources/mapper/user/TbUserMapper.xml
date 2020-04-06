@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javayh.resource.mapper.TbUserMapper">
+  <resultMap id="BaseResultMap" type="com.javayh.resource.vo.UserVO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <collection property="permission" ofType="com.javayh.resource.vo.PermissionRole">
+        <result column="pname" jdbcType="VARCHAR" property="pname" />
+        <result column="penname" jdbcType="VARCHAR" property="penname" />
+    </collection>
+    <collection property="role" ofType="com.javayh.resource.vo.Role">
+        <result column="rname" jdbcType="VARCHAR" property="rname" />
+        <result column="renname" jdbcType="VARCHAR" property="renname" />
+    </collection>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    u.id,
+    u.username,
+    u.password,
+    u.phone,
+    u.email,
+    r.name rname,
+    r.enname renname,
+    p.name pname,
+    p.enname penname
+  </sql>
+
+    <select id="getdByUserName" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        FROM tb_user AS u
+        LEFT JOIN tb_user_role AS ur
+        ON u.id = ur.user_id
+        LEFT JOIN tb_role AS r
+        ON r.id = ur.role_id
+        LEFT JOIN tb_role_permission AS rp
+        ON r.id = rp.role_id
+        LEFT JOIN tb_permission AS p
+        ON p.id = rp.permission_id
+        WHERE u.username = #{username}
+    </select>
+</mapper>

@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 
 /**
  * <p>
- *      nacos分布式中心测试
+ * nacos分布式中心测试
  * </p>
  *
  * @author Dylan-haiji
@@ -16,7 +16,9 @@ import org.springframework.boot.SpringApplication;
 @EnableAutoInternationalization
 @JavayhBootApplication
 public class ConfigApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ConfigApplication.class,args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(ConfigApplication.class, args);
+	}
+
 }

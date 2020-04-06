@@ -21,30 +21,33 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class Log {
 
-    private static final String PREFIX = "Java有货---";
+	private static final String PREFIX = "Java有货---";
 
-    @Autowired(required = false)
-    private static TaskExecutor taskExecutor = SpringUtils.getBean("taskExecutor",TaskExecutor.class);
-    /**
-     * <p>
-     *       统一日志输出
-     * </p>
-     * @version 1.0.0
-     * @author Dylan-haiji
-     * @since 2020/2/28
-     * @param
-     * @param stackTrace
-     * @return void
-     */
-    public static void error(String pr, StackTraceElement[] stackTrace){
-        HttpServletRequest request = RequestUtils.getRequest();
-        CompletableFuture.runAsync(() -> {
-            String requestUri = request.getRequestURI();
-            log.error("异常  method --- {}",request.getMethod());
-            log.error("异常 requestURI --- {}",requestUri);
-            for (StackTraceElement stackTraceElement : stackTrace) {
-                log.error(PREFIX + pr + "{}","---错误详细信息 : "+ stackTraceElement);
-            }
-        },taskExecutor);
-    }
+	@Autowired(required = false)
+	private static TaskExecutor taskExecutor = SpringUtils.getBean("taskExecutor",
+			TaskExecutor.class);
+
+	/**
+	 * <p>
+	 * 统一日志输出
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/2/28
+	 * @param
+	 * @param stackTrace
+	 * @return void
+	 */
+	public static void error(String pr, StackTraceElement[] stackTrace) {
+		HttpServletRequest request = RequestUtils.getRequest();
+		CompletableFuture.runAsync(() -> {
+			String requestUri = request.getRequestURI();
+			log.error("异常  method --- {}", request.getMethod());
+			log.error("异常 requestURI --- {}", requestUri);
+			for (StackTraceElement stackTraceElement : stackTrace) {
+				log.error(PREFIX + pr + "{}", "---错误详细信息 : " + stackTraceElement);
+			}
+		}, taskExecutor);
+	}
+
 }

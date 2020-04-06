@@ -7,20 +7,21 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @ClassName  DataSource
+ * @ClassName DataSource
  * @Description 数据源注解
  * @Author Yang haiji
  * @Version 1.0.0
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface DataSource {
 
-    /**
-     * @Description 数据库名称
-     * @UserModule: javayh-datasource
-     * @author Yang haiji
-     */
-    String name();
+	/**
+	 * @Description 数据库名称
+	 * @UserModule: javayh-datasource
+	 * @author Yang haiji
+	 */
+	String name();
+
 }

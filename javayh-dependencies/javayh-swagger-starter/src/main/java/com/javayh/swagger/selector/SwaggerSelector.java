@@ -5,7 +5,7 @@ import org.springframework.core.type.AnnotationMetadata;
 
 /**
  * <p>
- *      swagger
+ * swagger
  * </p>
  *
  * @author Dylan-haiji
@@ -14,11 +14,9 @@ import org.springframework.core.type.AnnotationMetadata;
  */
 public class SwaggerSelector implements ImportSelector {
 
-    @Override
-    public String[] selectImports(AnnotationMetadata annotationMetadata) {
-        return new String[]{
-                "com.javayh.swagger.conf.SwaggerConfig"
-        };
-    }
+	@Override
+	public String[] selectImports(AnnotationMetadata annotationMetadata) {
+		return new String[] { "com.javayh.swagger.conf.SwaggerConfig" };
+	}
 
 }

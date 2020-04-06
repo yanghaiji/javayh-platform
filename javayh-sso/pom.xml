@@ -28,7 +28,27 @@
         </dependency>
         <dependency>
             <groupId>com.javayh</groupId>
+            <artifactId>javayh-redis-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-mybatis-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
             <artifactId>javayh-nacos-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-oauth-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-swagger-starter</artifactId>
             <optional>true</optional>
         </dependency>
     </dependencies>
