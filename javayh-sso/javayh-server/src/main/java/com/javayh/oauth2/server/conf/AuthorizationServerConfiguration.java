@@ -12,6 +12,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -38,8 +39,7 @@ import java.util.concurrent.TimeUnit;
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter
 {
-
-    @Autowired(required = false)
+    @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private DataSource dataSource;
@@ -50,8 +50,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     /**
      * 自定义获取客户端,为了支持自定义权限,
      */
-    @Autowired
-    private ClientDetailsService customClientDetailsService;
+    @Bean
+    public ClientDetailsService clientDetails() {
+        JdbcClientDetailsService jdbcClientDetailsService=new JdbcClientDetailsService(dataSource);
+        jdbcClientDetailsService.setPasswordEncoder(new BCryptPasswordEncoder());
+        return jdbcClientDetailsService;
+    }
 
 
     /**
@@ -103,7 +107,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.jdbc(dataSource);
-        clients.withClientDetails(customClientDetailsService);
+        clients.withClientDetails(clientDetails());
     }
 
     /**
@@ -123,12 +127,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 // 设置令牌存储在数据库
                 .tokenStore(tokenStore())
                 .authorizationCodeServices(authorizationCodeServices());
-        // 自定义确认授权页面
-        endpoints.pathMapping("/oauth/confirm_access", "/oauth/confirm_access");
-        // 自定义错误页
-        endpoints.pathMapping("/oauth/error", "/oauth/error");
-        // 自定义异常转换类
-        endpoints.exceptionTranslator(new WebException());
     }
 
 
@@ -140,7 +138,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         //是否产生刷新令牌
         tokenServices.setSupportRefreshToken(true);
         tokenServices.setReuseRefreshToken(true);
-        tokenServices.setClientDetailsService(customClientDetailsService);
+        tokenServices.setClientDetailsService(clientDetails());
         return tokenServices;
     }
 
