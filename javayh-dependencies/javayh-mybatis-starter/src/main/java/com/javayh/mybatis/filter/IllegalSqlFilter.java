@@ -39,74 +39,87 @@ public class IllegalSqlFilter {
 				.parseObject(JSON.toJSONString(obj), MapperMethod.ParamMap.class);
 		for (Map.Entry<String, String> a : paramMap.entrySet()) {
 			String key = a.getKey();
-			String input = a.getValue().toUpperCase();
+			String input = String.valueOf(a.getValue()).toUpperCase();
 			if (input.contains("DELETE")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" DELETE ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" DELETE ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("ASCII")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" ASCII ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" ASCII ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("UPDATE")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" UPDATE ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" UPDATE ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("SELECT")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" SELECT ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" SELECT ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
 			}
 			else if (input.contains("'")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" ' ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" ' ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("SUBSTR(")) {
 				paramMap.put(key, input.substring(0, input.indexOf(" SUBSTR( ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("COUNT(")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" COUNT( ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" COUNT( ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains(" OR ")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" OR ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" OR ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains(" AND ")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" AND ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" AND ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("DROP")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" DROP ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" DROP ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
 			}
 			else if (input.contains("EXECUTE")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" EXECUTE ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" EXECUTE ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("EXEC")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" EXEC ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" EXEC ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("TRUNCATE")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" TRUNCATE ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" TRUNCATE ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
 			}
 			else if (input.contains("INTO")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" INTO ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" INTO ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("DECLARE")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" DECLARE ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" DECLARE ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 			else if (input.contains("MASTER")) {
-				paramMap.put(key, input.substring(0, input.indexOf(" MASTER ")));
+//				paramMap.put(key, input.substring(0, input.indexOf(" MASTER ")));
 				log.error("该参数存在SQL注入风险: {}", key + "=" + input);
+                return false;
 			}
 		}
 		log.info("通过sql检测");
-		return paramMap;
+		return true;
 	}
 
 	/**

@@ -59,9 +59,9 @@ public class MybatisInterceptor implements Interceptor {
 		final Object parameter = queryArgs[PARAMETER_INDEX];
 		SqlLog.getSql(mappedStatement.getConfiguration(),
 				mappedStatement.getBoundSql(parameter), mappedStatement.getId());
-		Boolean illegalStr = IllegalSqlFilter.isIllegalStr(parameter.toString());
-		Boolean filter = IllegalSqlFilter.sqlFilter(parameter);
-		if (!filter || illegalStr) {
+//		Boolean illegalStr = IllegalSqlFilter.isIllegalStr(parameter.toString());
+		Boolean filter = (Boolean) IllegalSqlFilter.sqlStrFilter(parameter);
+		if (!filter ) {
 			log.error("Sql 存在注入风险!");
 			return new MybatisInjectionException("Sql Exception");
 		}

@@ -15,7 +15,7 @@ import org.springframework.boot.SpringApplication;
  * @version 1.0.0
  * @since 2020-03-01 20:44
  */
-@EnableAutoException
+//@EnableAutoException
 @EnableAutoSwagger
 @EnableAutoInternationalization
 @JavayhBootApplication

@@ -245,7 +245,7 @@ public class GenMapperXmlFile {
 		}
         content.append("\t\t\t").append("<if test=\"").append("orderBy") .append(" != null ").
                 append(" and orderBy != '' ").append(" \">").append(lineSeparator);
-        content.append("\t\t\t\t").append(" order by ").append("=#{orderBy}").append(lineSeparator);
+        content.append("\t\t\t\t").append(" order by ").append("#{orderBy}").append(lineSeparator);
         content.append("\t\t\t").append("</if>").append(lineSeparator);
 		content.append("\t").append("</select>").append(lineSeparator);
 		content.append("</mapper>").append(lineSeparator);
