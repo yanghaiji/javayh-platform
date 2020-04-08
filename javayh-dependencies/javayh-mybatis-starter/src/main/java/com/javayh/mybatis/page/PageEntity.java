@@ -1,5 +1,6 @@
 package com.javayh.mybatis.page;
 
+import com.javayh.mybatis.uitl.Constant;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
  * @since 2020-04-04 22:41
  */
 public class PageEntity {
+
     /** 起始页*/
 	private int pageNo = 1;
     /**每页的条数*/
@@ -53,11 +55,11 @@ public class PageEntity {
     }
 
     public void setOrderBy(String orderBy) {
-        if(orderBy.contains("-")){
-            orderBy=orderBy.replaceAll("-"," desc");
+        if(orderBy.contains(Constant.MINUS_SIGN)){
+            orderBy=orderBy.replaceAll(Constant.MINUS_SIGN, Constant.DESC);
 
-        }else if (orderBy.contains("+")){
-            orderBy = orderBy.replaceAll("'+'", " asc");
+        }else if (orderBy.contains(Constant.PLUS)){
+            orderBy = orderBy.replaceAll(Constant.PLUS, Constant.ASC);
         }
         this.orderBy = orderBy;
     }
