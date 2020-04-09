@@ -12,6 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * <p>
+ *       授权回调
+ * </p>
+ * @version 1.0.0
+ * @author Dylan-haiji
+ * @since 2020/4/8
+ */
 @Slf4j
 @Configuration
 @EnableWebSecurity

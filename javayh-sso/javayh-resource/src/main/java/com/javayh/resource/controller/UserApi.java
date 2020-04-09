@@ -26,7 +26,7 @@ public class UserApi {
 
 	@GetMapping(value = "info")
 	public ResultData getUser(String username) {
-		return ResultData.success(userService.getdByUserName(username));
+		return ResultData.success(userService.getByUserName(username));
 	}
 
 }

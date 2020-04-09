@@ -28,6 +28,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
@@ -54,37 +55,42 @@ public class MybatisInterceptor implements Interceptor {
 
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
-		final Object[] queryArgs = invocation.getArgs();
-		final MappedStatement mappedStatement = (MappedStatement) queryArgs[MAPPED_STATEMENT_INDEX];
-		final Object parameter = queryArgs[PARAMETER_INDEX];
-		SqlLog.getSql(mappedStatement.getConfiguration(),
-				mappedStatement.getBoundSql(parameter), mappedStatement.getId());
-		Boolean illegalStr = IllegalSqlFilter.isIllegalStr(parameter.toString());
-		Boolean filter = IllegalSqlFilter.sqlFilter(parameter);
-		if (!filter || illegalStr) {
-			log.error("Sql 存在注入风险!");
-			return new MybatisInjectionException("Sql Exception");
-		}
-		// 进行sql修改
-		// final BoundSql boundSql =
-		// mappedStatement.getBoundSql(IllegalSqlFilter.sqlStrFilter(parameter));
-		// String sql = boundSql.getSql();
-		// // 重新new一个查询语句对像
-		// BoundSql newBoundSql = new BoundSql(mappedStatement.getConfiguration(), sql,
-		// boundSql.getParameterMappings(), boundSql.getParameterObject());
-		// // 把新的查询放到statement里
-		// MappedStatement newMs = copyFromMappedStatement(mappedStatement, new
-		// BoundSqlSqlSource(newBoundSql));
-		// for (ParameterMapping mapping : boundSql.getParameterMappings()) {
-		// String prop = mapping.getProperty();
-		// if (boundSql.hasAdditionalParameter(prop)) {
-		// newBoundSql.setAdditionalParameter(prop,
-		// boundSql.getAdditionalParameter(prop));
-		// }
-		// }
-		// queryArgs[MAPPED_STATEMENT_INDEX] = newMs;
-		// return invocation.proceed();
-		// 执行完上面的任务后，不改变原有的sql执行过程
+	    try{
+            final Object[] queryArgs = invocation.getArgs();
+            final MappedStatement mappedStatement = (MappedStatement) queryArgs[MAPPED_STATEMENT_INDEX];
+            final Object parameter = queryArgs[PARAMETER_INDEX];
+            SqlLog.getSql(mappedStatement.getConfiguration(),
+                    mappedStatement.getBoundSql(parameter), mappedStatement.getId());
+//		Boolean illegalStr = IllegalSqlFilter.isIllegalStr(parameter.toString());
+//		Boolean filter = (Boolean) IllegalSqlFilter.sqlStrFilter(parameter);
+//		if (!filter ) {
+//			log.error("Sql 存在注入风险!");
+//			return new MybatisInjectionException("Sql Exception");
+//		}
+            // 进行sql修改
+            // final BoundSql boundSql =
+            // mappedStatement.getBoundSql(IllegalSqlFilter.sqlStrFilter(parameter));
+            // String sql = boundSql.getSql();
+            // // 重新new一个查询语句对像
+            // BoundSql newBoundSql = new BoundSql(mappedStatement.getConfiguration(), sql,
+            // boundSql.getParameterMappings(), boundSql.getParameterObject());
+            // // 把新的查询放到statement里
+            // MappedStatement newMs = copyFromMappedStatement(mappedStatement, new
+            // BoundSqlSqlSource(newBoundSql));
+            // for (ParameterMapping mapping : boundSql.getParameterMappings()) {
+            // String prop = mapping.getProperty();
+            // if (boundSql.hasAdditionalParameter(prop)) {
+            // newBoundSql.setAdditionalParameter(prop,
+            // boundSql.getAdditionalParameter(prop));
+            // }
+            // }
+            // queryArgs[MAPPED_STATEMENT_INDEX] = newMs;
+            // return invocation.proceed();
+            // 执行完上面的任务后，不改变原有的sql执行过程
+        }catch (Exception e){
+            log.error("SQL There is an exception, please check whether your SQL is standardized",e);
+            throw new SQLException("SQL 存在异常,请检查您的SQL是否规范");
+        }
 		return invocation.proceed();
 	}
 

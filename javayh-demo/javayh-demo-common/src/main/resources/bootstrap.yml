@@ -20,3 +20,20 @@ spring:
         shared-dataids: redis.yaml,mail.yaml
   messages:
     basename: i18n.login.login,i18n.common.common,i18n.validation.validation
+
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+  metrics:
+    enabled: true
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
