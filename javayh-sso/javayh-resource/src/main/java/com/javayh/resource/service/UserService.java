@@ -14,6 +14,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface UserService {
 
-	UserVO getdByUserName(String username);
+	UserVO getByUserName(String username);
 
 }

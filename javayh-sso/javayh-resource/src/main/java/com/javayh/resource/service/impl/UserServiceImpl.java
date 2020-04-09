@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
 	private TbUserMapper tbUserMapper;
 
 	@Override
-	public UserVO getdByUserName(String username) {
-		return tbUserMapper.getdByUserName(username);
+	public UserVO getByUserName(String username) {
+		return tbUserMapper.getByUserName(username);
 	}
 
 }

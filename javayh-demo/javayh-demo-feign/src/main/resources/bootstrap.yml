@@ -20,8 +20,8 @@ spring:
         shared-dataids: redis.yaml,mail.yaml
   messages:
     basename: i18n.login.login,i18n.common.common,i18n.validation.validation
-heartbeat:
-  server:
-    host: 127.0.0.1
-    port: 8001
-    channel-id: 101
+#heartbeat:
+#  server:
+#    host: 127.0.0.1
+#    port: 8001
+#    channel-id: 101

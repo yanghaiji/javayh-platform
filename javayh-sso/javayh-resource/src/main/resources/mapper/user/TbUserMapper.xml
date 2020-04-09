@@ -29,7 +29,7 @@
     p.enname penname
   </sql>
 
-    <select id="getdByUserName" resultMap="BaseResultMap">
+    <select id="getByUserName" resultMap="BaseResultMap">
         select
             <include refid="Base_Column_List"/>
         FROM tb_user AS u

@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 public interface TbUserMapper {
 
-	UserVO getdByUserName(@Param("username") String username);
+	UserVO getByUserName(@Param("username") String username);
 
 }

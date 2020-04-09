@@ -79,7 +79,7 @@ public class DemoCtroller {
 	 * @param
 	 * @return com.javayh.common.result.ResultData
 	 */
-	@SysLog(value = "javayh-demo-common", detail = "测试Feign异步调用")
+//	@SysLog(value = "javayh-demo-common", detail = "测试Feign异步调用")
 	@GetMapping(value = "getCleint")
 	public ResultData getCleint() {
 		String feign = demoService.getFeign();
