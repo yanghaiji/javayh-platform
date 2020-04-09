@@ -19,7 +19,7 @@ public class SpringSelector implements ImportSelector {
 		return new String[] {
 		        "com.javayh.common.util.spring.SpringUtils",
 				"com.javayh.common.config.MyCommandLineRunner",
-                "com.javayh.common.feign.GolbalFeignConfig"
+                "com.javayh.common.feign.GlobalFeignConfig"
         };
 	}
 

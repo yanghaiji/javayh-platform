@@ -17,6 +17,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-common-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
 </project>
