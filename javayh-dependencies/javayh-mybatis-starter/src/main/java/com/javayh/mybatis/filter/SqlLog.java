@@ -2,6 +2,7 @@ package com.javayh.mybatis.filter;
 
 import com.javayh.mybatis.uitl.Constant;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.reflection.MetaObject;
@@ -142,23 +143,29 @@ public class SqlLog {
 	}
 
     private static Boolean sqlDiscover(Object obj){
-        String input = obj.toString();
-        if (input.contains(Constant.DELETE) || input.contains(Constant.ASCII)
-                || input.contains(Constant.UPDATE) || input.contains(Constant.SELECT)
-                || input.contains(Constant.S) || input.contains(Constant.SUBSTR)
-                || input.contains(Constant.COUNT) || input.contains(Constant.OR)
-                || input.contains(Constant.AND) || input.contains(Constant.DROP)
-                || input.contains(Constant.EXECUTE) || input.contains(Constant.EXEC)
-                || input.contains(Constant.TRUNCATE) || input.contains(Constant.INTO)
-                || input.contains(Constant.DECLARE) || input.contains(Constant.MASTER)) {
-            log.error("==============================BMW==============================");
-            log.error("===========该参数存在SQL注入风险：sInput=" + input+"===========");
-            log.error("============================Pandora============================");
-            return false;
+        boolean b = ObjectUtils.allNotNull(obj);
+        log.info("参数的值为:{},是否为空值{}",obj,b);
+        if(b){
+            String input = obj.toString();
+            if (input.contains(Constant.DELETE) || input.contains(Constant.ASCII)
+                    || input.contains(Constant.UPDATE) || input.contains(Constant.SELECT)
+                    || input.contains(Constant.S) || input.contains(Constant.SUBSTR)
+                    || input.contains(Constant.COUNT) || input.contains(Constant.OR)
+                    || input.contains(Constant.AND) || input.contains(Constant.DROP)
+                    || input.contains(Constant.EXECUTE) || input.contains(Constant.EXEC)
+                    || input.contains(Constant.TRUNCATE) || input.contains(Constant.INTO)
+                    || input.contains(Constant.DECLARE) || input.contains(Constant.MASTER)) {
+                log.error("==============================BMW==============================");
+                log.error("===========该参数存在SQL注入风险：sInput=" + input+"===========");
+                log.error("============================Pandora============================");
+                return false;
+            }else {
+                log.info("==============================BMW==============================");
+                log.info("=================通过SQL检测,未发现注入风险====================");
+                log.info("============================Pandora============================");
+                return true;
+            }
         }else {
-            log.info("==============================BMW==============================");
-            log.info("=================通过SQL检测,未发现注入风险====================");
-            log.info("============================Pandora============================");
             return true;
         }
     }
