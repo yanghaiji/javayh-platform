@@ -17,9 +17,14 @@
             <artifactId>javayh-swagger-starter</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
+      <!--  <dependency>
             <groupId>com.javayh</groupId>
             <artifactId>javayh-heartbeat-client</artifactId>
-        </dependency>
+        </dependency>-->
+        <!--<dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-oauth-starter</artifactId>
+            <optional>true</optional>
+        </dependency>-->
     </dependencies>
 </project>

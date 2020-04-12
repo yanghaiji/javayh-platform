@@ -1,10 +1,10 @@
 package com.javayh.feign;
 
-import com.javayh.client.annotation.EnableAutoHeartBeat;
 import com.javayh.common.annotation.JavayhBootApplication;
 import com.javayh.common.i18n.annotation.EnableAutoInternationalization;
 import com.javayh.swagger.annotation.EnableAutoSwagger;
 import org.springframework.boot.SpringApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * <p>
@@ -15,6 +15,7 @@ import org.springframework.boot.SpringApplication;
  * @version 1.0.0
  * @since 2020-03-02 13:34
  */
+@EnableFeignClients
 @EnableAutoSwagger
 // @EnableAutoHeartBeat
 @EnableAutoInternationalization

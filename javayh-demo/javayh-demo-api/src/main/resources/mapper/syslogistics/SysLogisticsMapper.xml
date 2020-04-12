@@ -183,6 +183,9 @@
 			<if test="createBy != null  and createBy != '' ">
 				 and create_by=#{createBy}
 			</if>
+            <if test="orderBy != null  and orderBy != ''  ">
+                order by #{orderBy}
+            </if>
 	</select>
 </mapper>
 

@@ -1,6 +1,8 @@
 package com.javayh.mybatis.filter;
 
+import com.javayh.mybatis.uitl.Constant;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.reflection.MetaObject;
@@ -8,6 +10,7 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.springframework.util.CollectionUtils;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,17 +41,12 @@ public class SqlLog {
 	 * @param sqlId
 	 * @return java.lang.String
 	 */
-	public static String getSql(Configuration configuration, BoundSql boundSql,
-			String sqlId) {
-		String sql = showSql(configuration, boundSql);
-		StringBuilder str = new StringBuilder(100);
-		str.append(sqlId);
-		str.append(":");
-		str.append(sql);
-		String sqlLog = str.toString();
-		log.info("执行的SQL为:{}", sqlLog);
-		return sqlLog;
-	}
+    public static String getSql(Configuration configuration, BoundSql boundSql, String sqlId) throws SQLException {
+        String sql = showSql(configuration, boundSql);
+        log.info("执行的SQL——ID为:{}",sqlId);
+        log.info("执行的SQL为:{}",sql);
+        return sql;
+    }
 
 	/**
 	 * <p>
@@ -92,10 +90,9 @@ public class SqlLog {
 	 * @param boundSql
 	 * @return java.lang.String
 	 */
-	public static String showSql(Configuration configuration, BoundSql boundSql) {
+	public static String showSql(Configuration configuration, BoundSql boundSql) throws SQLException {
 		// 获取参数
 		Object parameterObject = boundSql.getParameterObject();
-		parameterObject = IllegalSqlFilter.sqlFilter(parameterObject);
 		List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
 		// sql语句中多个空格都用一个空格代替
 		String sql = boundSql.getSql().replaceAll("[\\s]+", " ");
@@ -117,6 +114,10 @@ public class SqlLog {
 					String propertyName = parameterMapping.getProperty();
 					if (metaObject.hasGetter(propertyName)) {
 						Object obj = metaObject.getValue(propertyName);
+                        Boolean discover = sqlDiscover(obj);
+                        if(!discover){
+                            throw new SQLException("SQL 存在异常,请检查您的SQL是否规范");
+                        }
 						sql = sql.replaceFirst("\\?",
 								Matcher.quoteReplacement(getParameterValue(obj)));
 
@@ -124,6 +125,10 @@ public class SqlLog {
 					else if (boundSql.hasAdditionalParameter(propertyName)) {
 						// 该分支是动态sql
 						Object obj = boundSql.getAdditionalParameter(propertyName);
+                        Boolean discover = sqlDiscover(obj);
+                        if(!discover){
+                            throw new SQLException("SQL 存在异常,请检查您的SQL是否规范");
+                        }
 						sql = sql.replaceFirst("\\?",
 								Matcher.quoteReplacement(getParameterValue(obj)));
 					}
@@ -137,4 +142,31 @@ public class SqlLog {
 		return sql;
 	}
 
+    private static Boolean sqlDiscover(Object obj){
+        boolean b = ObjectUtils.allNotNull(obj);
+        log.info("参数的值为:{},是否为空值{}",obj,b);
+        if(b){
+            String input = obj.toString();
+            if (input.contains(Constant.DELETE) || input.contains(Constant.ASCII)
+                    || input.contains(Constant.UPDATE) || input.contains(Constant.SELECT)
+                    || input.contains(Constant.S) || input.contains(Constant.SUBSTR)
+                    || input.contains(Constant.COUNT) || input.contains(Constant.OR)
+                    || input.contains(Constant.AND) || input.contains(Constant.DROP)
+                    || input.contains(Constant.EXECUTE) || input.contains(Constant.EXEC)
+                    || input.contains(Constant.TRUNCATE) || input.contains(Constant.INTO)
+                    || input.contains(Constant.DECLARE) || input.contains(Constant.MASTER)) {
+                log.error("==============================BMW==============================");
+                log.error("===========该参数存在SQL注入风险：sInput=" + input+"===========");
+                log.error("============================Pandora============================");
+                return false;
+            }else {
+                log.info("==============================BMW==============================");
+                log.info("=================通过SQL检测,未发现注入风险====================");
+                log.info("============================Pandora============================");
+                return true;
+            }
+        }else {
+            return true;
+        }
+    }
 }

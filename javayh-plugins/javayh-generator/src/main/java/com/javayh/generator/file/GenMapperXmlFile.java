@@ -226,8 +226,9 @@ public class GenMapperXmlFile {
 		content.append("\t\t").append("FROM ").append(gMain.getTableName())
 				.append(lineSeparator);
 		content.append("\t\t").append("WHERE  1=1 ").append(lineSeparator);
+        FieldBean field =null;
 		for (int i = 1; i < gMain.getStructureList().size(); i++) {
-			FieldBean field = gMain.getStructureList().get(i);
+            field = gMain.getStructureList().get(i);
 			content.append("\t\t\t").append("<if test=\"").append(field.getFieldName())
 					.append(" != null ");
 			if (field.getVhClass().getName().contains("String")) {
@@ -242,6 +243,10 @@ public class GenMapperXmlFile {
 					.append(lineSeparator);
 			content.append("\t\t\t").append("</if>").append(lineSeparator);
 		}
+        content.append("\t\t\t").append("<if test=\"").append("orderBy") .append(" != null ").
+                append(" and orderBy != '' ").append(" \">").append(lineSeparator);
+        content.append("\t\t\t\t").append(" order by ").append("#{orderBy}").append(lineSeparator);
+        content.append("\t\t\t").append("</if>").append(lineSeparator);
 		content.append("\t").append("</select>").append(lineSeparator);
 		content.append("</mapper>").append(lineSeparator);
 		return content.toString();
