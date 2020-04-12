@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 9098
 spring:
   application:
     name: ${artifactId}
@@ -24,8 +24,6 @@ spring:
        shared-dataids: redis.yaml,mail.yaml,oauth2db.yaml
   messages:
     basename: i18n.login.login,i18n.common.common,i18n.validation.validation
-
-
 
 mybatis:
   ### xml存放路径

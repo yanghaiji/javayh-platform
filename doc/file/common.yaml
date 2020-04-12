@@ -28,3 +28,15 @@ hystrix:
 ribbon:
   ReadTimeout: 30000
   ConnectTimeout: 30000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus' #[*]
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoint:
+    health:
+      show-details: always

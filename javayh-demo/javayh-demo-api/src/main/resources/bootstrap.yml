@@ -56,7 +56,6 @@ mybatis:
   ### xml存放路径
   mapper-locations: classpath*:mapper/*/*Mapper.xml
 
-
 #security:
 #  oauth2:
 #    client:
