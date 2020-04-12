@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name":  "heartbeat",
+      "type": "com.javayh.client.properties.HeartbeatClientProperties",
+      "sourceType": "com.javayh.client.properties.HeartbeatClientProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name":"heartbeat.server.host",
+      "type": "java.lang.String",
+      "sourceType": "com.javayh.client.properties.HeartbeatClientProperties",
+      "defaultValue": "localhost",
+      "description": "heartbeat server host"
+    },
+    {
+      "name":"heartbeat.server.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.javayh.client.properties.HeartbeatClientProperties",
+      "defaultValue": 8001,
+      "description": "heartbeat server post"
+    },
+    {
+      "name":"heartbeat.server.channel-id",
+      "type": "java.lang.Long",
+      "sourceType": "com.javayh.client.properties.HeartbeatClientProperties",
+      "defaultValue": 100,
+      "description": "heartbeat server channel-id"
+    }
+  ]
+}

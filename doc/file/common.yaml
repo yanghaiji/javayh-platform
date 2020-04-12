@@ -1,34 +1,3 @@
-security:
-  oauth2:
-    client:
-      client-id: client
-      client-secret: secret
-      access-token-uri: http://localhost:9090/oauth/token
-      user-authorization-uri: http://localhost:9090/oauth/authorize
-    resource:
-      token-info-uri: http://localhost:9090/oauth/check_token
-
-feign:
-  hystrix:
-    enabled: true #是否开启断路器
-
-#hystrix的超时时间
-hystrix:
-  command:
-    default:
-      execution:
-        timeout:
-          enabled: true
-        isolation:
-          thread:
-            timeoutInMilliseconds: 30000
-  metrics:
-    enabled: true
-#ribbon的超时时间
-ribbon:
-  ReadTimeout: 30000
-  ConnectTimeout: 30000
-
 management:
   endpoints:
     web:

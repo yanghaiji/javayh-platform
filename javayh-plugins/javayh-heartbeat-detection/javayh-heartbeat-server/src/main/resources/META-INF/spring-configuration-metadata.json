@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "heartbeat",
+      "type": "com.javayh.heartbeat.config.HeartBeatProperties",
+      "sourceType": "com.javayh.heartbeat.config.HeartBeatProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name":"heartbeat.server.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.javayh.heartbeat.config.HeartBeatProperties",
+      "defaultValue": 8001,
+      "description": "heartbeat server post"
+    }
+  ]
+}
