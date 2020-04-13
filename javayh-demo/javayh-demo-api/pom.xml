@@ -37,5 +37,10 @@
             <artifactId>javayh-oauth-starter</artifactId>
             <optional>true</optional>
         </dependency>-->
+
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-heartbeat-client</artifactId>
+        </dependency>
     </dependencies>
 </project>

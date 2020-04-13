@@ -11,43 +11,40 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2020-03-10 15:41
  */
-@ConfigurationProperties(prefix = "heartbeat.server", ignoreUnknownFields = true)
+@ConfigurationProperties(
+        prefix = "heartbeat.server",
+        ignoreUnknownFields = true
+)
 public class HeartbeatClientProperties {
 
-	/** 唯一标识 */
-	private long channelId;
-
-	/** host地址 */
+	private Long channelId;
 	private String host;
-
-	/** server 端口 */
-	private int port;
+	private Integer port;
 
 	public HeartbeatClientProperties() {
 	}
 
-	public long getChannelId() {
-		return channelId;
-	}
+    public Long getChannelId() {
+        return channelId;
+    }
 
-	public void setChannelId(long channelId) {
-		this.channelId = channelId;
-	}
+    public void setChannelId(Long channelId) {
+        this.channelId = channelId;
+    }
 
-	public int getPort() {
-		return port;
-	}
+    public String getHost() {
+        return host;
+    }
 
-	public void setPort(int port) {
-		this.port = port;
-	}
+    public void setHost(String host) {
+        this.host = host;
+    }
 
-	public String getHost() {
-		return host;
-	}
+    public Integer getPort() {
+        return port;
+    }
 
-	public void setHost(String host) {
-		this.host = host;
-	}
-
+    public void setPort(Integer port) {
+        this.port = port;
+    }
 }
