@@ -1,3 +1,4 @@
+## feign 服务容错
 feign:
   hystrix:
     enabled: true #是否开启断路器
