@@ -12,7 +12,7 @@ spring:
       discovery:
         server-addr: ${discovery.server-addr}
         namespace: ${config.namespace}
-        ip: ${discovery.server-ip}
+#        ip: ${discovery.server-ip}
       config:
         server-addr:  ${config.server-addr}
         namespace:  ${config.namespace}
@@ -25,11 +25,11 @@ spring:
           # 服务名小写
           lower-case-service-id: true
       routes:
-        - id: api-javayh-demo
+        - id: javayh-demo-api
           # lb代表从注册中心获取服务，且已负载均衡方式转发
-          uri: lb://javayh-demo
+          uri: lb://javayh-demo-api
           predicates:
-            - Path=/javayh-demo/**
+            - Path=/javayh-demo-api/**
           # 加上StripPrefix=1，否则转发到后端服务时会带上demo前缀
           filters:
             - SwaggerHeaderFilter
@@ -45,11 +45,11 @@ spring:
                 redis-rate-limiter.burstCapacity: 1000  # 流速 每秒
                 key-resolver: "#{@ipKeyResolver}" #SPEL表达式去的对应的bean
 
-        - id: javayh-api
+        - id: javayh-demo-common
           # lb代表从注册中心获取服务，且已负载均衡方式转发
-          uri: lb://javayh-api
+          uri: lb://javayh-demo-common
           predicates:
-            - Path=/javayh-api/**
+            - Path=/javayh-demo-common/**
           # 加上StripPrefix=1，否则转发到后端服务时会带上demo前缀
           filters:
             - SwaggerHeaderFilter
@@ -65,11 +65,11 @@ spring:
                 redis-rate-limiter.burstCapacity: 1000  # 流速 每秒
                 key-resolver: "#{@ipKeyResolver}" #SPEL表达式去的对应的bean
 
-        - id: javayh-feign
+        - id: javayh-demo-feign
           # lb代表从注册中心获取服务，且已负载均衡方式转发
-          uri: lb://javayh-feign
+          uri: lb://javayh-demo-feign
           predicates:
-            - Path=/javayh-feign/**
+            - Path=/javayh-demo-feign/**
           # 加上StripPrefix=1，否则转发到后端服务时会带上demo前缀
           filters:
             - SwaggerHeaderFilter

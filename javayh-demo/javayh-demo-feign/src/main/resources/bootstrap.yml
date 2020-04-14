@@ -12,7 +12,7 @@ spring:
       discovery:
         server-addr: ${discovery.server-addr}
         namespace: ${config.namespace}
-        ip: ${discovery.server-ip}
+#        ip: ${discovery.server-ip}
       config:
         server-addr:  ${config.server-addr}
         namespace:  ${config.namespace}
