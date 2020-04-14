@@ -1,7 +1,5 @@
 package com.javayh.mybatis.exception;
 
-import java.sql.SQLException;
-
 /**
  * <p>
  * mybatis sql注入异常

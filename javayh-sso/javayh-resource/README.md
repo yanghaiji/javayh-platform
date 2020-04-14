@@ -9,7 +9,7 @@
   `doc/sql/sso/oauth.sql`
 
  
-- [获取token的流程](javayh-sso/javayh-server/README.md)
+- [获取token的流程](../../javayh-sso/javayh-server/README.md)
 
 - 访问资源
 

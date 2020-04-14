@@ -41,6 +41,9 @@ javayh-platform                         父工程
 │  └─ └─javayh-heartbeat-client         心跳检测客户端
 ├─javayh-route                          路由分发
 │  └─javayh-api-gateway                 gateway
+├─javayh-sso                            oauth
+│  ├─javayh-resource                    资源服务器
+│  └─javayh-server                      认证服务器
 └─javayh-dependencies                   核心依赖
 │   ├─javayh-common-starter             内部支撑
 │   ├─javayh-db-starter                 关系型数据库
