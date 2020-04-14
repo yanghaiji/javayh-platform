@@ -1,3 +1,4 @@
+## oauth 客户全token检测配置
 security:
   oauth2:
     client:

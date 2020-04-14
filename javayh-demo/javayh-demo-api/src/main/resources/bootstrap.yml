@@ -12,20 +12,11 @@ spring:
      discovery:
        server-addr: ${discovery.server-addr}
        namespace: ${config.namespace}
-       ip: ${discovery.server-ip}
+#       ip: ${discovery.server-ip}
      config:
        server-addr:  ${config.server-addr}
        namespace:  ${config.namespace}
        file-extension: yaml
-       shared-dataids: redis.yaml,mail.yaml,db1.yml,common.yaml
+       shared-dataids: db1.yaml,common.yaml,redis.yaml,mail.yaml
   messages:
     basename: i18n.login.login,i18n.common.common,i18n.validation.validation
-#security:
-#  oauth2:
-#    client:
-#      client-id: client
-#      client-secret: secret
-#      access-token-uri: http://localhost:9090/oauth/token
-#      user-authorization-uri: http://localhost:9090/oauth/authorize
-#    resource:
-#      token-info-uri: http://localhost:9090/oauth/check_token

@@ -1,4 +1,5 @@
- spring: 
+## 邮件模板配置
+ spring:
   mail:
     protocol: smtp
     host: smtp.qq.com

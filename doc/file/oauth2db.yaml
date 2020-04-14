@@ -1,3 +1,4 @@
+## oauth2 权限验证配置
 spring:
   datasource:
     druid:
