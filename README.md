@@ -2,8 +2,8 @@
 
 <p align="center">
   <img src='https://img.shields.io/badge/license-Apache%202-borightgreen' alt='License'/>
-  <img src="https://img.shields.io/badge/Spring%20Boot-2.1.7.RELEASE-borightgreen" alt="SpringBoot"/>
-  <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR3-borightgreen" alt="SpringCloud"/>
+  <img src="https://img.shields.io/badge/Spring%20Boot-2.2.6.RELEASE-borightgreen" alt="SpringBoot"/>
+  <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR3-borightgreen" alt="SpringCloud"/>
   <img src="https://img.shields.io/badge/Spring%20Cloud%20Alibaba-2.1.1.RELEASE-borightgreen" alt="SpringCloudAlibaba"/>
 </p>
 
