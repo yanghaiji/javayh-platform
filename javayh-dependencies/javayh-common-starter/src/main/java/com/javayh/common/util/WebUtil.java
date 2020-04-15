@@ -25,8 +25,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * Http与Servlet工具类.
- *
+ * <p>
+ *        Http与Servlet工具类.
+ * </p>
+ * @version 1.0.0
+ * @author Dylan
+ * @since 2020/4/15
  */
 public class WebUtil extends ServletUtil {
 
@@ -38,9 +42,9 @@ public class WebUtil extends ServletUtil {
 			String fileName) {
 		try {
 			// 中文文件名支持
-			String encodedfileName = new String(fileName.getBytes(), "ISO8859-1");
+			String encodedName = new String(fileName.getBytes(), "ISO8859-1");
 			response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
-					"attachment; filename=\"" + encodedfileName + "\"");
+					"attachment; filename=\"" + encodedName + "\"");
 		}
 		catch (UnsupportedEncodingException e) {
 			e.getMessage();

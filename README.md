@@ -13,8 +13,9 @@
 
 | 框架                   | 说明        | 版本               |
 |----------------------|-----------|------------------|
-| SpringBoot           | 开发脚手架     | 2\.1\.7          |
-| SpringCloud          | 云框架       | Greenwich\.SR3   |
+| JDK          | 开发环境     | 14         |
+| SpringBoot           | 开发脚手架     | 2.2.6.RELEASE          |
+| SpringCloud          | 云框架       | Hoxton.SR3   |
 | SpringCloudGateway   | 路由        |                  |
 | SpringCloudOpenFeign | 服务调用      |                  |
 | SpringCloudHystrix   | 服务降级熔断    |                  |
@@ -22,7 +23,7 @@
 | SpringCloudAlibaba   | 阿里微服务解决方案 | 2\.1\.1\.RELEASE |
 | Alibaba  Nacos       | 注册中心、配置中心 | 1\.3\.3          |
 | Zipkin               | 分布式链式调用   | 2\.9\.4          |
-| Reids                | 缓存        |                  |
+| Reids                | 非关系型数据库        |                  |
 
 ## 项目结构说明
 
