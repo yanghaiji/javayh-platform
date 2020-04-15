@@ -47,11 +47,6 @@
             <artifactId>javase</artifactId>
             <version>${google.zxing.version}</version>
         </dependency>
-       <!-- <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>${pagehelpe.version}</version>
-        </dependency>-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>

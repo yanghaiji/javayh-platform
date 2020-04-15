@@ -15,9 +15,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <fastjson.version>1.2.60</fastjson.version>
         <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.compilerArgs>--enable-preview</maven.compiler.compilerArgs>
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
@@ -28,7 +29,6 @@
         <maven-spring-boot-plugin.version>2.1.7.RELEASE</maven-spring-boot-plugin.version>
         <core.version>1.0.0</core.version>
         <fastjson.version>1.2.60</fastjson.version>
-        <java.version>1.8</java.version>
         <mybatis.version>1.3.2</mybatis.version>
         <druid.version>1.1.10</druid.version>
         <commons-codec.version>1.10</commons-codec.version>
@@ -235,9 +235,10 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${maven.compiler.encoding}</encoding>
+                    <compilerArgs>${maven.compiler.compilerArgs}</compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
