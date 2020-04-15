@@ -24,8 +24,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * @return java.lang.String
 	 */
 	public static String setSuffix(String str, String suffix) {
-		StringBuffer stringBuffer = new StringBuffer();
-		return stringBuffer.append(str).append(suffix).toString();
+		return str + suffix;
 	}
 
 	public static boolean isEmpty(String str) {

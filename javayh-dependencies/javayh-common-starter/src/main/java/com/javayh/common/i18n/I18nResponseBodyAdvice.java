@@ -47,8 +47,7 @@ public class I18nResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 			Class<? extends HttpMessageConverter<?>> converter, ServerHttpRequest request,
 			ServerHttpResponse response) {
 		try {
-			if (obj instanceof ResultData) {
-				ResultData result = (ResultData) obj;
+			if (obj instanceof ResultData result) {
 				String resultCode = result.getMsg();
 				if (resultCode != null) {
 					HttpServletRequest req = RequestUtils.getRequest();

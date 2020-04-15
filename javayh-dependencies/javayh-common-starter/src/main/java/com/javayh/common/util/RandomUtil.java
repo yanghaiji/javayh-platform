@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class RandomUtil {
 
-	private static final ThreadLocalRandom random = ThreadLocalRandom.current();
+	private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
 	/**
 	 * <p>
@@ -33,9 +33,9 @@ public class RandomUtil {
 
 	// num为随机数流水号
 	public static String generateNumber(final int num) {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i <= num; i++) {
-			sb.append(random.nextInt(9));
+			sb.append(RANDOM.nextInt(9));
 		}
 		return sb.toString();
 
