@@ -44,20 +44,7 @@ public class NotesUtils {
 	}
 
 	public static String getTypeNotes(String desc) {
-		String lineSeparator = System.getProperty("line.separator");
-		StringBuffer content = new StringBuffer();
-		content.append("/**").append(lineSeparator);
-		content.append(" * <p> ");
-		content.append(" *  ").append(desc).append(lineSeparator);
-		content.append(" * </p> ");
-		content.append(" * @author：").append(GenerateConfig.classAuthor)
-				.append(lineSeparator);
-		content.append(" * @version：V1.0").append(lineSeparator);
-		content.append(" * @since：")
-				.append(TimeUtils.formatDate(new Date(), "yyyy-MM-dd"))
-				.append(lineSeparator);
-		content.append(" */").append(lineSeparator);
-		return content.toString();
+		return getNote(desc);
 	}
 
 	public static String getMethodNotes(String str) {
@@ -66,6 +53,23 @@ public class NotesUtils {
 		content.append("\t").append("/**").append(lineSeparator);
 		content.append("\t").append(" *  ").append(str).append(lineSeparator);
 		content.append("\t").append(" */").append(lineSeparator);
+		return content.toString();
+	}
+	
+	private static String getNote(String s){
+		String lineSeparator = System.getProperty("line.separator");
+		StringBuffer content = new StringBuffer();
+		content.append("/**").append(lineSeparator);
+		content.append(" * <p> ").append(lineSeparator);
+		content.append(" *  ").append(s).append(lineSeparator);
+		content.append(" * </p> ").append(lineSeparator);
+		content.append(" * @author：").append(GenerateConfig.classAuthor)
+				.append(lineSeparator);
+		content.append(" * @version：V1.0").append(lineSeparator);
+		content.append(" * @since：")
+				.append(TimeUtils.formatDate(new Date(), "yyyy-MM-dd"))
+				.append(lineSeparator);
+		content.append(" */").append(lineSeparator);
 		return content.toString();
 	}
 
