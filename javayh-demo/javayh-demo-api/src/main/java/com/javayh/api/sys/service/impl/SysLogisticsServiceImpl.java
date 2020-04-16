@@ -19,8 +19,8 @@ import com.javayh.api.sys.service.ISysLogisticsService;
 @Service
 public class SysLogisticsServiceImpl implements ISysLogisticsService {
 
-	@Autowired
-	private SysLogisticsMapper sysLogisticsMapper; 
+	@Autowired(required = false)
+	private SysLogisticsMapper sysLogisticsMapper;
 
 	/**
 	 *  根据条件查询-分页

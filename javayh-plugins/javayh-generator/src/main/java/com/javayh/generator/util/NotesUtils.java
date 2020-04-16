@@ -63,10 +63,10 @@ public class NotesUtils {
 		content.append(" * <p> ").append(lineSeparator);
 		content.append(" *  ").append(s).append(lineSeparator);
 		content.append(" * </p> ").append(lineSeparator);
-		content.append(" * @author：").append(GenerateConfig.classAuthor)
+		content.append(" * @author: ").append(GenerateConfig.classAuthor)
 				.append(lineSeparator);
-		content.append(" * @version：V1.0").append(lineSeparator);
-		content.append(" * @since：")
+		content.append(" * @version: V1.0").append(lineSeparator);
+		content.append(" * @since: ")
 				.append(TimeUtils.formatDate(new Date(), "yyyy-MM-dd"))
 				.append(lineSeparator);
 		content.append(" */").append(lineSeparator);

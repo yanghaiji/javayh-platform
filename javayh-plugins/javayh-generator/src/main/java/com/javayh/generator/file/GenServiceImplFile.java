@@ -114,7 +114,7 @@ public class GenServiceImplFile {
 		// 注入mapper
 		String mapperName = NameUtils.formatName(gMain.getTableName()) + "Mapper";
 		content.append(lineSeparator);
-		content.append("\t").append("@Autowired").append(lineSeparator);
+		content.append("\t").append("@Autowired(required = false)").append(lineSeparator);
 		content.append("\t").append("private ").append(mapperFile.getClassName())
 				.append(" ").append(mapperName).append("; ").append(lineSeparator);
 		content.append(lineSeparator);
