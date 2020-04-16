@@ -33,7 +33,7 @@ public class FeignExceptionConfig {
 		return new UserErrorDecoder();
 	}
 
-	public class UserErrorDecoder implements ErrorDecoder {
+	public static class UserErrorDecoder implements ErrorDecoder {
 
 		@Override
 		public Exception decode(String key, Response response) {
@@ -51,8 +51,8 @@ public class FeignExceptionConfig {
 				/* 非业务异常包装成自定义异常类ServiceException */
 				if (StringUtils.isNotEmpty(json)) {
 					if (json.contains("code")) {
-						FeignFaildResult result = mapper.readValue(json,
-								FeignFaildResult.class);
+						FeignFailResult result = mapper.readValue(json,
+								FeignFailResult.class);
 						result.setStatus(response.status());
 						/* 业务异常包装成自定义异常类HytrixException */
 						if (result.getStatus() != HttpStatus.OK.value()) {

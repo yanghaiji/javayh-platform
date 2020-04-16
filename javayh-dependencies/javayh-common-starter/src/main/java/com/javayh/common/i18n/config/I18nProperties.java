@@ -26,7 +26,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2020-03-27 15:23
  */
-@ConfigurationProperties(prefix = "spring.messages")
+@ConfigurationProperties(
+        prefix = "spring.messages",
+        ignoreUnknownFields = true
+)
 public class I18nProperties {
 
 	private String basename;

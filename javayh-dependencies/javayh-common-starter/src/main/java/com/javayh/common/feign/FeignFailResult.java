@@ -12,7 +12,7 @@ import lombok.Data;
  * @since 2020/3/2
  */
 @Data
-public class FeignFaildResult {
+public class FeignFailResult {
 
 	private int status;
 

@@ -134,9 +134,7 @@ public class SensitiveWordFilter {
 	 */
 	public void initializationWork() {
 		replaceAll = new StringBuilder(size);
-		for (int x = 0; x < size; x++) {
-			replaceAll.append(replacedWord);
-		}
+        replaceAll.append(String.valueOf(replacedWord).repeat(Math.max(0, size)));
 		// 加载词库
 		onWriteArraySet = new CopyOnWriteArraySet<>();
 		InputStreamReader read = null;
@@ -174,16 +172,16 @@ public class SensitiveWordFilter {
 		}
 	}
 
-	// public static void main(String args[]) {
-	// SensitiveWordFilter sw = new SensitiveWordFilter();
-	// sw.initializationWork();
-	// long startNuder = System.currentTimeMillis();
-	// String str = "射手你是sb吗?打野你是傻逼?";
-	// System.out.println("被检测字符长度:" + str.length());
-	// str = sw.filterInfo(str);
-	// long endNumber = System.currentTimeMillis();
-	// System.out.println("耗时(毫秒):" + (endNumber - startNuder));
-	// System.out.println("过滤之后:" + str);
-	// }
+	 public static void main(String args[]) {
+	 SensitiveWordFilter sw = new SensitiveWordFilter();
+	 sw.initializationWork();
+	 long startNuder = System.currentTimeMillis();
+	 String str = "射手你是sb吗?打野你是傻逼?";
+	 System.out.println("被检测字符长度:" + str.length());
+	 str = sw.filterInfo(str);
+	 long endNumber = System.currentTimeMillis();
+	 System.out.println("耗时(毫秒):" + (endNumber - startNuder));
+	 System.out.println("过滤之后:" + str);
+	 }
 
 }

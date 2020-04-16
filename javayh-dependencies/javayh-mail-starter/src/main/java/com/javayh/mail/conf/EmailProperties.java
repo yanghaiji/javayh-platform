@@ -1,6 +1,5 @@
 package com.javayh.mail.conf;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -12,7 +11,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2020-03-08 14:44
  */
-@ConfigurationProperties(prefix = "spring.mail")
+@ConfigurationProperties(
+        prefix = "spring.mail",
+        ignoreUnknownFields = true
+)
 public class EmailProperties {
 
 	/** 用户名 */
