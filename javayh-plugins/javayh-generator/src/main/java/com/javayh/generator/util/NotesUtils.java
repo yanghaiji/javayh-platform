@@ -55,7 +55,7 @@ public class NotesUtils {
 		content.append("\t").append(" */").append(lineSeparator);
 		return content.toString();
 	}
-	
+
 	private static String getNote(String s){
 		String lineSeparator = System.getProperty("line.separator");
 		StringBuffer content = new StringBuffer();
