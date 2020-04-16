@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.javayh.api.syslogistics.dao.SysLogisticsMapper">
+<mapper namespace="com.javayh.api.sys.dao.SysLogisticsMapper">
 
 	<!-- 数据库中表名为:sys_logistics的列名,as前是数据库的列明,as后是列的别名用于映射成实体类中的属性 -->
 	<sql id="sysLogisticsColumn">
@@ -95,6 +95,61 @@
 		) 
 	</insert>
 
+	<insert id="batchInsert">
+		insert into sys_logistics
+		( 
+				addressee_name
+				,addressee
+				,addressee_phone
+				,sender_name
+				,sender_add
+				,ems_status
+				,retreat_status
+				,retreat_info
+				,create_date
+				,update_date
+				,create_by
+		) 
+		values 
+		 <foreach collection="list" item="item" separator=",">
+		(
+			<if test="item.addresseeName != null  and item.addresseeName != '' ">
+				#{item.addresseeName}
+			</if>
+			<if test="item.addressee != null  and item.addressee != '' ">
+				,#{item.addressee}
+			</if>
+			<if test="item.addresseePhone != null  ">
+				,#{item.addresseePhone}
+			</if>
+			<if test="item.senderName != null  and item.senderName != '' ">
+				,#{item.senderName}
+			</if>
+			<if test="item.senderAdd != null  and item.senderAdd != '' ">
+				,#{item.senderAdd}
+			</if>
+			<if test="item.emsStatus != null  ">
+				,#{item.emsStatus}
+			</if>
+			<if test="item.retreatStatus != null  ">
+				,#{item.retreatStatus}
+			</if>
+			<if test="item.retreatInfo != null  and item.retreatInfo != '' ">
+				,#{item.retreatInfo}
+			</if>
+			<if test="item.createDate != null  ">
+				,#{item.createDate}
+			</if>
+			<if test="item.updateDate != null  ">
+				,#{item.updateDate}
+			</if>
+			<if test="item.createBy != null  and item.createBy != '' ">
+				,#{item.createBy}
+			</if>
+		) 
+		 </foreach>
+	</insert>
+
 	<update id="update">
 		update sys_logistics
 		<trim prefix="set" suffixOverrides=",">
@@ -140,13 +195,13 @@
 		WHERE id=#{id}
 	</delete>
 
-	<select id="findById" resultType="com.javayh.api.syslogistics.pojo.SysLogistics">
+	<select id="findById" resultType="com.javayh.api.sys.pojo.SysLogistics">
 		SELECT <include refid="sysLogisticsColumn"/>
 		FROM sys_logistics
 		WHERE id=#{id}
 	</select>
 
-	<select id="findByPage" resultType="com.javayh.api.syslogistics.pojo.SysLogistics">
+	<select id="findByPage" resultType="com.javayh.api.sys.pojo.SysLogistics">
 		SELECT <include refid="sysLogisticsColumn"/>
 		FROM sys_logistics
 		WHERE  1=1 
@@ -183,9 +238,9 @@
 			<if test="createBy != null  and createBy != '' ">
 				 and create_by=#{createBy}
 			</if>
-            <if test="orderBy != null  and orderBy != ''  ">
-                order by #{orderBy}
-            </if>
+			<if test="orderBy != null  and orderBy != ''  ">
+				 order by #{orderBy}
+			</if>
 	</select>
 </mapper>
 

@@ -15,7 +15,6 @@
  */
 package com.javayh.generator.file;
 
-import com.javayh.common.entity.BaseEntity;
 import com.javayh.generator.bean.FieldBean;
 import com.javayh.generator.config.GenerateConfig;
 import com.javayh.generator.util.FileUtils;
@@ -76,7 +75,7 @@ public class GenBeanDTOFile {
 		String lineSeparator = System.getProperty("line.separator");
 		StringBuffer content = new StringBuffer();
 		// 写入文件注释
-		content.append(NotesUtils.getFileNotes());
+//		content.append(NotesUtils.getFileNotes());
 
 		// 写入文件包名
 		content.append("package ").append(packageName).append(";").append(lineSeparator);
@@ -124,31 +123,6 @@ public class GenBeanDTOFile {
 					.append(field.getVhClass().getSimpleName()).append(" ")
 					.append(field.getFieldName()).append("; ").append(lineSeparator);
 		}
-
-		// 写入get与set
-		// content.append(lineSeparator);
-		// content.append("\t").append("/*==================== gen setter and getter
-		// begin=====================*/").append(lineSeparator);
-		/*
-		 * for(FieldBean field : gMain.getStructureList()){
-		 * content.append("\t").append("public ").append(field.getVhClass().getSimpleName(
-		 * )).append(" get").append(field.getFieldNameUp()).append("() {").append(
-		 * lineSeparator);
-		 * content.append("\t\t").append("return ").append(field.getFieldName()).append(
-		 * ";").append(lineSeparator);
-		 * content.append("\t").append("}").append(lineSeparator);
-		 *
-		 * content.append("\t").append("public void set").append(field.getFieldNameUp()).
-		 * append("(").append(field.getVhClass().getSimpleName()).append(" ").append(field
-		 * .getFieldName()).append(") {").append(lineSeparator);
-		 * content.append("\t\t").append("this.").append(field.getFieldName()).
-		 * append(" = ").append(field.getFieldName()).append(";").append(lineSeparator);
-		 * content.append("\t").append("}").append(lineSeparator);
-		 *
-		 * content.append(lineSeparator); }
-		 */
-		// content.append("\t").append("/*==================== gen setter and getter end
-		// =====================*/").append(lineSeparator);
 		content.append(lineSeparator);
 		content.append("}");
 		return content.toString();

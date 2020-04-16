@@ -74,14 +74,12 @@ public class GenBeanFile {
 		String lineSeparator = System.getProperty("line.separator");
 		StringBuffer content = new StringBuffer();
 		// 写入文件注释
-		content.append(NotesUtils.getFileNotes());
+//		content.append(NotesUtils.getFileNotes());
 
 		// 写入文件包名
 		content.append("package ").append(packageName).append(";").append(lineSeparator);
 		content.append(lineSeparator);
 		content.append("import lombok.*;").append(lineSeparator);
-		// content.append("import
-		// com.javayh.common.entity.BaseEntity;").append(lineSeparator);
 		content.append(lineSeparator);
 
 		// 写入导入的包名

@@ -77,7 +77,7 @@ public class GenControllerFile {
 		String lineSeparator = System.getProperty("line.separator");
 		StringBuffer content = new StringBuffer();
 		// 写入文件注释
-		content.append(NotesUtils.getFileNotes());
+//		content.append(NotesUtils.getFileNotes());
 
 		// 写入文件包名
 		content.append("package ").append(packageName).append(";").append(lineSeparator);
@@ -109,6 +109,7 @@ public class GenControllerFile {
 				.append(lineSeparator);
 		content.append("import  com.javayh.mybatis.page.PageQuery;")
 				.append(lineSeparator);
+		content.append("import java.util.List;").append(lineSeparator);
 		content.append("import ").append(beanFile.getClassQuaName()).append(";")
 				.append(lineSeparator);
 		content.append("import ").append(beanDtoFile.getClassQuaName()).append(";")
@@ -164,7 +165,7 @@ public class GenControllerFile {
 		content.append("\t").append("@GetMapping(value = \"/findById\")")
 				.append(lineSeparator);
 		content.append("\t").append("public ResultData<").append(beanFile.getClassName())
-				.append("> findById(Integer ")
+				.append("> findById(String ")
 				.append(gMain.getStructureList().get(0).getFieldName()).append(")")
 				.append("{").append(lineSeparator);
 		content.append("\t\t").append("return ResultData.success(").append(serviceName)
@@ -185,6 +186,25 @@ public class GenControllerFile {
 				.append(NameUtils.formatName(gMain.getTableName())).append(")")
 				.append("{").append(lineSeparator);
 		content.append("\t\t").append(serviceName).append(".insert(")
+				.append(NameUtils.formatName(gMain.getTableName())).append(");")
+				.append(lineSeparator);
+		content.append("\t\t").append("return ResultData.success();")
+				.append(lineSeparator);
+		content.append("\t").append("}").append(lineSeparator);
+		content.append(lineSeparator);
+
+
+		// 写入增加方法
+		content.append(NotesUtils.getMethodNotes("添加数据"));
+		content.append("\t").append("@ApiOperation(value = \"添加数据\")")
+				.append(lineSeparator);
+		content.append("\t").append("@PostMapping(value = \"/batchInsert\")")
+				.append(lineSeparator);
+		content.append("\t").append("public ResultData<Integer> batchInsert(")
+				.append("@RequestBody List<" + beanFile.getClassName()).append("> ")
+				.append(NameUtils.formatName(gMain.getTableName())).append(")")
+				.append("{").append(lineSeparator);
+		content.append("\t\t").append(serviceName).append(".batchInsert(")
 				.append(NameUtils.formatName(gMain.getTableName())).append(");")
 				.append(lineSeparator);
 		content.append("\t\t").append("return ResultData.success();")
@@ -216,7 +236,7 @@ public class GenControllerFile {
 				.append(lineSeparator);
 		content.append("\t").append("@DeleteMapping(value = \"/deleteById\")")
 				.append(lineSeparator);
-		content.append("\t").append("public ResultData<Integer> deleteById(Integer ")
+		content.append("\t").append("public ResultData<Integer> deleteById(String ")
 				.append(gMain.getStructureList().get(0).getFieldName()).append(")")
 				.append("{").append(lineSeparator);
 		content.append("\t\t").append(serviceName).append(".deleteById(")

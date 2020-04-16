@@ -79,7 +79,7 @@ public class GenServiceImplFile {
 		String lineSeparator = System.getProperty("line.separator");
 		StringBuffer content = new StringBuffer();
 		// 写入文件注释
-		content.append(NotesUtils.getFileNotes());
+//		content.append(NotesUtils.getFileNotes());
 
 		// 写入文件包名
 		content.append("package ").append(packageName).append(";").append(lineSeparator);
@@ -169,10 +169,11 @@ public class GenServiceImplFile {
 		content.append(NotesUtils.getMethodNotes("根据id查询"));
 		content.append("\t").append("@Override").append("\r");
 		content.append("\t").append("public ").append(beanFile.getClassName())
-				.append(" findById(Integer ")
+				.append(" findById(String ")
 				.append(gMain.getStructureList().get(0).getFieldName()).append(")")
 				.append("{").append(lineSeparator);
-		content.append("\t\t").append("return ").append(mapperName).append(".findById(")
+		content.append("\t\t").append("return (").append(beanFile.getClassName()).
+				append(")").append(mapperName).append(".findById(")
 				.append(gMain.getStructureList().get(0).getFieldName()).append(");")
 				.append(lineSeparator);
 		content.append("\t").append("}").append(lineSeparator);
@@ -185,6 +186,18 @@ public class GenServiceImplFile {
 				.append(" ").append(NameUtils.formatName(gMain.getTableName()))
 				.append(")").append("{").append(lineSeparator);
 		content.append("\t\t").append("return ").append(mapperName).append(".insert(")
+				.append(NameUtils.formatName(gMain.getTableName())).append(");")
+				.append(lineSeparator);
+		content.append("\t").append("}").append(lineSeparator);
+		content.append(lineSeparator);
+
+		// 写入增加方法
+		content.append(NotesUtils.getMethodNotes("添加数据"));
+		content.append("\t").append("@Override").append("\r");
+		content.append("\t").append("public int batchInsert(").append("List<"+beanFile.getClassName() +">")
+				.append(" ").append(NameUtils.formatName(gMain.getTableName()))
+				.append(")").append("{").append(lineSeparator);
+		content.append("\t\t").append("return ").append(mapperName).append(".batchInsert(")
 				.append(NameUtils.formatName(gMain.getTableName())).append(");")
 				.append(lineSeparator);
 		content.append("\t").append("}").append(lineSeparator);
@@ -205,7 +218,7 @@ public class GenServiceImplFile {
 		// 写入删除方法
 		content.append(NotesUtils.getMethodNotes("根据id删除"));
 		content.append("\t").append("@Override").append("\r");
-		content.append("\t").append("public int deleteById(Integer ")
+		content.append("\t").append("public int deleteById(String ")
 				.append(gMain.getStructureList().get(0).getFieldName()).append(")")
 				.append("{").append(lineSeparator);
 		content.append("\t\t").append("return ").append(mapperName).append(".deleteById(")

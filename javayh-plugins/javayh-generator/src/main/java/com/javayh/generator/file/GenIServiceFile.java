@@ -80,7 +80,7 @@ public class GenIServiceFile {
 		String lineSeparator = System.getProperty("line.separator");
 		StringBuffer content = new StringBuffer();
 		// 写入文件注释
-		content.append(NotesUtils.getFileNotes());
+//		content.append(NotesUtils.getFileNotes());
 
 		// 写入文件包名
 		content.append("package ").append(packageName).append(";").append(lineSeparator);
@@ -89,9 +89,10 @@ public class GenIServiceFile {
 		// 写入导入的包名
 		content.append("import ").append(beanFile.getClassQuaName()).append(";")
 				.append(lineSeparator);
+		content.append("import java.util.List;").append(lineSeparator);
 		content.append("import ").append(beanDtoFile.getClassQuaName()).append(";")
 				.append(lineSeparator);
-		content.append("import  com.javayh.mybatis.page.PageQuery;")
+		content.append("import com.javayh.mybatis.page.PageQuery;")
 				.append(lineSeparator);
 		content.append(lineSeparator);
 
@@ -120,7 +121,7 @@ public class GenIServiceFile {
 
 		// 写入单个查找方法
 		content.append(NotesUtils.getMethodNotes("根据id查询"));
-		content.append("\t").append(beanFile.getClassName()).append(" findById(Integer ")
+		content.append("\t").append(beanFile.getClassName()).append(" findById(String ")
 				.append(gMain.getStructureList().get(0).getFieldName()).append(")")
 				.append(";").append(lineSeparator);
 		content.append(lineSeparator);
@@ -129,6 +130,13 @@ public class GenIServiceFile {
 		content.append(lineSeparator);
 		content.append(NotesUtils.getMethodNotes("添加数据"));
 		content.append("\t").append("int insert(").append(beanFile.getClassName())
+				.append(" ").append(NameUtils.formatName(gMain.getTableName()))
+				.append(")").append(";").append(lineSeparator);
+		content.append(lineSeparator);
+
+		content.append(lineSeparator);
+		content.append(NotesUtils.getMethodNotes("批量添加数据"));
+		content.append("\t").append("int batchInsert(").append("List<"+beanFile.getClassName() +">")
 				.append(" ").append(NameUtils.formatName(gMain.getTableName()))
 				.append(")").append(";").append(lineSeparator);
 		content.append(lineSeparator);
@@ -142,7 +150,7 @@ public class GenIServiceFile {
 
 		// 写入删除方法
 		content.append(NotesUtils.getMethodNotes("根据id删除"));
-		content.append("\t").append("int deleteById(Integer ")
+		content.append("\t").append("int deleteById(String ")
 				.append(gMain.getStructureList().get(0).getFieldName()).append(")")
 				.append(";").append(lineSeparator);
 		content.append(lineSeparator);

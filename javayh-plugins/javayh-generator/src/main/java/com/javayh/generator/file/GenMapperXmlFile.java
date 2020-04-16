@@ -175,6 +175,55 @@ public class GenMapperXmlFile {
 		content.append("\t\t").append(") ").append(lineSeparator);
 		content.append("\t").append("</insert>").append(lineSeparator);
 
+		// 写入新增 批量操作sql
+		content.append(lineSeparator);
+		content.append("\t").append("<insert id=\"batchInsert\" >").append(lineSeparator);
+		content.append("\t\t").append("insert into ").append(gMain.getTableName())
+				.append(lineSeparator);
+		content.append("\t\t").append("( ").append(lineSeparator);
+		for (int i = 1; i < gMain.getStructureList().size(); i++) {
+			FieldBean field = gMain.getStructureList().get(i);
+
+			if (i == 1) {
+				content.append("\t\t\t\t").append(field.getColumnName())
+						.append(lineSeparator);
+			}
+			else {
+				content.append("\t\t\t\t,").append(field.getColumnName())
+						.append(lineSeparator);
+			}
+		}
+		content.append("\t\t").append(") ").append(lineSeparator);
+		content.append("\t\t").append("values ").append(lineSeparator);
+		content.append("\t\t").append(" <foreach collection=\"list\" item=\"item\" separator=\",\">").append(lineSeparator);
+		content.append("\t\t").append("(").append(lineSeparator);
+
+		for (int i = 1; i < gMain.getStructureList().size(); i++) {
+			FieldBean field = gMain.getStructureList().get(i);
+			content.append("\t\t\t").append("<if test=\"").append("item."+field.getFieldName())
+					.append(" != null ");
+			if (field.getVhClass().getName().contains("String")) {
+				content.append(" and item." + field.getFieldName()).append(" != '' \">")
+						.append(lineSeparator);
+			}
+			else {
+				content.append(" \">").append(lineSeparator);
+			}
+			if (i == 1) {
+				content.append("\t\t\t\t#{").append("item."+field.getFieldName()).append("}")
+						.append(lineSeparator);
+			}
+			else {
+				content.append("\t\t\t\t,#{").append("item."+field.getFieldName()).append("}")
+						.append(lineSeparator);
+			}
+			content.append("\t\t\t").append("</if>").append(lineSeparator);
+		}
+		content.append("\t\t").append(") ").append(lineSeparator);
+		content.append("\t\t").append(" </foreach>").append(lineSeparator);
+		content.append("\t").append("</insert>").append(lineSeparator);
+
+
 		// 写入修改sql
 		content.append(lineSeparator);
 		content.append("\t").append("<update id=\"update\">").append(lineSeparator);
