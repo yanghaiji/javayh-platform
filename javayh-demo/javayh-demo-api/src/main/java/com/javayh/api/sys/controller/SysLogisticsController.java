@@ -1,6 +1,7 @@
 package com.javayh.api.sys.controller;
 
 import com.javayh.common.result.ResultData;
+import com.javayh.log.annotation.SysLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +35,7 @@ public class SysLogisticsController {
 	/**
 	 *  根据条件查找-分页
 	 */
+	@SysLog(value = "dmoe-api", detail = "分页查询")
 	@ApiOperation(value = "根据条件查找-分页")
 	@PostMapping(value = "/findByPage")
 	public ResultData<PageQuery> findByPage (@RequestBody SysLogisticsDTO sysLogisticsDTO){

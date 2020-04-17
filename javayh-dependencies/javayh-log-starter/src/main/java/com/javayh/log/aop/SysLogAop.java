@@ -5,7 +5,9 @@ import com.javayh.common.util.IPUtils;
 import com.javayh.common.util.RandomUtil;
 import com.javayh.common.util.servlet.RequestUtils;
 import com.javayh.log.annotation.SysLog;
+import com.javayh.log.entity.OperationLog;
 import com.javayh.log.log.LogError;
+import com.javayh.log.mapper.LogMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * <p>
@@ -41,12 +44,17 @@ import java.util.concurrent.CompletableFuture;
 public class SysLogAop {
 
 	private static final String YMDHMS = "yyyy-MM-dd HH:mm:ss";
+	private volatile int size = 200;
+	private static CopyOnWriteArrayList copyOnWriteArrayList = new CopyOnWriteArrayList();
 
 	@Autowired
 	private TaskExecutor taskExecutor;
 
 	@Autowired(required = false)
 	private LogError logError;
+
+	@Autowired(required = false)
+	private LogMapper logInfoApi;
 
 	@Around("@annotation(sysLog)")
 	public Object getLog(ProceedingJoinPoint joinPoint, SysLog sysLog) throws Throwable {
@@ -108,25 +116,47 @@ public class SysLogAop {
 			// 本地ip
 			operationLog.setLocalHostIp(IPUtils.getHostIp());
 			// 获取当前用户信息 TODO
-
+			operationLog.setUserId("1234");
+			operationLog.setUserName("javayh");
+			operationLog.setMode(annotation.value());
 			// 判断是否持久化
 			boolean requestParam = annotation.recordRequestParam();
-			if (requestParam) {
-				// 进行日志的保存
-				CompletableFuture.runAsync(() -> {
-					try {
-						log.trace("日志落库开始：{}", operationLog);
-						// 持久化 TODO
-						log.trace("开始落库结束：{}", operationLog);
-					}
-					catch (Exception e) {
-						logError.logPrint("落库失败：{}", e.getStackTrace());
-					}
-
-				}, taskExecutor);
-			}
+			save(requestParam,operationLog,className);
 		}
-		log.info(className + " -> 日志输出为: {}", operationLog);
+	}
+
+	/**
+	 * <p>
+	 *      持久化操作
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan
+	 * @since 2020/4/16
+	 * @param requestParam	标识
+	 * @param operationLog	内容
+	 * @param className		类名
+	 * @return void
+	 */
+	private void save(boolean requestParam,OperationLog operationLog,String className){
+//		copyOnWriteArrayList.add(operationLog);
+		// FIXME: 2020/4/17
+		if (requestParam && copyOnWriteArrayList.size() >= size) {
+			// 进行日志的保存
+			CompletableFuture.runAsync(() -> {
+				try {
+					log.trace("日志落库开始：{}", operationLog);
+					// 持久化
+					logInfoApi.batchInsert(copyOnWriteArrayList);
+					log.trace("开始落库结束：{}", operationLog);
+				}
+				catch (Exception e) {
+					logError.logPrint("落库失败：{}", e.getStackTrace());
+				}
+
+			}, taskExecutor);
+		}else {
+			log.info(className + " -> 日志输出为: {}", operationLog);
+		}
 	}
 
 }

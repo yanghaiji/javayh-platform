@@ -1,6 +1,10 @@
-package com.javayh.log.aop;
+package com.javayh.log.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -12,12 +16,19 @@ import lombok.Data;
  * @since 2020-03-01 23:58
  */
 @Data
-public class OperationLog {
+@NoArgsConstructor
+@AllArgsConstructor
+public class OperationLog implements Serializable {
 
 	/**
 	 * 唯一id
 	 */
 	private String id;
+
+	/**
+	 * 模块
+	 */
+	private String mode;
 
 	/*
 	 * 调用时间

@@ -170,14 +170,14 @@ public class SqlLog {
                     || input.contains(Constant.EXECUTE) || input.contains(Constant.EXEC)
                     || input.contains(Constant.TRUNCATE) || input.contains(Constant.INTO)
                     || input.contains(Constant.DECLARE) || input.contains(Constant.MASTER)) {
-                log.error("==============================BMW==============================");
+                log.error("==============================Java有货==============================");
                 log.error("===========该参数存在SQL注入风险：sInput=" + input+"===========");
-                log.error("============================Pandora============================");
+                log.error("==============================Java有货==============================");
                 return false;
             }else {
-                log.info("==============================BMW==============================");
-                log.info("=================通过SQL检测,未发现注入风险====================");
-                log.info("============================Pandora============================");
+                log.info("==============================Java有货==============================");
+                log.info("=======================通过SQL检测,未发现注入风险=======================");
+                log.info("================================Java有货============================");
                 return true;
             }
         }else {

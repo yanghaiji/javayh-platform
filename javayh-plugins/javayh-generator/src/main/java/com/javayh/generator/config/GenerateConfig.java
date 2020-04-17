@@ -31,7 +31,7 @@ public class GenerateConfig {
 			+ "\\src\\main\\resources\\";
 
 	// 作者信息 选填（不填就给空字符串）
-	public final static String classAuthor = "Dylan";
+	public final static String classAuthor = "Yang HaiJi";
 
 	public final static String fileAuthor = "杨海吉";
 
@@ -62,7 +62,7 @@ public class GenerateConfig {
 
 	public static final String IMPL_NAME = "service.impl";
 
-	public static final String POJO_BO_NAME = "pojo";
+	public static final String POJO_BO_NAME = "entity";
 
 	public static final String POJO_DTO_NAME = "dto";
 
