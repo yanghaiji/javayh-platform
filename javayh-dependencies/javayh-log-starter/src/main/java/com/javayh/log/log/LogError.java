@@ -15,6 +15,7 @@
  */
 package com.javayh.log.log;
 
+import com.javayh.common.util.log.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
@@ -32,11 +33,6 @@ import java.util.concurrent.CompletableFuture;
  */
 @Slf4j
 public class LogError extends LogTemplate {
-
-	@Autowired(required = false)
-	private TaskExecutor taskExecutor;
-
-	private static final String MSG = " 错误详细信息 : ";
 
 	/**
 	 * <p>
@@ -78,13 +74,7 @@ public class LogError extends LogTemplate {
 	 * @return void
 	 */
 	private void log(String prefix, StackTraceElement[] stackTrace) {
-		CompletableFuture.runAsync(() -> {
-			for (StackTraceElement stackTraceElement : stackTrace) {
-				log.error(PREFIX + JOINER + prefix.trim() + JOINER + "{}",
-						MSG + stackTraceElement.toString());
-			}
-		}, taskExecutor);
-
+		Log.error(prefix,stackTrace);
 	}
 
 	/**
@@ -97,11 +87,7 @@ public class LogError extends LogTemplate {
 	 * @return void
 	 */
 	private void log(StackTraceElement[] stackTrace) {
-		CompletableFuture.runAsync(() -> {
-			for (StackTraceElement stackTraceElement : stackTrace) {
-				log.error(PREFIX + "{}", JOINER + MSG + stackTraceElement);
-			}
-		}, taskExecutor);
+		Log.error("",stackTrace);
 	}
 
 }

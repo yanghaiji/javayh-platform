@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * <p>
- *
+ * 		Log记录
  * </p>
  *
  * @author Dylan-haiji
@@ -22,7 +22,9 @@ import java.util.concurrent.CompletableFuture;
 public class Log {
 
 	private static final String PREFIX = "Java有货---";
+	private static final String NEWLINE = "\r\n";
 
+	private static final int MAX_STACK_DEPTH = 10;
 	@Autowired(required = false)
 	private static TaskExecutor taskExecutor = SpringUtils.getBean("taskExecutor",
 			TaskExecutor.class);
@@ -40,13 +42,19 @@ public class Log {
 	 */
 	public static void error(String pr, StackTraceElement[] stackTrace) {
 		HttpServletRequest request = RequestUtils.getRequest();
+		StringBuilder sb = new StringBuilder();
 		CompletableFuture.runAsync(() -> {
 			String requestUri = request.getRequestURI();
-			log.error("异常  method --- {}", request.getMethod());
-			log.error("异常 requestURI --- {}", requestUri);
-			for (StackTraceElement stackTraceElement : stackTrace) {
-				log.error(PREFIX + pr + "{}", "---错误详细信息 : " + stackTraceElement);
+			sb.append(NEWLINE).append(PREFIX).append(pr).append("异常 method -->").append(request.getMethod());
+			sb.append(NEWLINE).append(PREFIX).append(pr).append("异常 requestURI -->").append(requestUri);
+			for (int depth = 1,count = 0; depth < stackTrace.length; ++depth) {
+				sb.append(NEWLINE).append(PREFIX).append(pr).append(" -->").append(stackTrace[depth]);
+				if (count == MAX_STACK_DEPTH) {
+					break;
+				}
+				count ++;
 			}
+			log.error(sb.toString());
 		}, taskExecutor);
 	}
 
