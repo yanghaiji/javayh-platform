@@ -44,6 +44,11 @@ import java.util.regex.Matcher;
 @Slf4j
 public class SqlLog {
 
+    private static final String PREFIX = "Java有货==>";
+    private static final String NEWLINE = "\r\n";
+
+    private static final int MAX_STACK_DEPTH = 10;
+
 	/**
 	 * <p>
 	 * 封装了一下sql语句，使得结果返回完整xml路径下的sql语句节点id + sql语句
@@ -57,9 +62,11 @@ public class SqlLog {
 	 * @return java.lang.String
 	 */
     public static String getSql(Configuration configuration, BoundSql boundSql, String sqlId) throws SQLException {
+        StringBuilder sb = new StringBuilder();
         String sql = showSql(configuration, boundSql);
-        log.info("执行的SQL——ID为:{}",sqlId);
-        log.info("执行的SQL为:{}",sql);
+        sb.append(NEWLINE).append(PREFIX).append("执行的SQL_ID为==>: ").append(sqlId);
+        sb.append(NEWLINE).append(PREFIX).append("执行的SQL为==>: ").append(sql);
+        log.info(sb.toString());
         return sql;
     }
 
@@ -159,7 +166,9 @@ public class SqlLog {
 
     private static Boolean sqlDiscover(Object obj){
         boolean b = ObjectUtils.allNotNull(obj);
-        log.info("参数的值为:{},是否为空值{}",obj,b);
+        StringBuilder sb = new StringBuilder();
+        sb.append(NEWLINE).append(PREFIX).append("参数的值为==>: ").append(obj).append(",是否为空值==>: ").append(b);
+        log.info(sb.toString());
         if(b){
             String input = obj.toString();
             if (input.contains(Constant.DELETE) || input.contains(Constant.ASCII)
@@ -170,14 +179,16 @@ public class SqlLog {
                     || input.contains(Constant.EXECUTE) || input.contains(Constant.EXEC)
                     || input.contains(Constant.TRUNCATE) || input.contains(Constant.INTO)
                     || input.contains(Constant.DECLARE) || input.contains(Constant.MASTER)) {
-                log.error("==============================Java有货==============================");
-                log.error("===========该参数存在SQL注入风险：sInput=" + input+"===========");
-                log.error("==============================Java有货==============================");
+                sb.append(NEWLINE).append(PREFIX).append("==============================Java有货==============================");
+                sb.append(NEWLINE).append(PREFIX).append("===========该参数存在SQL注入风险：sInput=").append(input).append("===========");
+                sb.append(NEWLINE).append(PREFIX).append("==============================Java有货==============================");
+                log.error(sb.toString());
                 return false;
             }else {
-                log.info("==============================Java有货==============================");
-                log.info("=======================通过SQL检测,未发现注入风险=======================");
-                log.info("================================Java有货============================");
+                sb.append(NEWLINE).append(PREFIX).append("==============================Java有货==============================");
+                sb.append(NEWLINE).append(PREFIX).append("=======================通过SQL检测,未发现注入风险======================");
+                sb.append(NEWLINE).append(PREFIX).append("==============================Java有货==============================");
+                log.info(sb.toString());
                 return true;
             }
         }else {

@@ -1,6 +1,7 @@
 package com.javayh.log.aop;
 
 import com.alibaba.fastjson.JSONObject;
+import com.javayh.common.constant.ConstantUtils;
 import com.javayh.common.util.IPUtils;
 import com.javayh.common.util.RandomUtil;
 import com.javayh.common.util.servlet.RequestUtils;
@@ -63,7 +64,6 @@ public class SysLogAop {
 		try {
 			proceed = joinPoint.proceed();
 			time = System.currentTimeMillis() - time;
-			log.info("方法执行消耗时间 = {}", time);
 			return proceed;
 		}
 		catch (Throwable throwable) {
@@ -121,7 +121,7 @@ public class SysLogAop {
 			operationLog.setMode(annotation.value());
 			// 判断是否持久化
 			boolean requestParam = annotation.recordRequestParam();
-			save(requestParam,operationLog,className);
+			save(requestParam,operationLog,className,time);
 		}
 	}
 
@@ -137,9 +137,10 @@ public class SysLogAop {
 	 * @param className		类名
 	 * @return void
 	 */
-	private void save(boolean requestParam,OperationLog operationLog,String className){
+	private void save(boolean requestParam,OperationLog operationLog,String className,long time){
 //		copyOnWriteArrayList.add(operationLog);
 		// FIXME: 2020/4/17
+        StringBuilder sb = new StringBuilder();
 		if (requestParam && copyOnWriteArrayList.size() >= size) {
 			// 进行日志的保存
 			CompletableFuture.runAsync(() -> {
@@ -155,8 +156,11 @@ public class SysLogAop {
 
 			}, taskExecutor);
 		}else {
-			log.info(className + " -> 日志输出为: {}", operationLog);
+            sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(className).append("-> 执行耗时: ").append(time).append("s");
+            sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append("操作记录:").append(operationLog);
+            log.info(sb.toString());
 		}
+
 	}
 
 }

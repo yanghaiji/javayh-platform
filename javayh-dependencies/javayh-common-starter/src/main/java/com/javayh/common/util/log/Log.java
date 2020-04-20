@@ -1,5 +1,6 @@
 package com.javayh.common.util.log;
 
+import com.javayh.common.constant.ConstantUtils;
 import com.javayh.common.util.servlet.RequestUtils;
 import com.javayh.common.util.spring.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +22,6 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class Log {
 
-	private static final String PREFIX = "Java有货---";
-	private static final String NEWLINE = "\r\n";
-
-	private static final int MAX_STACK_DEPTH = 10;
 	@Autowired(required = false)
 	private static TaskExecutor taskExecutor = SpringUtils.getBean("taskExecutor",
 			TaskExecutor.class);
@@ -45,11 +42,11 @@ public class Log {
 		StringBuilder sb = new StringBuilder();
 		CompletableFuture.runAsync(() -> {
 			String requestUri = request.getRequestURI();
-			sb.append(NEWLINE).append(PREFIX).append(pr).append("异常 method -->").append(request.getMethod());
-			sb.append(NEWLINE).append(PREFIX).append(pr).append("异常 requestURI -->").append(requestUri);
+			sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(pr).append("异常 method -->").append(request.getMethod());
+			sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(pr).append("异常 requestURI -->").append(requestUri);
 			for (int depth = 1,count = 0; depth < stackTrace.length; ++depth) {
-				sb.append(NEWLINE).append(PREFIX).append(pr).append(" -->").append(stackTrace[depth]);
-				if (count == MAX_STACK_DEPTH) {
+				sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(pr).append(" -->").append(stackTrace[depth]);
+				if (count == ConstantUtils.MAX_STACK_DEPTH) {
 					break;
 				}
 				count ++;

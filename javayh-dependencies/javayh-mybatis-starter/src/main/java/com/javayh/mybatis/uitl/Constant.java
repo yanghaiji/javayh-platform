@@ -44,7 +44,8 @@ public interface Constant {
 	String AND = " AND ";
 
     String MINUS_SIGN = "-";
-    String PLUS = "'+'";
+    String PLUS = "+";
+    String PLUS_II = "\\+";
     String DESC = " desc";
     String ASC = " asc";
 }

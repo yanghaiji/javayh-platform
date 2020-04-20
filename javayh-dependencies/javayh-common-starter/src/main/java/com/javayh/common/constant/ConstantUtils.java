@@ -24,4 +24,9 @@ public interface ConstantUtils {
 
 	String UTF = "UTF-8";
 
+    String PREFIX = "Java有货==>";
+
+    String NEWLINE = "\r\n";
+
+    int MAX_STACK_DEPTH = 10;
 }
