@@ -73,8 +73,9 @@ public class PageEntity {
         if(orderBy.contains(Constant.MINUS_SIGN)){
             orderBy=orderBy.replaceAll(Constant.MINUS_SIGN, Constant.DESC);
 
-        }else if (orderBy.contains(Constant.PLUS)){
-            orderBy = orderBy.replaceAll(Constant.PLUS, Constant.ASC);
+        }
+        if (orderBy.contains(Constant.PLUS)){
+            orderBy = orderBy.replaceAll(Constant.PLUS_II, Constant.ASC);
         }
         this.orderBy = orderBy;
     }

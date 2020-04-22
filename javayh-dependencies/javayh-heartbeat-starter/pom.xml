@@ -3,19 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>javayh-heartbeat-detection</artifactId>
+        <artifactId>javayh-dependencies</artifactId>
         <groupId>com.javayh</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>javayh-heartbeat-server</artifactId>
+    <packaging>jar</packaging>
+    <artifactId>javayh-heartbeat-starter</artifactId>
+    <description>心跳检测</description>
 
     <dependencies>
         <dependency>
             <groupId>com.javayh</groupId>
-            <artifactId>javayh-nacos-starter</artifactId>
+            <artifactId>javayh-common-starter</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
         </dependency>
     </dependencies>
 

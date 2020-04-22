@@ -132,7 +132,7 @@
             <!-- 关系型和非关系型数据库配置 -->
             <dependency>
                 <groupId>com.javayh</groupId>
-                <artifactId>javayh-db-starter</artifactId>
+                <artifactId>javayh-data-sources-starter</artifactId>
                 <version>${core.version}</version>
             </dependency>
             <!--数据库诗酒花-->
@@ -173,7 +173,7 @@
             </dependency>
             <dependency>
                 <groupId>com.javayh</groupId>
-                <artifactId>javayh-heartbeat-client</artifactId>
+                <artifactId>javayh-heartbeat-starter</artifactId>
                 <version>${core.version}</version>
             </dependency>
             <dependency>
