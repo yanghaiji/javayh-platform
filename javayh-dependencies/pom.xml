@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>javayh-common-starter</module>
-        <module>javayh-db-starter</module>
+        <module>javayh-data-sources-starter</module>
         <module>javayh-log-starter</module>
         <module>javayh-redis-starter</module>
         <module>javayh-swagger-starter</module>
@@ -22,6 +22,7 @@
         <module>javayh-mail-starter</module>
         <module>javayh-mybatis-starter</module>
         <module>javayh-oauth-starter</module>
+        <module>javayh-heartbeat-starter</module>
     </modules>
 
 

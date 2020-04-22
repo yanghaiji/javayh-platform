@@ -20,9 +20,4 @@ public class HeartBeatConfig {
 		return new MessageBody(heartbeatClientProperties.getChannelId(), "ping");
 	}
 
-	// @Bean(value = "heartbeatProperties")
-	// public HeartbeatProperties heartbeatProperties(){
-	// return new HeartbeatProperties() ;
-	// }
-
 }
