@@ -1,0 +1,33 @@
+server:
+  port: 7070
+  maxHttpHeaderSize: 2048
+spring:
+  application:
+    name: ${artifactId}
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  profiles:
+    active: ${profile.name}
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${discovery.server-addr}
+        namespace: ${config.namespace}
+      config:
+        server-addr:  ${config.server-addr}
+        namespace:  ${config.namespace}
+        file-extension: yaml
+        refreshable-dataids: messages.yaml
+        shared-dataids: redis.yaml,mail.yaml,zipkindb.yaml
+  messages:
+    basename: i18n.login.login,i18n.common.common,i18n.validation.validation
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+
+zipkin:
+  storage:
+    type: mysql
