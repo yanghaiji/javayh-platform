@@ -15,9 +15,12 @@
  */
 package com.javayh.mybatis.filter;
 
+import com.javayh.common.exception.BaseException;
+import com.javayh.common.util.MapUtils;
 import com.javayh.mybatis.uitl.Constant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.reflection.MetaObject;
@@ -30,6 +33,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 
 /**
@@ -67,7 +72,27 @@ public class SqlLog {
         sb.append(NEWLINE).append(PREFIX).append("执行的SQL_ID为==>: ").append(sqlId);
         sb.append(NEWLINE).append(PREFIX).append("执行的SQL为==>: ").append(sql);
         log.info(sb.toString());
-        return sql;
+        // 获取参数
+        MapperMethod.ParamMap parameterObject= new MapperMethod.ParamMap();
+        MapperMethod.ParamMap parameterObjectP = (MapperMethod.ParamMap) boundSql.getParameterObject();
+        int size =  parameterObjectP.size();
+        List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+        if(size >> 2 == parameterMappings.size()){
+            return sql;
+        }
+        for (int i = 1; i <= size >> 2; i++) {
+            parameterObject.put("param"+i,parameterObjectP.get("param"+i));
+        }
+        for (ParameterMapping mapping: parameterMappings) {
+            parameterObject.put(mapping.getProperty(),parameterObjectP.get(mapping.getProperty()));
+        }
+        Map<String, Object> differenceSetByGuava = MapUtils.getDifferenceSetByGuava(parameterObjectP, parameterObject);
+        Boolean discover = sqlDiscover(differenceSetByGuava);
+        if(!discover){
+            throw new BaseException("SQL 存在异常,请检查您的SQL是否规范");
+        }else {
+            return sql;
+        }
     }
 
 	/**

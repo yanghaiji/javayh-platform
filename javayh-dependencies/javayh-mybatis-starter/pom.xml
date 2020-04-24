@@ -46,6 +46,11 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pagehelpe.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.javayh</groupId>
+            <artifactId>javayh-common-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
 
     </dependencies>
 </project>

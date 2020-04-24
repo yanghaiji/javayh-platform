@@ -9,6 +9,22 @@
 
 #### 如果您觉得有帮助，请点右上角 "Star" 支持一下谢谢
 本项目处于开发阶段，想加入开发的小伙伴添加`微信:372787553 备注进群或者开发`
+
+## 简介
+javayh-platform 使用Springboot2.2.6为开发脚手架，SpringCloud为云端服务框架，
+Nacos为注册中心、分布式配置管理中心，Oauth2协议实现统一授权，Mybatis作为持久层框架，
+提供了代码生成器，SQL防注入，SwaggerAPI文档，Redis 作为缓存服务等强大的功能 
+项目采用`JDK14`的开发环境,如果您想采用`JDK8`的环境运行，请将一下内容进行修改
+
+```xml
+    <java.version>1.8</java.version>
+    <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <spring-cloud-dependencies.version>Greenwich.SR3</spring-cloud-dependencies.version>
+```
+项目中也有用到JDK14的几个新特性，您可将报错文件的代码进行修改
+
 ## 技术框架
 
 | 框架                   | 说明        | 版本               |
