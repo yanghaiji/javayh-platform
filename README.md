@@ -25,6 +25,10 @@ Nacos为注册中心、分布式配置管理中心，Oauth2协议实现统一授
 ```
 项目中也有用到JDK14的几个新特性，您可将报错文件的代码进行修改
 
+- 注
+如果您对JDK14还不了解,请阅读JDK14重大更新 https://blog.csdn.net/weixin_38937840/article/details/105054595 这将对您的修改有所帮助
+## 使用说明
+- 项目使用说明 https://github.com/Dylan-haiji/javayh-platform/wiki
 ## 技术框架
 
 | 框架                   | 说明        | 版本               |
@@ -71,5 +75,3 @@ javayh-platform                         父工程
 │   ├─javayh-mybatis-starter            mybatis依赖支持
 └─  └─javayh-swagger-starter            Api文档支持
 ```
-## 使用说明
-项目使用说明 <a>https://github.com/Dylan-haiji/javayh-platform/wiki</a>
