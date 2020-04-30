@@ -50,7 +50,6 @@ import java.util.Properties;
  * @since 2020-03-30 14:56
  */
 @Slf4j
-@Configuration
 @Intercepts({ @Signature(type = Executor.class, method = "query", args = {
 		MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }),
 		@Signature(type = Executor.class, method = "query", args = {

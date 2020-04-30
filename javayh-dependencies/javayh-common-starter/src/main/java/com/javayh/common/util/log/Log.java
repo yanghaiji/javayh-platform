@@ -40,10 +40,10 @@ public class Log {
 	public static void error(String pr, StackTraceElement[] stackTrace) {
 		HttpServletRequest request = RequestUtils.getRequest();
 		StringBuilder sb = new StringBuilder();
+        String requestUri = request.getRequestURI();
+        sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(pr).append("异常 method -->").append(request.getMethod());
+        sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(pr).append("异常 requestURI -->").append(requestUri);
 		CompletableFuture.runAsync(() -> {
-			String requestUri = request.getRequestURI();
-			sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(pr).append("异常 method -->").append(request.getMethod());
-			sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(pr).append("异常 requestURI -->").append(requestUri);
 			for (int depth = 1,count = 0; depth < stackTrace.length; ++depth) {
 				sb.append(ConstantUtils.NEWLINE).append(ConstantUtils.PREFIX).append(pr).append(" -->").append(stackTrace[depth]);
 				if (count == ConstantUtils.MAX_STACK_DEPTH) {

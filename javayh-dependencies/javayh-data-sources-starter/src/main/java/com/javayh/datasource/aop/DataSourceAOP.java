@@ -36,7 +36,7 @@ public class DataSourceAOP {
 
 	@After("@annotation(ds)")
 	public void restoreDataSource(JoinPoint point, DataSource ds) {
-		log.debug("Revert DataSource : {transIdo} > {}", ds.name(), point.getSignature());
+		log.debug("Revert DataSource :transIdo {}, > {}", ds.name(), point.getSignature());
 		DataSourceHolder.clearDataSourceKey();
 	}
 

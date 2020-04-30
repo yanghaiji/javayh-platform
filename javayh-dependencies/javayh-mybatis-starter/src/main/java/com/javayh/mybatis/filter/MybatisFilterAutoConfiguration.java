@@ -33,7 +33,6 @@ import java.util.List;
  * @version 1.0.0
  * @since 2020-04-05 11:44
  */
-@Configuration
 @AutoConfigureAfter(PageHelperAutoConfiguration.class)
 public class MybatisFilterAutoConfiguration {
 
