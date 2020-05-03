@@ -303,12 +303,12 @@
                 <!--当前环境-->
                 <profile.name>dev</profile.name>
                 <!--Nacos配置中心地址-->
-                <config.server-addr>192.168.0.109:8848</config.server-addr>
+                <config.server-addr>127.0.0.1:8848</config.server-addr>
                 <config.server-group>DEFAULT_GROUP</config.server-group>
                 <!--Nacos配置中心命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
                 <config.namespace>d7503bcd-e44c-475a-88d4-d28cbfb444fc</config.namespace>
                 <!--Nacos服务发现地址-->
-                <discovery.server-addr>192.168.0.109:8848</discovery.server-addr>
+                <discovery.server-addr>127.0.0.1:8848</discovery.server-addr>
                 <!--Nacos服务注册ip地址-->
                <!-- <discovery.server-ip>100.100.100.100</discovery.server-ip>-->
             </properties>
