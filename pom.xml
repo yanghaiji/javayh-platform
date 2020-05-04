@@ -59,6 +59,7 @@
         <module>javayh-plugins</module>
         <module>javayh-sso</module>
         <module>javayh-monitor-center</module>
+        <module>javayh-register</module>
     </modules>
 
     <dependencies>
