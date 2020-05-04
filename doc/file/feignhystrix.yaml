@@ -9,6 +9,26 @@ feign:
       min-request-size: 2048
     response:
       enabled: true
+      useGzipDecoder: true
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+  #        errorDecoder: com.SimpleErrorDecoder
+  #        retryer: com.SimpleRetryer
+  #        requestInterceptors:
+  #          - com.FooRequestInterceptor
+  #          - com.BarRequestInterceptor
+  #        decode404: false
+  #        encoder: com.SimpleEncoder
+  #        decoder: com.SimpleDecoder
+  #        contract: com.Si
+  httpclient: # 模式使用
+    enabled: false
+  okhttp: # 使用ok http
+    enabled: true
 
 #hystrix的超时时间
 hystrix:
@@ -30,3 +50,5 @@ ribbon:
   MaxAutoRetriesNextServer: 0
   # 是否所有操作（GET、POST等）都允许重试。默认值为false
   OkToRetryOnAllOperations: false
+  okhttp:
+    enabled: true

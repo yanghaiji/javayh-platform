@@ -15,6 +15,7 @@
  */
 package com.javayh.common.feign;
 
+import feign.Logger;
 import feign.Request;
 import feign.Retryer;
 import org.springframework.context.annotation.Bean;
