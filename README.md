@@ -55,11 +55,11 @@ javayh-platform                         父工程
 │  ├─javayh-demo-config                 nacos 多环境配置
 │  ├─javayh-demo-mail                   mail模板
 │  └─javayh-demo-feign                  feign
-├─javayh-plugins                        插件
+├─javayh-monitor-center                 监控中心
+│  ├─javayh-zipkin-center               zipkin链式调用服务监控
+├─javayh-plugins                        插件服务
 │  ├─javayh-generator                   代码生成器
-│  ├─javayh-heartbeat-detection         服务心跳检测
-│  │  ├─javayh-heartbeat-server         心跳检测服务端
-│  └─ └─javayh-heartbeat-client         心跳检测客户端
+│  ├─javayh-heartbeat-server            心跳检测服务端
 ├─javayh-route                          路由分发
 │  └─javayh-api-gateway                 gateway
 ├─javayh-sso                            oauth
@@ -67,11 +67,14 @@ javayh-platform                         父工程
 │  └─javayh-server                      认证服务器
 └─javayh-dependencies                   核心依赖
 │   ├─javayh-common-starter             内部支撑
-│   ├─javayh-db-starter                 关系型数据库
+│   ├─javayh-data-sources-starter       关系型数据库
+│   ├─javayh-heartbeat-starter          心跳检测依赖支持
 │   ├─javayh-nacos-starter              nacos依赖支持
 │   ├─javayh-redis-starter              reids依赖支持
 │   ├─javayh-kafka-starter              kafka依赖支持
 │   ├─javayh-mail-starter               mail依赖支持
 │   ├─javayh-mybatis-starter            mybatis依赖支持
+│   ├─javayh-oauth-starter              oauth2依赖支持
+│   ├─javayh-log-starter                log日志依赖支持
 └─  └─javayh-swagger-starter            Api文档支持
 ```
