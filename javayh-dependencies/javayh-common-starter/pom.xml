@@ -21,6 +21,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
         <!-- aop处理 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

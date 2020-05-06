@@ -54,9 +54,6 @@ public class SysLogAop {
 	@Autowired(required = false)
 	private LogError logError;
 
-	@Autowired(required = false)
-	private LogMapper logInfoApi;
-
 	@Around("@annotation(sysLog)")
 	public Object getLog(ProceedingJoinPoint joinPoint, SysLog sysLog) throws Throwable {
 		Object proceed = null;
@@ -147,7 +144,7 @@ public class SysLogAop {
 				try {
 					log.trace("日志落库开始：{}", operationLog);
 					// 持久化
-					logInfoApi.batchInsert(copyOnWriteArrayList);
+
 					log.trace("开始落库结束：{}", operationLog);
 				}
 				catch (Exception e) {

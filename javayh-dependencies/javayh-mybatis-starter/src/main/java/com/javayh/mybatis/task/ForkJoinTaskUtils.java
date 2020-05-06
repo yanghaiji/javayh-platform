@@ -25,19 +25,19 @@ public class ForkJoinTaskUtils<T extends Object >implements Serializable {
         return invoke;
     }
 
-    public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.add("1234");
-        list.add("1234");
-        list.add("1234");
-        list.add("1234");
-        list.add("1234");
-        list.add("1234");
-        list.add("1234");
-        list.add("1234");
-        list.add("1234");
-        Long aLong = batchOperation(list);
-        System.out.println(aLong);
-    }
+//    public static void main(String[] args) {
+//        List<String> list = new ArrayList<>();
+//        list.add("1234");
+//        list.add("1234");
+//        list.add("1234");
+//        list.add("1234");
+//        list.add("1234");
+//        list.add("1234");
+//        list.add("1234");
+//        list.add("1234");
+//        list.add("1234");
+//        Long aLong = batchOperation(list);
+//        System.out.println(aLong);
+//    }
 
 }

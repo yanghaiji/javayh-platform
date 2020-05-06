@@ -19,8 +19,7 @@ public class LogImportSelector implements ImportSelector {
 		return new String[] {
 				"com.javayh.log.aop.SysLogAop",
 				"com.javayh.log.conf.LogAutoConfig",
-				"com.javayh.log.log.LogError",
-				"com.javayh.log.mapper.LogInfoApi"
+				"com.javayh.log.log.LogError"
 		};
 	}
 
