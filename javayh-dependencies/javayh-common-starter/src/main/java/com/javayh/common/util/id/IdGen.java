@@ -1,4 +1,4 @@
-package com.javayh.common.util;
+package com.javayh.common.util.id;
 
 import java.util.UUID;
 
