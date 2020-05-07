@@ -17,6 +17,7 @@
         <module>javayh-demo-api</module>
         <module>javayh-demo-mail</module>
         <module>javayh-demo-config</module>
+        <module>javayh-demo-file</module>
     </modules>
 
     <dependencies>

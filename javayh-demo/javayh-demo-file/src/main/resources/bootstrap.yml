@@ -1,5 +1,5 @@
 server:
-  port: 6064
+  port: 6065
 spring:
   application:
     name: ${artifactId}
@@ -17,6 +17,11 @@ spring:
         server-addr:  ${config.server-addr}
         namespace:  ${config.namespace}
         file-extension: yaml
-        shared-dataids: redis.yaml,mail.yaml
+        shared-dataids: redis.yaml,mail.yaml,feignhystrix.yaml
   messages:
     basename: i18n.login.login,i18n.common.common,i18n.validation.validation
+#heartbeat:
+#  server:
+#    host: 127.0.0.1
+#    port: 8001
+#    channel-id: 101
