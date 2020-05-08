@@ -16,10 +16,6 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.javayh</groupId>
-            <artifactId>javayh-common-starter</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

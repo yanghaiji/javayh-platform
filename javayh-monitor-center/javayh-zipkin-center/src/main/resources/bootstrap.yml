@@ -3,24 +3,19 @@ server:
   maxHttpHeaderSize: 2048
 spring:
   application:
-    name: ${artifactId}
+    name: javayh-zipkin-center
   main:
     allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
-  profiles:
-    active: ${profile.name}
   cloud:
     nacos:
       discovery:
-        server-addr: ${discovery.server-addr}
-        namespace: ${config.namespace}
+        server-addr: 127.0.0.1:8848
+        namespace: d7503bcd-e44c-475a-88d4-d28cbfb444fc
       config:
-        server-addr:  ${config.server-addr}
-        namespace:  ${config.namespace}
+        server-addr:  127.0.0.1:8848
+        namespace:  d7503bcd-e44c-475a-88d4-d28cbfb444fc
         file-extension: yaml
-        refreshable-dataids: messages.yaml
-        shared-dataids: redis.yaml,mail.yaml,zipkindb.yaml
-  messages:
-    basename: i18n.login.login,i18n.common.common,i18n.validation.validation
+        shared-dataids: zipkindb.yaml
 
 management:
   metrics:

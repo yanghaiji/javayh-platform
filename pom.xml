@@ -45,11 +45,12 @@
         <mysql.connector.version>6.0.6</mysql.connector.version>
         <spring-javaformat.version>0.0.7</spring-javaformat.version>
         <hutool.version>4.1.19</hutool.version>
-        <zipkin.version>2.12.1</zipkin.version>
+        <zipkin.version>2.12.9</zipkin.version>
         <!--<spring-cloud-dependencies.version>Greenwich.SR3</spring-cloud-dependencies.version>-->
         <!--springboot 2.2.0 -->
         <spring-cloud-dependencies.version>Hoxton.SR3</spring-cloud-dependencies.version>
         <spring-cloud-alibaba-dependencies.version>2.1.1.RELEASE</spring-cloud-alibaba-dependencies.version>
+        <esotericsoftware.version>3.0.3</esotericsoftware.version>
     </properties>
 
     <modules>

@@ -1,14 +1,8 @@
 package com.javayh.zipkin;
 
-import com.javayh.common.annotation.JavayhBootApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.health.CompositeHealthIndicator;
-import org.springframework.boot.actuate.health.DefaultHealthIndicatorRegistry;
-import org.springframework.boot.actuate.health.HealthAggregator;
-import org.springframework.boot.actuate.health.HealthEndpoint;
-import org.springframework.boot.actuate.health.HealthIndicatorRegistry;
-import org.springframework.boot.actuate.health.OrderedHealthAggregator;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import zipkin2.server.internal.EnableZipkinServer;
 import zipkin2.storage.mysql.v1.MySQLStorage;
@@ -24,8 +18,9 @@ import javax.sql.DataSource;
  * @version 1.0.0
  * @since 2020-04-23
  */
+@EnableDiscoveryClient
 @EnableZipkinServer
-@JavayhBootApplication
+@SpringBootApplication
 public class ZipkinApplication {
 
     public static void main(String[] args) {
