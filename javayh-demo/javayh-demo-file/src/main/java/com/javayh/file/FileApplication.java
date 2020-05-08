@@ -17,7 +17,5 @@ public class FileApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FileApplication.class,args);
-        System.out.println("1111");
-        System.out.println("2222 22");
     }
 }
