@@ -2,6 +2,8 @@
 feign:
   hystrix:
     enabled: true #是否开启断路器
+#  sentinel: # 如果您使用sentinel，请将hystrix 置为false
+#    enabled: true
   compression: #GZIP 请求压缩
     request:
       enabled: true
