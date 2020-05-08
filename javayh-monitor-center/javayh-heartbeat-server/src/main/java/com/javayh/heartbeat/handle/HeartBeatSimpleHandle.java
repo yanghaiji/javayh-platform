@@ -1,5 +1,6 @@
 package com.javayh.heartbeat.handle;
 
+import com.javayh.common.constant.ConstantUtils;
 import com.javayh.common.result.MessageBody;
 import com.javayh.heartbeat.util.NettySocketHolder;
 import io.netty.buffer.ByteBuf;
@@ -12,6 +13,8 @@ import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -26,7 +29,12 @@ import lombok.extern.slf4j.Slf4j;
 public class HeartBeatSimpleHandle extends SimpleChannelInboundHandler<MessageBody> {
 
 	private static final ByteBuf HEART_BEAT = Unpooled.unreleasableBuffer(
-			Unpooled.copiedBuffer(new MessageBody(20200202L, "pong").toString(),
+			Unpooled.copiedBuffer(
+			        MessageBody.builder()
+                            .msgId(20200202L)
+                            .msg("pong")
+                            .appName("HeartBeat-Server")
+                            .createDate(new Date()).build().toString(),
 					CharsetUtil.UTF_8));
 
 	/**
@@ -43,9 +51,11 @@ public class HeartBeatSimpleHandle extends SimpleChannelInboundHandler<MessageBo
 	@Override
 	protected void channelRead0(ChannelHandlerContext context, MessageBody messageBody)
 			throws Exception {
-		log.info("服务端消息接收成功:{}", messageBody);
+        StringBuilder sb = new StringBuilder();
+        sb.append("服务端消息接收成功==>").append(messageBody);
+		log.info(sb.toString());
 		// 保存客户端与 Channel 之间的关系
-		NettySocketHolder.put(messageBody.getMsgId(),
+		NettySocketHolder.put(messageBody.getAppName(),
 				(NioSocketChannel) context.channel());
 	}
 

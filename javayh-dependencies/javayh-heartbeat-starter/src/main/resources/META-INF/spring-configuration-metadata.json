@@ -28,5 +28,12 @@
       "defaultValue": 100,
       "description": "heartbeat server channel-id"
     }
+  ,
+    {
+      "name":"heartbeat.server.app-name",
+      "type": "java.lang.String",
+      "sourceType": "com.javayh.client.properties.HeartbeatClientProperties",
+      "description": "heartbeat server app-name"
+    }
   ]
 }

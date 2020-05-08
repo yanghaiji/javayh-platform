@@ -1,6 +1,8 @@
 package com.javayh.client.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * <p>
@@ -17,9 +19,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 )
 public class HeartbeatClientProperties {
 
-	private Long channelId;
-	private String host;
-	private Integer port;
+	private @NotNull Long channelId;
+	private @NotBlank String host;
+	private @NotNull Integer port;
+	private @NotBlank String appName;
 
 	public HeartbeatClientProperties() {
 	}
@@ -46,5 +49,13 @@ public class HeartbeatClientProperties {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
     }
 }

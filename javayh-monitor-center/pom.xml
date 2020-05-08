@@ -13,6 +13,7 @@
 
     <modules>
         <module>javayh-zipkin-center</module>
+        <module>javayh-heartbeat-server</module>
     </modules>
 
     <dependencies>

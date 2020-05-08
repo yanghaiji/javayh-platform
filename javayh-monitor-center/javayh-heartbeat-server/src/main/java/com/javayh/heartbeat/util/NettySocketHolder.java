@@ -17,8 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class NettySocketHolder {
 
 	/** 初始化容器 */
-	private static final Map<Long, NioSocketChannel> mapChannel = new ConcurrentHashMap<>(
-			16);
+	private static final Map<String, NioSocketChannel> mapChannel = new ConcurrentHashMap<>(16);
 
 	/**
 	 * <p>
@@ -31,7 +30,7 @@ public class NettySocketHolder {
 	 * @param socketChannel
 	 * @return void
 	 */
-	public static void put(Long id, NioSocketChannel socketChannel) {
+	public static void put(String id, NioSocketChannel socketChannel) {
 		mapChannel.put(id, socketChannel);
 	}
 
@@ -45,7 +44,7 @@ public class NettySocketHolder {
 	 * @param id
 	 * @return io.netty.channel.socket.nio.NioSocketChannel
 	 */
-	public static NioSocketChannel get(Long id) {
+	public static NioSocketChannel get(String id) {
 		return mapChannel.get(id);
 	}
 
@@ -59,7 +58,7 @@ public class NettySocketHolder {
 	 * @param
 	 * @return java.util.Map<java.lang.Long,io.netty.channel.socket.nio.NioSocketChannel>
 	 */
-	public static Map<Long, NioSocketChannel> getMapChannel() {
+	public static Map<String, NioSocketChannel> getMapChannel() {
 		return mapChannel;
 	}
 

@@ -1,5 +1,6 @@
 package com.javayh.client.handle;
 
+import com.javayh.common.constant.ConstantUtils;
 import com.javayh.common.result.MessageBody;
 import com.javayh.common.util.spring.SpringUtils;
 import io.netty.buffer.ByteBuf;
@@ -51,7 +52,10 @@ public class EchoClientHandle extends SimpleChannelInboundHandler<ByteBuf> {
 	protected void channelRead0(ChannelHandlerContext channelHandlerContext,
 			ByteBuf byteBuf) throws Exception {
 		// 从服务端收到消息时被调用
-		log.info("客户端收到消息={}", byteBuf.toString(CharsetUtil.UTF_8));
+        StringBuilder sb = new StringBuilder();
+        sb.append("客户端收到消息==>")
+                .append(byteBuf.toString(CharsetUtil.UTF_8));
+		log.info(sb.toString());
 	}
 
 }

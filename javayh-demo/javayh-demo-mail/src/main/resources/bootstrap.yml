@@ -27,3 +27,4 @@ heartbeat:
     host: 127.0.0.1
     port: 8001
     channel-id: 100
+    app-name: ${artifactId}

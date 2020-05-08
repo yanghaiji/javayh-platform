@@ -12,7 +12,6 @@
     <artifactId>javayh-plugins</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>javayh-heartbeat-server</module>
         <module>javayh-generator</module>
     </modules>
 

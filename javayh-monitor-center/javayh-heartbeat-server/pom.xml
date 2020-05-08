@@ -13,11 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.javayh</groupId>
-            <artifactId>javayh-nacos-starter</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>
