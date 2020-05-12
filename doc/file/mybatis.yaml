@@ -1,0 +1,9 @@
+## mybatis 常用配置
+mybatis:
+  ### xml存放路径
+  mapper-locations: classpath*:mapper/*/*Mapper.xml
+  configuration:
+    cache-enabled: true
+    lazy-loading-enabled: false
+    aggressive-lazy-loading: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

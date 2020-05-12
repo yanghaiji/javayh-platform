@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.javayh.api.sys.dao.SysLogisticsMapper">
 
-	<!-- 数据库中表名为:sys_logistics的列名,as前是数据库的列明,as后是列的别名用于映射成实体类中的属性 -->
+    <cache type="com.javayh.mybatis.cache.RedisCache"/>
+
+    <!-- 数据库中表名为:sys_logistics的列名,as前是数据库的列明,as后是列的别名用于映射成实体类中的属性 -->
 	<sql id="sysLogisticsColumn">
 		sys_logistics.id as id,
 		sys_logistics.addressee_name as addresseeName,

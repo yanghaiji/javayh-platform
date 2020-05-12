@@ -84,7 +84,7 @@ public class GenMapperXmlFile {
 				.append(lineSeparator);
 		content.append("<mapper namespace=\"").append(mapperFile.getClassQuaName())
 				.append("\">").append(lineSeparator);
-
+        content.append("<cache type=\"com.javayh.mybatis.cache.RedisCache\"/>").append(lineSeparator);
 		// 写入共有列sql
 		content.append(lineSeparator);
 		content.append("\t")
