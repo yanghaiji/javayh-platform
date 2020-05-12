@@ -1,13 +1,20 @@
 package com.javayh.redis.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisServerCommands;
 import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -61,6 +68,15 @@ public class RedisUtil {
 		}
 	}
 
+
+    public Integer execute() {
+        Long size = redisTemplate.execute(RedisServerCommands::dbSize);
+        return Objects.requireNonNull(size).intValue();
+    }
+    public Set<String> keys(String key) {
+        return redisTemplate.keys("*:" + key + "*");
+    }
+
 	/**
 	 * <p>
 	 * 根据key 获取过期时间
@@ -111,10 +127,24 @@ public class RedisUtil {
 				redisTemplate.delete(key[0]);
 			}
 			else {
-				redisTemplate.delete(CollectionUtils.arrayToList(key));
+				redisTemplate.delete(Arrays.asList(key));
 			}
 		}
 	}
+
+	/**
+	 * <p>
+	 *      删除
+	 * </p>
+	 * @version 1.0.0
+	 * @author Dylan-haiji
+	 * @since 2020/5/11
+	 * @param keys
+	 * @return void
+	 */
+    public void del(Collection<String> keys) {
+        redisTemplate.delete(keys);
+    }
 
 	/**
 	 * <p>

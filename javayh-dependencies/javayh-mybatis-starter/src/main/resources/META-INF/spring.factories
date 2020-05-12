@@ -1,2 +1,3 @@
-#org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.javayh.mybatis.cache.RedisCache
 #com.javayh.mybatis.filter.MybatisFilterAutoConfiguration
