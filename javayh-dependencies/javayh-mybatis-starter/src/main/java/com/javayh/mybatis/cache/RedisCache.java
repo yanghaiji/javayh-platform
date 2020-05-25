@@ -4,6 +4,7 @@ import com.javayh.common.util.log.Log;
 import com.javayh.redis.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.cache.Cache;
+import org.apache.ibatis.cache.CacheException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.CollectionUtils;
@@ -110,4 +111,25 @@ public class RedisCache implements Cache {
         return this.readWriteLock;
     }
 
+    @Override
+    public int hashCode() {
+        if (this.getId() == null) {
+            throw new CacheException("Mybatis RedisCache instances require an ID.");
+        } else {
+            return this.getId().hashCode();
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this.getId() == null) {
+            throw new CacheException("Mybatis RedisCache  instances require an ID.");
+        } else if (this == o) {
+            return true;
+        } else if (!(o instanceof Cache otherCache)) {
+            return false;
+        } else {
+            return this.getId().equals(otherCache.getId());
+        }
+    }
 }
