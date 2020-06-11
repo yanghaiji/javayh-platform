@@ -1,14 +1,14 @@
 package com.javayh.log.aop;
 
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONObject;
 import com.javayh.common.constant.ConstantUtils;
 import com.javayh.common.util.IPUtils;
 import com.javayh.common.util.RandomUtil;
+import com.javayh.common.util.json.JsonUtils;
 import com.javayh.common.util.servlet.RequestUtils;
 import com.javayh.log.annotation.SysLog;
 import com.javayh.log.entity.OperationLog;
 import com.javayh.log.log.LogError;
-import com.javayh.log.mapper.LogMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -94,7 +94,7 @@ public class SysLogAop {
 			}
 			params.add(arg);
 		}
-		operationLog.setArgs(JSONObject.toJSONString(params));
+		operationLog.setArgs(JsonUtils.beanToJson(params));
 		// 创建时间
 		operationLog.setCreateTime(DateFormatUtils.format(new Date(), YMDHMS));
 		// 类名

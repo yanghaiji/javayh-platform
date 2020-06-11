@@ -1,5 +1,6 @@
 package com.javayh.api.web;
 
+import com.javayh.api.sys.pojo.SysLogistics;
 import com.javayh.common.qrcode.QRCodeGenerator;
 import com.javayh.common.result.ResultData;
 import io.swagger.annotations.Api;
@@ -38,5 +39,11 @@ public class ApiController {
 		String logoPath = "C:\\Users\\haiyang\\Desktop\\webwxgetmsgimg.jpg";
 		QRCodeGenerator.outputQRCode(text, logoPath, response);
 	}
+
+    @ApiOperation(value = "phone check", notes = "phone check")
+    @RequestMapping("/phone")
+    public ResultData getPhone(Person person) throws Exception {
+        return ResultData.success(person);
+    }
 
 }

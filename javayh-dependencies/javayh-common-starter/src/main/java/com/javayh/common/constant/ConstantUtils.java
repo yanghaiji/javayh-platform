@@ -28,5 +28,5 @@ public interface ConstantUtils {
 
     String NEWLINE = "\r\n";
 
-    int MAX_STACK_DEPTH = 10;
+    int MAX_STACK_DEPTH = 100;
 }

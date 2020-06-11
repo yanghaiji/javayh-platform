@@ -13,7 +13,6 @@
         <java.version>14</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <fastjson.version>1.2.60</fastjson.version>
         <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
@@ -28,7 +27,6 @@
         <maven-dockerfile-plugin.version>1.4.10</maven-dockerfile-plugin.version>
         <maven-spring-boot-plugin.version>2.2.6.RELEASE</maven-spring-boot-plugin.version>
         <core.version>1.0.0</core.version>
-        <fastjson.version>1.2.60</fastjson.version>
         <mybatis.version>1.3.2</mybatis.version>
         <druid.version>1.1.10</druid.version>
         <commons-codec.version>1.10</commons-codec.version>
@@ -76,11 +74,6 @@
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>

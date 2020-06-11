@@ -19,7 +19,6 @@ import com.javayh.generator.config.GenerateConfig;
 import com.javayh.generator.util.FileUtils;
 import com.javayh.generator.util.NameUtils;
 import com.javayh.generator.util.NotesUtils;
-import com.javayh.generator.util.StringUtil;
 
 import java.io.File;
 import java.io.IOException;

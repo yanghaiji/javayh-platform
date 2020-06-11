@@ -1,6 +1,6 @@
 package com.javayh.oauth.base;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -122,7 +122,6 @@ public class BaseUserDetails implements UserDetails {
 	}
 
 	@JsonIgnore
-	@JSONField(serialize = false)
 	@Override
 	public String getPassword() {
 		return this.password;

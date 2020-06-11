@@ -3,8 +3,7 @@ package com.javayh.common.util;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.javayh.common.util.json.JsonUtils;
 import com.javayh.common.util.spring.SpringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -76,7 +75,7 @@ public class WebUtil extends ServletUtil {
 			String body = getBody(request);
 			if (StrUtil.isNotBlank(body)) {
 				try {
-					returnMap = JSONObject.parseObject(body, Map.class);
+					returnMap = JsonUtils.jsonToBean(body, Map.class);
 				}
 				catch (Exception e) {
 					e.printStackTrace();
@@ -140,7 +139,7 @@ public class WebUtil extends ServletUtil {
 	 * @return
 	 */
 	public static void writeJson(HttpServletResponse response, Object object) {
-		writeJson(response, JSON.toJSONString(object),
+		writeJson(response, JsonUtils.beanToJson(object),
 				MediaType.APPLICATION_JSON_UTF8_VALUE);
 	}
 
