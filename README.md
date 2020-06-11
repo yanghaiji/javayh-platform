@@ -9,7 +9,7 @@
 
 #### 如果您觉得有帮助，请点右上角 "Star" 支持一下谢谢
 本项目处于开发阶段，想加入开发的小伙伴添加`微信:372787553 备注进群或者开发`
-
+#### 如果Github clone 比较慢，请您移步Gittee：https://gitee.com/YangHaiJi/javayh-platform 
 ## 简介
 javayh-platform 使用Springboot2.2.6为开发脚手架，SpringCloud为云端服务框架，
 Nacos为注册中心、分布式配置管理中心，Oauth2协议实现统一授权，Mybatis作为持久层框架，
