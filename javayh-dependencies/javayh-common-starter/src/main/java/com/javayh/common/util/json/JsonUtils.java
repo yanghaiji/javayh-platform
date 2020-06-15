@@ -1,5 +1,6 @@
 package com.javayh.common.util.json;
 
+import cn.hutool.json.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -7,13 +8,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.javayh.common.config.JacksonConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 
 /**
@@ -278,6 +282,27 @@ public class JsonUtils<T>{
         return t;
     }
 
+    /**
+     * <p>
+     *
+     * </p>
+     * @version 1.0.0
+     * @author Dylan-haiji
+     * @since 2020/6/15
+     * @param path
+     * @param value
+     * @return T
+     */
+    public static <T> void readJsonFromClassPath(String path, T value)  {
+        ClassPathResource resource = new ClassPathResource(path);
+        if (resource.exists()) {
+            try {
+                beanToJson(new File(path),value);
+            } catch (Exception e) {
+                logger.error("read json file ",e);
+            }
+        }
+    }
 
     /**
      * <p>
