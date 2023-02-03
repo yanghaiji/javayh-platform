@@ -1,4 +1,4 @@
-#  javayh-platform 
+#  javayh-platform
 
 <p align="center">
   <img src='https://img.shields.io/badge/license-Apache%202-borightgreen' alt='License'/>
