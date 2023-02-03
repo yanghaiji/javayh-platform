@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Maven
+        # You may pin to the exact commit or the version.
+        # uses: stCarolas/setup-maven@07fbbe97d97ef44336b7382563d66743297e442f
+        uses: stCarolas/setup-maven@v.4.5
+      - name: Build package
+        run: mvn clean package
+
+      - name: Login Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Push image
+        run:
+          docker push ghcr.io/shaowenchen/documents:latest
